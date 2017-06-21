@@ -3,16 +3,16 @@ package org.aksw.simba.katana.KBUtils;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.hp.hpl.jena.query.QueryExecution;
-import com.hp.hpl.jena.query.QueryExecutionFactory;
-import com.hp.hpl.jena.query.QueryFactory;
-import com.hp.hpl.jena.query.QuerySolution;
-import com.hp.hpl.jena.query.ResultSet;
-import com.hp.hpl.jena.query.ResultSetFormatter;
-import com.hp.hpl.jena.rdf.model.Model;
-import com.hp.hpl.jena.rdf.model.ModelFactory;
-import com.hp.hpl.jena.rdf.model.Resource;
-import com.hp.hpl.jena.sparql.engine.http.QueryEngineHTTP;
+import org.apache.jena.query.QueryExecution;
+import org.apache.jena.query.QueryExecutionFactory;
+import org.apache.jena.query.QueryFactory;
+import org.apache.jena.query.QuerySolution;
+import org.apache.jena.query.ResultSet;
+import org.apache.jena.query.ResultSetFormatter;
+import org.apache.jena.rdf.model.Model;
+import org.apache.jena.rdf.model.ModelFactory;
+import org.apache.jena.rdf.model.Resource;
+import org.apache.jena.sparql.engine.http.QueryEngineHTTP;
 
 public class SparqlHandler {
 
@@ -61,7 +61,7 @@ public class SparqlHandler {
 		List<Resource> x = c.getResources(classname);
 		ResultSet a = c.getFunctionalProperties();
 		ResultSetFormatter.outputAsJSON(System.out, a);
-		m.add(c.getCBD(x.get(0)));
+		// m.add(c.getCBD(x.get(0)));
 		/*
 		 * for (Resource r : c.getNResources(classname)) { m.add(c.getCBD(r)); }
 		 */
