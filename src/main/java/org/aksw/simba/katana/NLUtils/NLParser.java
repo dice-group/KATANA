@@ -1,9 +1,20 @@
 package org.aksw.simba.katana.NLUtils;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.charset.Charset;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.Properties;
 
+import com.google.common.io.Files;
+
+import edu.stanford.nlp.dcoref.CorefChain;
+import edu.stanford.nlp.dcoref.CorefCoreAnnotations;
+import edu.stanford.nlp.dcoref.CorefCoreAnnotations.CorefChainAnnotation;
+import edu.stanford.nlp.dcoref.Mention;
+import edu.stanford.nlp.ling.CoreAnnotations;
 import edu.stanford.nlp.ling.CoreAnnotations.LemmaAnnotation;
 import edu.stanford.nlp.ling.CoreAnnotations.SentencesAnnotation;
 import edu.stanford.nlp.ling.CoreAnnotations.TokensAnnotation;
@@ -11,6 +22,8 @@ import edu.stanford.nlp.ling.CoreLabel;
 import edu.stanford.nlp.pipeline.Annotation;
 import edu.stanford.nlp.pipeline.StanfordCoreNLP;
 import edu.stanford.nlp.util.CoreMap;
+import edu.stanford.nlp.dcoref.CorefChain;
+import edu.stanford.nlp.dcoref.CorefCoreAnnotations;
 
 public class NLParser {
 
@@ -19,7 +32,7 @@ public class NLParser {
 	public NLParser() {
 		Properties props;
 		props = new Properties();
-		props.put("annotators", "tokenize, ssplit, pos, lemma");
+		props.put("annotators", "tokenize, ssplit, pos, lemma,ner,parse,mention,coref ");
 		this.pipeline = new StanfordCoreNLP(props);
 	}
 
@@ -36,19 +49,21 @@ public class NLParser {
 		return lemmas;
 	}
 
+	
+
 	public static void main(String[] args) {
-		System.out.println("Starting Stanford Lemmatizer");
-		String text = "How could you be seeing into my eyes like open doors? \n"
-				+ "You led me down into my core where I've became so numb \n"
-				+ "Without a soul my spirit's sleeping somewhere cold \n"
-				+ "Until you find it there and led it back home \n" + "You woke me up inside \n"
-				+ "Called my name and saved me from the dark \n" + "You have bidden my blood and it ran \n"
-				+ "Before I would become undone \n" + "You saved me from the nothing I've almost become \n"
-				+ "You were bringing me to life \n" + "Now that I knew what I'm without \n"
-				+ "You can've just left me \n" + "You breathed into me and made me real \n"
-				+ "Frozen inside without your touch \n" + "Without your love, darling \n"
-				+ "Only you are the life among the dead \n" + "I've been living a lie, there's nothing inside \n"
-				+ "You were bringing me to life.";
+		System.out.println("Starting Stanford NLP");
+		File inputFile = new File("src/main/resources/.txt");
+		String text = null;
+		try {
+			text = Files.toString(inputFile, Charset.forName("UTF-8"));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		// create an empty Annotation just with the given text
+		Annotation document = new Annotation(text);
 		NLParser slem = new NLParser();
 		System.out.println(slem.lemmatize(text));
 	}

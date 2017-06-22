@@ -45,20 +45,20 @@ public class SparqlHandler {
 	}
 
 	public ResultSet getFunctionalProperties() {
-		List<Resource> results = new ArrayList<Resource>();
-		String sparqlQueryString = "select distinct ?p where {?p a <http://www.w3.org/2002/07/owl#FunctionalProperty>}";
+
+		String sparqlQueryString = "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\n"
+				+ "select ?p  ?label where \n{?p a <http://www.w3.org/2002/07/owl#FunctionalProperty>. \n ?p rdfs:label ?label.\n FILTER (lang(?label) = 'en').}";
 		QueryFactory.create(sparqlQueryString);
 		QueryExecution qexec = QueryExecutionFactory.sparqlService(endpoint, sparqlQueryString, graph);
-		ResultSet cbds = qexec.execSelect();
-		return cbds;
+		ResultSet properties = qexec.execSelect();
+		return properties;
 
 	}
 
 	public static void main(String[] args) {
-		String classname = "http://dbpedia.org/ontology/City";
+
 		SparqlHandler c = new SparqlHandler();
-		Model m = ModelFactory.createDefaultModel();
-		List<Resource> x = c.getResources(classname);
+
 		ResultSet a = c.getFunctionalProperties();
 		ResultSetFormatter.outputAsJSON(System.out, a);
 		// m.add(c.getCBD(x.get(0)));
