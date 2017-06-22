@@ -3,14 +3,14 @@ package org.aksw.simba.katana.KBUtils;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.aksw.simba.katana.model.RDFProperty;
 import org.apache.jena.query.QueryExecution;
 import org.apache.jena.query.QueryExecutionFactory;
 import org.apache.jena.query.QueryFactory;
 import org.apache.jena.query.QuerySolution;
 import org.apache.jena.query.ResultSet;
-import org.apache.jena.query.ResultSetFormatter;
 import org.apache.jena.rdf.model.Model;
-import org.apache.jena.rdf.model.ModelFactory;
+
 import org.apache.jena.rdf.model.Resource;
 import org.apache.jena.sparql.engine.http.QueryEngineHTTP;
 
@@ -50,23 +50,21 @@ public class SparqlHandler {
 				+ "select ?p  ?label where \n{?p a <http://www.w3.org/2002/07/owl#FunctionalProperty>. \n ?p rdfs:label ?label.\n FILTER (lang(?label) = 'en').}";
 		QueryFactory.create(sparqlQueryString);
 		QueryExecution qexec = QueryExecutionFactory.sparqlService(endpoint, sparqlQueryString, graph);
-		ResultSet properties = qexec.execSelect();
-		return properties;
+		ResultSet funcProperties = qexec.execSelect();
+		// ResultSetFormatter.out(System.out, funcProperties);
+		return funcProperties;
 
 	}
 
-	public static void main(String[] args) {
+	public ArrayList<RDFProperty> getPropertyList() {
+		ArrayList<RDFProperty> listOfProperties = new ArrayList<RDFProperty>();
 
-		SparqlHandler c = new SparqlHandler();
-
-		ResultSet a = c.getFunctionalProperties();
-		ResultSetFormatter.outputAsJSON(System.out, a);
-		// m.add(c.getCBD(x.get(0)));
-		/*
-		 * for (Resource r : c.getNResources(classname)) { m.add(c.getCBD(r)); }
-		 */
-		// m.write(System.out, "TTL");
-
+		ResultSet funcProp = this.getFunctionalProperties();
+		while (funcProp.hasNext()) {
+			listOfProperties.add(new RDFProperty(funcProp.next().getResource("p").toString(),
+					funcProp.next().getLiteral("label").getString()));
+		}
+		return listOfProperties;
 	}
 
 }
