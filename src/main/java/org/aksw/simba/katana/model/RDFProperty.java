@@ -6,7 +6,10 @@ public class RDFProperty {
 
 	public RDFProperty(String uri, String label) {
 		this.uri = uri;
-		this.label = label;
+		if(label.contains(" "))
+		this.label = label.split(" ")[0];
+		else 
+			this.label=label;
 
 	}
 

@@ -31,10 +31,12 @@ public class ComparisonUtils {
 		ArrayList<RDFProperty> propertiesList = queryHandler.getPropertyList();
 		System.out.println(propertiesList);
 		// Random addition for check
-		propertiesList.add(new RDFProperty("http://dbpedia.org/page/Berlin", "Berlin"));
+		//propertiesList.add(new RDFProperty("http://dbpedia.org/page/Berlin", "Berlin"));
 		for (RDFProperty ele : propertiesList) {
+			
 			for (CoreMap sentence : sentences) {
 				if (sentence.get(CoreAnnotations.TextAnnotation.class).contains(ele.getLabel())) {
+					System.out.println("Label : " +ele.getLabel());
 					nlText.add(sentence);
 				}
 
