@@ -1,6 +1,10 @@
 package org.aksw.simba.katana.KBUtils;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.aksw.simba.katana.model.RDFProperty;
@@ -21,7 +25,7 @@ public class SparqlHandler {
 
 	public List<Resource> getResources(String classname) {
 		List<Resource> results = new ArrayList<Resource>();
-		String sparqlQueryString = "SELECT DISTINCT ?s { ?s a <" + classname + "> }";
+		String sparqlQueryString = "SELECT DISTINCT ?s { ?s a <" + classname + "> } LIMIT 2";
 		QueryFactory.create(sparqlQueryString);
 		QueryExecution qexec = QueryExecutionFactory.sparqlService(endpoint, sparqlQueryString, graph);
 		ResultSet queryResults = qexec.execSelect();
@@ -67,4 +71,39 @@ public class SparqlHandler {
 		return listOfProperties;
 	}
 
+	public void generateSampleDataset(ArrayList<String> classNames) throws IOException {
+		FileWriter fw = new FileWriter("src/main/resources/abc.txt");
+		BufferedWriter bw = new BufferedWriter(fw);
+
+		for (String clas : classNames) {
+			List<Resource> resList = new ArrayList<Resource>();
+			resList = this.getResources(clas);
+			for (Resource res : resList) {
+				String sparqlQueryString = " prefix dbpedia-owl: <http://dbpedia.org/ontology/> \n select ?abstract where {<"
+						+ res + "> dbpedia-owl:abstract ?abstract. \n filter(langMatches(lang(?abstract),\"en\"))\n}";
+				QueryFactory.create(sparqlQueryString);
+				QueryExecution qexec = QueryExecutionFactory.sparqlService(endpoint, sparqlQueryString, graph);
+				ResultSet queryResults = qexec.execSelect();
+				while (queryResults.hasNext()) {
+					QuerySolution qs = queryResults.nextSolution();
+					bw.write(qs.getLiteral("abstract").getString());
+				}
+
+			}
+		}
+		bw.close();
+		fw.close();
+	}
+
+	public static void main(String[] args) {
+		ArrayList<String> classNames = new ArrayList<String>(Arrays.asList("http://dbpedia.org/ontology/person",
+				"http://dbpedia.org/ontology/City", "http://dbpedia.org/ontology/Building"));
+		SparqlHandler sh = new SparqlHandler();
+		try {
+			sh.generateSampleDataset(classNames);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 }
