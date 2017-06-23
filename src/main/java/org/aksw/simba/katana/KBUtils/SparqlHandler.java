@@ -3,6 +3,7 @@ package org.aksw.simba.katana.KBUtils;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -74,6 +75,7 @@ public class SparqlHandler {
 	public void generateSampleDataset(ArrayList<String> classNames) throws IOException {
 		FileWriter fw = new FileWriter("src/main/resources/abc.txt");
 		BufferedWriter bw = new BufferedWriter(fw);
+		PrintWriter printWriter = new PrintWriter(bw);
 
 		for (String clas : classNames) {
 			List<Resource> resList = new ArrayList<Resource>();
@@ -86,7 +88,7 @@ public class SparqlHandler {
 				ResultSet queryResults = qexec.execSelect();
 				while (queryResults.hasNext()) {
 					QuerySolution qs = queryResults.nextSolution();
-					bw.write(qs.getLiteral("abstract").getString());
+					printWriter.println(qs.getLiteral("abstract").getString());
 				}
 
 			}
