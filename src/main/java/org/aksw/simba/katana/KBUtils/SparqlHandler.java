@@ -73,7 +73,7 @@ public class SparqlHandler {
 	}
 
 	public void generateSampleDataset(ArrayList<String> classNames) throws IOException {
-		FileWriter fw = new FileWriter("src/main/resources/abc.txt");
+		FileWriter fw = new FileWriter("src/main/resources/abc.txt", true);
 		BufferedWriter bw = new BufferedWriter(fw);
 		PrintWriter printWriter = new PrintWriter(bw);
 
