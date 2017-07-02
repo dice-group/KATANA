@@ -39,11 +39,7 @@
 			<artifactId>jena-arq</artifactId>
 			<version>3.1.1</version>
 		</dependency>
-		<dependency>
-			<groupId>edu.stanford.nlp</groupId>
-			<artifactId>stanford-corenlp</artifactId>
-			<version>3.6.0</version>
-		</dependency>
+		
 		<dependency>
 			<groupId>com.google.guava</groupId>
 			<artifactId>guava-io</artifactId>
@@ -54,7 +50,12 @@
 			<groupId>edu.stanford.nlp</groupId>
 			<artifactId>stanford-corenlp</artifactId>
 			<version>3.6.0</version>
-			<classifier>models</classifier> <!-- will get the dependent model jars -->
+		</dependency>
+		<dependency>
+			<groupId>edu.stanford.nlp</groupId>
+			<artifactId>stanford-corenlp</artifactId>
+			<version>3.6.0</version>
+			<classifier>models</classifier>
 		</dependency>
 
 

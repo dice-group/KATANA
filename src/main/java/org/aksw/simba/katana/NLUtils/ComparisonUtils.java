@@ -25,24 +25,6 @@ public class ComparisonUtils {
 
 	}
 
-	public List<CoreMap> filterSentences(String text) {
-		List<CoreMap> sentences = nlHandler.getSentence(text);
-		List<CoreMap> nlText = new ArrayList<CoreMap>();
-		ArrayList<RDFProperty> propertiesList = queryHandler.getPropertyList();
-		System.out.println(propertiesList);
-		for (RDFProperty ele : propertiesList) {
-
-			for (CoreMap sentence : sentences) {
-				if (sentence.get(CoreAnnotations.TextAnnotation.class).contains(ele.getLabel())) {
-					System.out.println("Label : " + ele.getLabel());
-					nlText.add(sentence);
-				}
-
-			}
-		}
-		return nlText;
-	}
-
 	public static void main(String[] args) {
 
 		File inputFile = new File("src/main/resources/abc.txt");
@@ -53,7 +35,6 @@ public class ComparisonUtils {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		ComparisonUtils slem = new ComparisonUtils();
-		System.out.println(slem.filterSentences(text));
+
 	}
 }

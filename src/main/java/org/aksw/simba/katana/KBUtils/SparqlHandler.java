@@ -6,14 +6,18 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.aksw.simba.katana.model.RDFProperty;
+import org.aksw.simba.katana.model.RDFResource;
 import org.apache.jena.query.QueryExecution;
 import org.apache.jena.query.QueryExecutionFactory;
 import org.apache.jena.query.QueryFactory;
 import org.apache.jena.query.QuerySolution;
 import org.apache.jena.query.ResultSet;
+import org.apache.jena.query.ResultSetFormatter;
 import org.apache.jena.rdf.model.Model;
 
 import org.apache.jena.rdf.model.Resource;
@@ -49,27 +53,51 @@ public class SparqlHandler {
 		return cbd;
 	}
 
-	public ResultSet getFunctionalProperties() {
-
+	public ArrayList<RDFProperty> getFunctionalProperties() {
+		ArrayList<RDFProperty> listOfProperties = new ArrayList<RDFProperty>();
 		String sparqlQueryString = "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\n"
 				+ "select ?p  ?label where \n{?p a <http://www.w3.org/2002/07/owl#FunctionalProperty>. \n ?p rdfs:label ?label.\n FILTER (lang(?label) = 'en').}";
 		QueryFactory.create(sparqlQueryString);
 		QueryExecution qexec = QueryExecutionFactory.sparqlService(endpoint, sparqlQueryString, graph);
 		ResultSet funcProperties = qexec.execSelect();
-		// ResultSetFormatter.out(System.out, funcProperties);
-		return funcProperties;
+		while (funcProperties.hasNext()) {
+			listOfProperties.add(new RDFProperty(funcProperties.next().getResource("p").toString(),
+					funcProperties.next().getLiteral("label").getString()));
+		}
+		ResultSetFormatter.out(System.out, funcProperties);
+		return listOfProperties;
 
 	}
 
-	public ArrayList<RDFProperty> getPropertyList() {
-		ArrayList<RDFProperty> listOfProperties = new ArrayList<RDFProperty>();
+	public Map<RDFProperty, ArrayList<RDFResource>> getPropertyResourceMap() {
+		ArrayList<RDFProperty> listOfProperties = this.getFunctionalProperties();
 
-		ResultSet funcProp = this.getFunctionalProperties();
-		while (funcProp.hasNext()) {
-			listOfProperties.add(new RDFProperty(funcProp.next().getResource("p").toString(),
-					funcProp.next().getLiteral("label").getString()));
+		Map<RDFProperty, ArrayList<RDFResource>> map = new HashMap<RDFProperty, ArrayList<RDFResource>>();
+		for (RDFProperty prop : listOfProperties) {
+			ArrayList<RDFResource> res = new ArrayList<RDFResource>();
+			String sparqlQueryString = "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\n"
+					+ "select distinct ?s  where  \n{ {?s <" + prop.getUri()
+					+ "> ?p .\n ?s rdfs:label ?label. FILTER(!isLiteral(?s) && (lang(?label) = 'en'))} \n union  \n  { ?x <"
+					+ prop.getUri()
+					+ "> ?s. \n ?s rdfs:label ?label. FILTER(!isLiteral(?s) && (lang(?label) = 'en'))}}";
+			QueryFactory.create(sparqlQueryString);
+			QueryExecution qexec = QueryExecutionFactory.sparqlService(endpoint, sparqlQueryString, graph);
+			ResultSet qres = qexec.execSelect();
+			while (qres.hasNext()) {
+				String uri = qres.next().getResource("s").toString();
+					res.add(new RDFResource(uri));
+			}
+
+			map.put(prop, res);
 		}
-		return listOfProperties;
+		for (RDFProperty name : map.keySet()) {
+
+			String key = name.getLabel().toString();
+			String value = map.get(name).toString();
+			System.out.println(key + " " + value);
+
+		}
+		return map;
 	}
 
 	public void generateSampleDataset(ArrayList<String> classNames) throws IOException {
@@ -101,11 +129,8 @@ public class SparqlHandler {
 		ArrayList<String> classNames = new ArrayList<String>(Arrays.asList("http://dbpedia.org/ontology/person",
 				"http://dbpedia.org/ontology/City", "http://dbpedia.org/ontology/Building"));
 		SparqlHandler sh = new SparqlHandler();
-		try {
-			sh.generateSampleDataset(classNames);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+
+		sh.getPropertyResourceMap();
+
 	}
 }
