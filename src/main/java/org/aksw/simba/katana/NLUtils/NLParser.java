@@ -5,9 +5,11 @@ import java.io.IOException;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Properties;
 
 import org.aksw.simba.katana.model.RDFProperty;
+import org.aksw.simba.katana.model.RDFResource;
 
 import com.google.common.io.Files;
 
@@ -34,10 +36,6 @@ public class NLParser {
 
 	public List<CoreMap> getSentence(String documentText) {
 
-		Annotation document = new Annotation(documentText);
-		this.pipeline.annotate(document);
-		List<CoreMap> sentences = document.get(SentencesAnnotation.class);
-
 		return sentences;
 	}
 
@@ -50,22 +48,24 @@ public class NLParser {
 			triples.addAll(sentence.get(NaturalLogicAnnotations.RelationTriplesAnnotation.class));
 		}
 		for (RelationTriple triple : triples) {
-			System.out.println(triple.confidence + "\t" + triple.subjectLemmaGloss() + "\t"
-					+ triple.relationLemmaGloss() + "\t" + triple.objectLemmaGloss());
+			System.out.println(
+					triple.subjectLemmaGloss() + "\t" + triple.relationLemmaGloss() + "\t" + triple.objectLemmaGloss());
 		}
 	}
 
-	public List<CoreMap> filterSentences(String text, ArrayList<RDFProperty> propertiesList) {
-		List<CoreMap> sentences = this.getSentence(text);
-		List<CoreMap> nlText = new ArrayList<CoreMap>();
+	public List<CoreMap> addLabels(String text, Map<RDFProperty, ArrayList<RDFResource>> map) {
+		Annotation document = new Annotation(text);
+		this.pipeline.annotate(document);
+		List<CoreMap> sentences = document.get(SentencesAnnotation.class);
 
-		System.out.println(propertiesList);
-		for (RDFProperty ele : propertiesList) {
-
+		for (RDFProperty prop : map.keySet()) {
 			for (CoreMap sentence : sentences) {
-				if (sentence.get(CoreAnnotations.TextAnnotation.class).contains(ele.getLabel())) {
-					System.out.println("Label : " + ele.getLabel());
-					nlText.add(sentence);
+				String sen = sentence.get(CoreAnnotations.TextAnnotation.class);
+				if (sen.contains(prop.getLabel())) {
+					ArrayList<RDFResource> resourceList = map.get(prop);
+					for (RDFResource ele : resourceList) {
+						// Implement Lemma search between KB label and sentence
+					}
 				}
 
 			}

@@ -5,20 +5,28 @@ import java.util.ArrayList;
 public class RDFResource {
 
 	String uri;
+	String kbLabel;
 	ArrayList<String> labels;
+
+	public String getKbLabel() {
+		return kbLabel;
+	}
+
+	public void setKbLabel(String kbLabel) {
+		this.kbLabel = kbLabel;
+	}
 
 	public RDFResource(String uri, String label) {
 
 		this.uri = uri;
-		this.labels = new ArrayList<String>();
-		labels.add(label);
+		this.kbLabel = label;
+		labels = new ArrayList<String>();
 
 	}
 
 	public RDFResource(String uri) {
 
 		this.uri = uri;
-		this.labels = null;
 
 	}
 
