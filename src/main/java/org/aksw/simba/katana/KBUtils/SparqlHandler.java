@@ -76,26 +76,23 @@ public class SparqlHandler {
 		for (RDFProperty prop : listOfProperties) {
 			ArrayList<RDFResource> res = new ArrayList<RDFResource>();
 			String sparqlQueryString = "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\n"
-					+ "select distinct ?s  where  \n{ {?s <" + prop.getUri()
+					+ "select distinct ?s ?label  where  \n{ {?s <" + prop.getUri()
 					+ "> ?p .\n ?s rdfs:label ?label. FILTER(!isLiteral(?s) && (lang(?label) = 'en'))} \n union  \n  { ?x <"
 					+ prop.getUri()
-					+ "> ?s. \n ?s rdfs:label ?label. FILTER(!isLiteral(?s) && (lang(?label) = 'en'))}}";
+					+ "> ?s. \n ?s rdfs:label ?label. FILTER(!isLiteral(?s) && (lang(?label) = 'en'))}}LIMIT 100";
+
 			QueryFactory.create(sparqlQueryString);
 			QueryExecution qexec = QueryExecutionFactory.sparqlService(endpoint, sparqlQueryString, graph);
 			ResultSet qres = qexec.execSelect();
 			while (qres.hasNext()) {
 				String uri = qres.next().getResource("s").toString();
-					res.add(new RDFResource(uri));
+				String[] label = uri.split("/");
+				String x = label[label.length - 1];
+				res.add(new RDFResource(uri, x));
+
 			}
 
 			map.put(prop, res);
-		}
-		for (RDFProperty name : map.keySet()) {
-
-			String key = name.getLabel().toString();
-			String value = map.get(name).toString();
-			System.out.println(key + " " + value);
-
 		}
 		return map;
 	}

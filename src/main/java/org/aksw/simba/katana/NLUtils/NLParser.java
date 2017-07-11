@@ -34,11 +34,6 @@ public class NLParser {
 		this.pipeline = new StanfordCoreNLP(props);
 	}
 
-	public List<CoreMap> getSentence(String documentText) {
-
-		return sentences;
-	}
-
 	public void getTriplesfromNL(String text) {
 		Annotation doc = new Annotation(text);
 		pipeline.annotate(doc);
@@ -70,8 +65,9 @@ public class NLParser {
 
 			}
 		}
+		return sentences;
 
-		return nlText;
+	
 	}
 
 	public static void main(String[] args) {
