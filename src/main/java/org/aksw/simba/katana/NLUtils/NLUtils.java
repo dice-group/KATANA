@@ -8,6 +8,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
+import java.util.Set;
 
 import org.aksw.simba.katana.model.RDFProperty;
 import org.aksw.simba.katana.model.RDFResource;
@@ -51,34 +52,22 @@ public class NLUtils {
 	}
 
 	public void corefResoultion(Annotation document) {
-		
+
 	}
 
-	public List<CoreMap> getSentence(String documentText) {
-
-		Annotation document = new Annotation(documentText);
-		this.pipeline.annotate(document);
+	public List<CoreMap> filterSentences(Annotation document,
+			Map<RDFProperty, ArrayList<RDFResource>> kbPropResourceMap) {
 		List<CoreMap> sentences = document.get(SentencesAnnotation.class);
-
-		return sentences;
-	}
-
-	public List<CoreMap> filterSentences(String text, ArrayList<RDFProperty> propertiesList) {
-		List<CoreMap> sentences = this.getSentence(text);
 		List<CoreMap> nlText = new ArrayList<CoreMap>();
-
-		System.out.println(propertiesList);
-		for (RDFProperty ele : propertiesList) {
-
+		Set<RDFProperty> rp = kbPropResourceMap.keySet();
+		for (RDFProperty ele : rp) {
 			for (CoreMap sentence : sentences) {
 				if (sentence.get(CoreAnnotations.TextAnnotation.class).contains(ele.getLabel())) {
 					System.out.println("Label : " + ele.getLabel());
 					nlText.add(sentence);
 				}
-
 			}
 		}
-
 		return nlText;
 	}
 
@@ -93,32 +82,18 @@ public class NLUtils {
 		return lemmas;
 	}
 
-	public void getTriplesfromNL(Annotation document) {
+	public List<RelationTriple> getTriplesfromNL(List<CoreMap> sentences) {
 
 		List<RelationTriple> triples = new ArrayList<>();
-		for (CoreMap sentence : document.get(CoreAnnotations.SentencesAnnotation.class)) {
+		for (CoreMap sentence : sentences) {
 			triples.addAll(sentence.get(NaturalLogicAnnotations.RelationTriplesAnnotation.class));
 		}
 		for (RelationTriple triple : triples) {
 			System.out.println(
 					triple.subjectLemmaGloss() + "\t" + triple.relationLemmaGloss() + "\t" + triple.objectLemmaGloss());
 		}
+		return triples;
 	}
 
-	public static void main(String[] args) {
-		File inputFile = new File("src/main/resources/abc.txt");
-		String text = null;
-		try {
-			text = Files.toString(inputFile, Charset.forName("UTF-8"));
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		NLUtils nlp = new NLUtils();
-		Annotation doc = nlp.getAnnotatedText(text);
-		
-
-		nlp.getTriplesfromNL(doc);
-
-	}
+	
 }

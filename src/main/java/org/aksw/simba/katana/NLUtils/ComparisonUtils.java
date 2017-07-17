@@ -49,11 +49,13 @@ public class ComparisonUtils {
 		try {
 			text = Files.toString(inputFile, Charset.forName("UTF-8"));
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		ComparisonUtils cu = new ComparisonUtils();
-		cu.addLabels(text, cu.kbPropResourceMap);
+		// cu.addLabels(text, cu.kbPropResourceMap);
+		NLUtils nlp = new NLUtils();
+		Annotation doc = nlp.getAnnotatedText(text);
+		nlp.getTriplesfromNL(nlp.filterSentences(doc, cu.kbPropResourceMap));
 
 	}
 }

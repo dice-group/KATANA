@@ -117,12 +117,5 @@ public class SparqlHandler {
 		fw.close();
 	}
 
-	public static void main(String[] args) {
-		ArrayList<String> classNames = new ArrayList<String>(Arrays.asList("http://dbpedia.org/ontology/person",
-				"http://dbpedia.org/ontology/City", "http://dbpedia.org/ontology/Building"));
-		SparqlHandler sh = new SparqlHandler();
-
-		sh.getPropertyResourceMap();
-
-	}
+	
 }
