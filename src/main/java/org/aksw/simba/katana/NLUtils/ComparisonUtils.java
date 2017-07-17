@@ -13,6 +13,7 @@ import org.aksw.simba.katana.model.RDFResource;
 
 import com.google.common.io.Files;
 
+import edu.stanford.nlp.ie.util.RelationTriple;
 import edu.stanford.nlp.ling.CoreAnnotations;
 import edu.stanford.nlp.ling.CoreAnnotations.SentencesAnnotation;
 import edu.stanford.nlp.pipeline.Annotation;
@@ -29,17 +30,28 @@ public class ComparisonUtils {
 		this.kbPropResourceMap = queryHandler.getPropertyResourceMap();
 	}
 
-	public void addLabels(String text, Map<RDFProperty, ArrayList<RDFResource>> map) {
-		Annotation document = new Annotation(text);
+	public void addLabels(List<RelationTriple> triplesFromNL, Map<RDFProperty, ArrayList<RDFResource>> map) {
 
-		for (RDFProperty prop : map.keySet()) {
-			System.out.println("Property :  " + prop.getLabel());
-			for (RDFResource res : map.get(prop)) {
-				System.out.println(res.getKbLabel() + res.getLabels().toString());
+		for (RelationTriple triple : triplesFromNL) {
+			if (map.keySet().contains(triple.relationLemmaGloss())) {
+				List<RDFResource> res = map.get(triple.relationLemmaGloss());
+				String[] subject = triple.subjectLemmaGloss().split(" ");
+				String[] object = triple.objectLemmaGloss().split(" ");
+				this.searchElement(subject, res);
+				this.searchElement(object, res);
 			}
-			System.out.println("...............");
 		}
 
+	}
+
+	public void searchElement(String[] arr, List<RDFResource> res) {
+		for (String nlEle : arr) {
+			for (RDFResource resource : res) {
+				if (resource.getLabels().contains(nlEle)) {
+					System.out.println(resource.getKbLabel() + " " + nlEle);
+				}
+			}
+		}
 	}
 
 	public static void main(String[] args) {
@@ -55,7 +67,7 @@ public class ComparisonUtils {
 		// cu.addLabels(text, cu.kbPropResourceMap);
 		NLUtils nlp = new NLUtils();
 		Annotation doc = nlp.getAnnotatedText(text);
-		nlp.getTriplesfromNL(nlp.filterSentences(doc, cu.kbPropResourceMap));
-
+		List<RelationTriple> triplesFromNL = nlp.getTriplesfromNL(nlp.filterSentences(doc, cu.kbPropResourceMap));
+		cu.addLabels(triplesFromNL, cu.kbPropResourceMap);
 	}
 }
