@@ -116,6 +116,7 @@ public class NLUtils {
 		}
 		NLUtils nlp = new NLUtils();
 		Annotation doc = nlp.getAnnotatedText(text);
+		
 
 		nlp.getTriplesfromNL(doc);
 

@@ -71,7 +71,6 @@ public class SparqlHandler {
 
 	public Map<RDFProperty, ArrayList<RDFResource>> getPropertyResourceMap() {
 		ArrayList<RDFProperty> listOfProperties = this.getFunctionalProperties();
-
 		Map<RDFProperty, ArrayList<RDFResource>> map = new HashMap<RDFProperty, ArrayList<RDFResource>>();
 		for (RDFProperty prop : listOfProperties) {
 			ArrayList<RDFResource> res = new ArrayList<RDFResource>();
@@ -80,7 +79,6 @@ public class SparqlHandler {
 					+ "> ?p .\n ?s rdfs:label ?label. FILTER(!isLiteral(?s) && (lang(?label) = 'en'))} \n union  \n  { ?x <"
 					+ prop.getUri()
 					+ "> ?s. \n ?s rdfs:label ?label. FILTER(!isLiteral(?s) && (lang(?label) = 'en'))}}LIMIT 100";
-
 			QueryFactory.create(sparqlQueryString);
 			QueryExecution qexec = QueryExecutionFactory.sparqlService(endpoint, sparqlQueryString, graph);
 			ResultSet qres = qexec.execSelect();
@@ -89,9 +87,7 @@ public class SparqlHandler {
 				String[] label = uri.split("/");
 				String x = label[label.length - 1];
 				res.add(new RDFResource(uri, x));
-
 			}
-
 			map.put(prop, res);
 		}
 		return map;
@@ -101,7 +97,6 @@ public class SparqlHandler {
 		FileWriter fw = new FileWriter("src/main/resources/abc.txt", true);
 		BufferedWriter bw = new BufferedWriter(fw);
 		PrintWriter printWriter = new PrintWriter(bw);
-
 		for (String clas : classNames) {
 			List<Resource> resList = new ArrayList<Resource>();
 			resList = this.getResources(clas);
