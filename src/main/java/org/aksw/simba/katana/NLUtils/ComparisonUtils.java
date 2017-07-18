@@ -37,6 +37,7 @@ public class ComparisonUtils {
 				List<RDFResource> res = map.get(triple.relationLemmaGloss());
 				String[] subject = triple.subjectLemmaGloss().split(" ");
 				String[] object = triple.objectLemmaGloss().split(" ");
+				System.out.println("Searching for match");
 				this.searchElement(subject, res);
 				this.searchElement(object, res);
 			}
@@ -48,6 +49,7 @@ public class ComparisonUtils {
 		for (String nlEle : arr) {
 			for (RDFResource resource : res) {
 				if (resource.getLabels().contains(nlEle)) {
+					
 					System.out.println(resource.getKbLabel() + ":" + nlEle);
 				}
 			}
@@ -67,7 +69,8 @@ public class ComparisonUtils {
 		// cu.addLabels(text, cu.kbPropResourceMap);
 		NLUtils nlp = new NLUtils();
 		Annotation doc = nlp.getAnnotatedText(text);
-		List<RelationTriple> triplesFromNL = nlp.getTriplesfromNL(nlp.filterSentences(doc, cu.kbPropResourceMap));
-		cu.addLabels(triplesFromNL, cu.kbPropResourceMap);
+		//List<RelationTriple> triplesFromNL = nlp.getTriplesfromNL(nlp.filterSentences(doc, cu.kbPropResourceMap));
+		//cu.addLabels(triplesFromNL, cu.kbPropResourceMap);
+		nlp.corefResoultion(doc);
 	}
 }

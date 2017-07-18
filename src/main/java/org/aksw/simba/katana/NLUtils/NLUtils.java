@@ -52,7 +52,9 @@ public class NLUtils {
 	}
 
 	public void corefResoultion(Annotation document) {
-
+		 Map<Integer, CorefChain> graph = document.get(CorefChainAnnotation.class);
+		 System.out.println(graph);
+		
 	}
 
 	public List<CoreMap> filterSentences(Annotation document,
@@ -63,7 +65,6 @@ public class NLUtils {
 		for (RDFProperty ele : rp) {
 			for (CoreMap sentence : sentences) {
 				if (sentence.get(CoreAnnotations.TextAnnotation.class).contains(ele.getLabel())) {
-					System.out.println("Label : " + ele.getLabel());
 					nlText.add(sentence);
 				}
 			}
@@ -88,10 +89,7 @@ public class NLUtils {
 		for (CoreMap sentence : sentences) {
 			triples.addAll(sentence.get(NaturalLogicAnnotations.RelationTriplesAnnotation.class));
 		}
-		for (RelationTriple triple : triples) {
-			System.out.println(
-					triple.subjectLemmaGloss() + "\t" + triple.relationLemmaGloss() + "\t" + triple.objectLemmaGloss());
-		}
+		
 		return triples;
 	}
 
