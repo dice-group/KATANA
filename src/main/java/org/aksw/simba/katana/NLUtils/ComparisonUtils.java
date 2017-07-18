@@ -48,7 +48,7 @@ public class ComparisonUtils {
 		for (String nlEle : arr) {
 			for (RDFResource resource : res) {
 				if (resource.getLabels().contains(nlEle)) {
-					System.out.println(resource.getKbLabel() + " " + nlEle);
+					System.out.println(resource.getKbLabel() + ":" + nlEle);
 				}
 			}
 		}
