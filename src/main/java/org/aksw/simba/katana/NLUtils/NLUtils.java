@@ -1,8 +1,5 @@
 package org.aksw.simba.katana.NLUtils;
 
-import java.io.File;
-import java.io.IOException;
-import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -13,25 +10,19 @@ import java.util.Set;
 import org.aksw.simba.katana.model.RDFProperty;
 import org.aksw.simba.katana.model.RDFResource;
 
-import com.google.common.io.Files;
-
 import edu.stanford.nlp.dcoref.CorefChain;
 import edu.stanford.nlp.dcoref.CorefCoreAnnotations;
-import edu.stanford.nlp.dcoref.CorefCoreAnnotations.CorefChainAnnotation;
-import edu.stanford.nlp.dcoref.Mention;
-import edu.stanford.nlp.hcoref.data.CorefChain.CorefMention;
 import edu.stanford.nlp.ie.util.RelationTriple;
 import edu.stanford.nlp.ling.CoreAnnotations;
 import edu.stanford.nlp.ling.CoreAnnotations.LemmaAnnotation;
 import edu.stanford.nlp.ling.CoreAnnotations.SentencesAnnotation;
-import edu.stanford.nlp.ling.CoreAnnotations.TextAnnotation;
 import edu.stanford.nlp.ling.CoreAnnotations.TokensAnnotation;
 import edu.stanford.nlp.ling.CoreLabel;
 import edu.stanford.nlp.naturalli.NaturalLogicAnnotations;
 import edu.stanford.nlp.pipeline.Annotation;
 import edu.stanford.nlp.pipeline.StanfordCoreNLP;
 import edu.stanford.nlp.util.CoreMap;
-import edu.stanford.nlp.util.StringUtils;
+import edu.stanford.nlp.dcoref.CorefChain.CorefMention;
 
 public class NLUtils {
 
@@ -40,7 +31,7 @@ public class NLUtils {
 	public NLUtils() {
 		Properties props;
 		props = new Properties();
-		props.put("annotators", "tokenize, ssplit, pos, lemma,ner, depparse,parse,natlog,openie, mention,dcoref");
+		props.put("annotators", "tokenize, ssplit, pos, lemma,ner, depparse,parse,natlog,openie");
 		this.pipeline = new StanfordCoreNLP(props);
 	}
 
@@ -50,12 +41,7 @@ public class NLUtils {
 		return document;
 	}
 
-	public void corefResoultion(Annotation document) {
-		System.out.print(document.toString());
-		 Map<Integer, CorefChain> graph = document.get(CorefChainAnnotation.class);
-		 System.out.println(graph);
-		
-	}
+	
 
 	public List<CoreMap> filterSentences(Annotation document,
 			Map<RDFProperty, ArrayList<RDFResource>> kbPropResourceMap) {
@@ -89,9 +75,8 @@ public class NLUtils {
 		for (CoreMap sentence : sentences) {
 			triples.addAll(sentence.get(NaturalLogicAnnotations.RelationTriplesAnnotation.class));
 		}
-		
+
 		return triples;
 	}
 
-	
 }
