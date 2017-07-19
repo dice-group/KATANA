@@ -35,12 +35,15 @@ public class ComparisonUtils {
 			for (RelationTriple triple : triplesFromNL) {
 				if (entry.getKey().getLabel().contains(triple.relationLemmaGloss())) {
 					List<RDFResource> res = entry.getValue();
+					System.out.println("Property match Found !! \n" + entry.getKey().getLabel());
 					String object = triple.objectLemmaGloss();
 					String subject = triple.subjectLemmaGloss();
 					for (RDFResource resource : res) {
-						if (subject.contains(resource.getKbLabel()) || (object.contains(resource.getKbLabel()))) {
-							System.out.println("Got match");
-							System.out.println(resource.getKbLabel() + "::::: " + subject);
+						if (resource.getKbLabel().toLowerCase().contains(subject.toLowerCase())
+								|| resource.getKbLabel().toLowerCase().contains(object.toLowerCase())) {
+							
+							System.out.println("Got Resource match" );
+							System.out.println("Resource : "+ resource.getKbLabel() + "  Potential Label : " + subject);
 
 						}
 					}
@@ -55,15 +58,13 @@ public class ComparisonUtils {
 		for (Map.Entry<RDFProperty, ArrayList<RDFResource>> entry : map.entrySet()) {
 			for (RelationTriple triple : triplesFromNL) {
 				if (entry.getKey().getLabel().contains(triple.relationLemmaGloss())) {
+					System.out.println("Property match Found !! \n" + entry.getKey().getLabel());
 					List<RDFResource> res = entry.getValue();
-					String object = triple.objectLemmaGloss();
-					String subject = triple.subjectLemmaGloss();
+					System.out.println(
+							"Potential Labels are \n " + triple.subjectGloss() + " :: " + triple.objectLemmaGloss());
+					System.out.println("Associated resources are :");
 					for (RDFResource resource : res) {
-						if (subject.contains(resource.getKbLabel()) || (object.contains(resource.getKbLabel()))) {
-							System.out.println("Got match");
-							System.out.println(resource.getKbLabel() + "::::: " + subject);
-
-						}
+						System.out.println(resource.getKbLabel());
 					}
 				}
 			}
@@ -94,8 +95,8 @@ public class ComparisonUtils {
 		NLUtils nlp = new NLUtils();
 		Annotation doc = nlp.getAnnotatedText(text);
 		List<RelationTriple> triplesFromNL = nlp.getTriplesfromNL(doc.get(SentencesAnnotation.class));
-		// cu.addLabels(triplesFromNL, cu.kbPropResourceMap);
-		cu.psuedoaddLabels(triplesFromNL, cu.kbPropResourceMap);
+		cu.addLabels(triplesFromNL, cu.kbPropResourceMap);
+		// cu.psuedoaddLabels(triplesFromNL, cu.kbPropResourceMap);
 		// nlp.corefResoultion(doc);
 	}
 }
