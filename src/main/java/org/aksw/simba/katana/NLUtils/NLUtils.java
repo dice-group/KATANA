@@ -41,7 +41,6 @@ public class NLUtils {
 		Properties props;
 		props = new Properties();
 		props.put("annotators", "tokenize, ssplit, pos, lemma,ner, depparse,parse,natlog,openie, mention,dcoref");
-		props.put("dcoref.score", true);
 		this.pipeline = new StanfordCoreNLP(props);
 	}
 
@@ -52,6 +51,7 @@ public class NLUtils {
 	}
 
 	public void corefResoultion(Annotation document) {
+		System.out.print(document.toString());
 		 Map<Integer, CorefChain> graph = document.get(CorefChainAnnotation.class);
 		 System.out.println(graph);
 		

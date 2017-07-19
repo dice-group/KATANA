@@ -56,7 +56,7 @@ public class SparqlHandler {
 	public ArrayList<RDFProperty> getFunctionalProperties() {
 		ArrayList<RDFProperty> listOfProperties = new ArrayList<RDFProperty>();
 		String sparqlQueryString = "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\n"
-				+ "select ?p  ?label where \n{?p a <http://www.w3.org/2002/07/owl#FunctionalProperty>. \n ?p rdfs:label ?label.\n FILTER (lang(?label) = 'en').}";
+				+ "Select ?p  ?label where \n{?p a <http://www.w3.org/2002/07/owl#FunctionalProperty>. \n ?p rdfs:label ?label.\n FILTER (lang(?label) = 'en').}";
 		QueryFactory.create(sparqlQueryString);
 		QueryExecution qexec = QueryExecutionFactory.sparqlService(endpoint, sparqlQueryString, graph);
 		ResultSet funcProperties = qexec.execSelect();
@@ -64,7 +64,6 @@ public class SparqlHandler {
 			listOfProperties.add(new RDFProperty(funcProperties.next().getResource("p").toString(),
 					funcProperties.next().getLiteral("label").getString()));
 		}
-		ResultSetFormatter.out(System.out, funcProperties);
 		return listOfProperties;
 
 	}

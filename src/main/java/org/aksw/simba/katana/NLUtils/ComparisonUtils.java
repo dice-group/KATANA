@@ -31,25 +31,49 @@ public class ComparisonUtils {
 	}
 
 	public void addLabels(List<RelationTriple> triplesFromNL, Map<RDFProperty, ArrayList<RDFResource>> map) {
+		for (Map.Entry<RDFProperty, ArrayList<RDFResource>> entry : map.entrySet()) {
+			for (RelationTriple triple : triplesFromNL) {
+				if (entry.getKey().getLabel().contains(triple.relationLemmaGloss())) {
+					List<RDFResource> res = entry.getValue();
+					String object = triple.objectLemmaGloss();
+					String subject = triple.subjectLemmaGloss();
+					for (RDFResource resource : res) {
+						if (subject.contains(resource.getKbLabel()) || (object.contains(resource.getKbLabel()))) {
+							System.out.println("Got match");
+							System.out.println(resource.getKbLabel() + "::::: " + subject);
 
-		for (RelationTriple triple : triplesFromNL) {
-			if (map.keySet().contains(triple.relationLemmaGloss())) {
-				List<RDFResource> res = map.get(triple.relationLemmaGloss());
-				String[] subject = triple.subjectLemmaGloss().split(" ");
-				String[] object = triple.objectLemmaGloss().split(" ");
-				System.out.println("Searching for match");
-				this.searchElement(subject, res);
-				this.searchElement(object, res);
+						}
+					}
+				}
 			}
 		}
 
+	}
+
+	public void psuedoaddLabels(List<RelationTriple> triplesFromNL, Map<RDFProperty, ArrayList<RDFResource>> map) {
+
+		for (Map.Entry<RDFProperty, ArrayList<RDFResource>> entry : map.entrySet()) {
+			for (RelationTriple triple : triplesFromNL) {
+				if (entry.getKey().getLabel().contains(triple.relationLemmaGloss())) {
+					List<RDFResource> res = entry.getValue();
+					String object = triple.objectLemmaGloss();
+					String subject = triple.subjectLemmaGloss();
+					for (RDFResource resource : res) {
+						if (subject.contains(resource.getKbLabel()) || (object.contains(resource.getKbLabel()))) {
+							System.out.println("Got match");
+							System.out.println(resource.getKbLabel() + "::::: " + subject);
+
+						}
+					}
+				}
+			}
+		}
 	}
 
 	public void searchElement(String[] arr, List<RDFResource> res) {
 		for (String nlEle : arr) {
 			for (RDFResource resource : res) {
 				if (resource.getLabels().contains(nlEle)) {
-					
 					System.out.println(resource.getKbLabel() + ":" + nlEle);
 				}
 			}
@@ -69,8 +93,9 @@ public class ComparisonUtils {
 		// cu.addLabels(text, cu.kbPropResourceMap);
 		NLUtils nlp = new NLUtils();
 		Annotation doc = nlp.getAnnotatedText(text);
-		//List<RelationTriple> triplesFromNL = nlp.getTriplesfromNL(nlp.filterSentences(doc, cu.kbPropResourceMap));
-		//cu.addLabels(triplesFromNL, cu.kbPropResourceMap);
-		nlp.corefResoultion(doc);
+		List<RelationTriple> triplesFromNL = nlp.getTriplesfromNL(doc.get(SentencesAnnotation.class));
+		// cu.addLabels(triplesFromNL, cu.kbPropResourceMap);
+		cu.psuedoaddLabels(triplesFromNL, cu.kbPropResourceMap);
+		// nlp.corefResoultion(doc);
 	}
 }
