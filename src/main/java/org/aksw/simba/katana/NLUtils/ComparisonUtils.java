@@ -94,8 +94,8 @@ public class ComparisonUtils {
 		NLUtils nlp = new NLUtils();
 		Annotation doc = nlp.getAnnotatedText(text);
 		List<RelationTriple> triplesFromNL = nlp.getTriplesfromNL(doc.get(SentencesAnnotation.class));
-		//cu.addLabels(triplesFromNL, cu.kbPropResourceMap);
+		cu.addLabels(triplesFromNL, cu.kbPropResourceMap);
 		// cu.psuedoaddLabels(triplesFromNL, cu.kbPropResourceMap);
-		nlp.corefResoultion(doc);
+		
 	}
 }
