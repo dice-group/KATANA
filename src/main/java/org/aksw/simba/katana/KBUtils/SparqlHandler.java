@@ -24,13 +24,13 @@ import org.apache.jena.rdf.model.Resource;
 import org.apache.jena.sparql.engine.http.QueryEngineHTTP;
 
 public class SparqlHandler {
-
+	SparqlQueries queryHandler = new SparqlQueries();
 	private String endpoint = "http://dbpedia.org/sparql";
 	private String graph = "http://dbpedia.org";
 
 	public List<Resource> getResources(String classname) {
 		List<Resource> results = new ArrayList<Resource>();
-		String sparqlQueryString = "SELECT DISTINCT ?s { ?s a <" + classname + "> } LIMIT 2";
+		String sparqlQueryString = queryHandler.getResourceQuery(classname);
 		QueryFactory.create(sparqlQueryString);
 		QueryExecution qexec = QueryExecutionFactory.sparqlService(endpoint, sparqlQueryString, graph);
 		ResultSet queryResults = qexec.execSelect();
@@ -43,7 +43,7 @@ public class SparqlHandler {
 	}
 
 	public Model getCBD(Resource r) {
-		String sparqlQueryString = "DESCRIBE <" + r + ">";
+		String sparqlQueryString = queryHandler.getCBDQuery(r);
 		QueryFactory.create(sparqlQueryString);
 		QueryExecution qexec = QueryExecutionFactory.sparqlService(endpoint, sparqlQueryString, graph);
 		QueryEngineHTTP qeHttp = (QueryEngineHTTP) qexec;
@@ -55,8 +55,7 @@ public class SparqlHandler {
 
 	public ArrayList<RDFProperty> getFunctionalProperties() {
 		ArrayList<RDFProperty> listOfProperties = new ArrayList<RDFProperty>();
-		String sparqlQueryString = "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\n"
-				+ "Select ?p  ?label where \n{?p a <http://www.w3.org/2002/07/owl#FunctionalProperty>. \n ?p rdfs:label ?label.\n FILTER (lang(?label) = 'en').}";
+		String sparqlQueryString = queryHandler.getFunctionalPropertiesQuery();
 		QueryFactory.create(sparqlQueryString);
 		QueryExecution qexec = QueryExecutionFactory.sparqlService(endpoint, sparqlQueryString, graph);
 		ResultSet funcProperties = qexec.execSelect();
@@ -73,11 +72,7 @@ public class SparqlHandler {
 		Map<RDFProperty, ArrayList<RDFResource>> map = new HashMap<RDFProperty, ArrayList<RDFResource>>();
 		for (RDFProperty prop : listOfProperties) {
 			ArrayList<RDFResource> res = new ArrayList<RDFResource>();
-			String sparqlQueryString = "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\n"
-					+ "select distinct ?s ?label  where  \n{ {?s <" + prop.getUri()
-					+ "> ?p .\n ?s rdfs:label ?label. FILTER(!isLiteral(?s) && (lang(?label) = 'en'))} \n union  \n  { ?x <"
-					+ prop.getUri()
-					+ "> ?s. \n ?s rdfs:label ?label. FILTER(!isLiteral(?s) && (lang(?label) = 'en'))}}LIMIT 100";
+			String sparqlQueryString = queryHandler.getResourceMapQuery(prop.getUri());
 			QueryFactory.create(sparqlQueryString);
 			QueryExecution qexec = QueryExecutionFactory.sparqlService(endpoint, sparqlQueryString, graph);
 			ResultSet qres = qexec.execSelect();
@@ -100,8 +95,7 @@ public class SparqlHandler {
 			List<Resource> resList = new ArrayList<Resource>();
 			resList = this.getResources(clas);
 			for (Resource res : resList) {
-				String sparqlQueryString = " prefix dbpedia-owl: <http://dbpedia.org/ontology/> \n select ?abstract where {<"
-						+ res + "> dbpedia-owl:abstract ?abstract. \n filter(langMatches(lang(?abstract),\"en\"))\n}";
+				String sparqlQueryString = queryHandler.getSampleDatasetQuery(res);
 				QueryFactory.create(sparqlQueryString);
 				QueryExecution qexec = QueryExecutionFactory.sparqlService(endpoint, sparqlQueryString, graph);
 				ResultSet queryResults = qexec.execSelect();
@@ -116,5 +110,4 @@ public class SparqlHandler {
 		fw.close();
 	}
 
-	
 }

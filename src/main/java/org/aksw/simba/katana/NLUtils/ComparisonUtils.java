@@ -20,7 +20,7 @@ import edu.stanford.nlp.pipeline.Annotation;
 public class ComparisonUtils {
 	SparqlHandler queryHandler;
 	NLUtils nlHandler;
-	Map<RDFProperty, ArrayList<RDFResource>> kbPropResourceMap;
+	public Map<RDFProperty, ArrayList<RDFResource>> kbPropResourceMap;
 
 	public ComparisonUtils() {
 		this.queryHandler = new SparqlHandler();
@@ -80,22 +80,5 @@ public class ComparisonUtils {
 		}
 	}
 
-	public static void main(String[] args) {
 
-		File inputFile = new File("src/main/resources/abc.txt");
-		String text = null;
-		try {
-			text = Files.toString(inputFile, Charset.forName("UTF-8"));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		ComparisonUtils cu = new ComparisonUtils();
-		// cu.addLabels(text, cu.kbPropResourceMap);
-		NLUtils nlp = new NLUtils();
-		Annotation doc = nlp.getAnnotatedText(text);
-		List<RelationTriple> triplesFromNL = nlp.getTriplesfromNL(doc.get(SentencesAnnotation.class));
-		cu.addLabels(triplesFromNL, cu.kbPropResourceMap);
-		// cu.psuedoaddLabels(triplesFromNL, cu.kbPropResourceMap);
-		
-	}
 }
