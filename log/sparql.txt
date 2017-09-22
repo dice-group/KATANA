@@ -1,0 +1,2025 @@
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Cowdray_House> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Midhurst> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Sussex> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Bergen_op_Zoom> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Dutch_Republic> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_2nd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Mary_Wriothesley,_Countess_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Elizabeth_Wriothesley,_Countess_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Accession_Day_tilt> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Achilles_Tatius> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Alfonso_Ferrabosco_the_younger> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Angers> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Anne_Cecil> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Anne_of_Denmark> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Anonymous_(film)> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Anthony_Browne,_1st_Viscount_Montagu> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Arklow> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Azores> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/BBC> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Barbary_pirates> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Barnabe_Barnes> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Bassingbourne_Gawdy_(died_1606)> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Bergen-op-Zoom> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Bergen_op_Zoom> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Bloomsbury> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/British_East_India_Company> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Bye_Plot> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Cadiz> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Calais> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Category:1573_births> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Category:1624_deaths> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Category:16th-century_English_nobility> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Category:17th-century_English_nobility> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Category:Alumni_of_St_John's_College,_Cambridge> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Category:Earls_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Category:Knights_of_the_Garter> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Category:Lord-Lieutenants_of_Hampshire> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Category:People_associated_with_Shakespeare> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Category:People_from_Midhurst> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Category:People_of_Elizabethan_Ireland> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Category:People_of_the_Stuart_period> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Category:People_of_the_Tudor_period> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Category:Prisoners_in_the_Tower_of_London> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Category:Wriothesley_family> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Cecil_House> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Channel_4> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Charles_Blount,_1st_Earl_of_Devonshire> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Charles_Danvers> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Charles_Howard,_1st_Earl_of_Nottingham> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Clifford's_Inn> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Cobbe_portrait> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Commutation_of_sentence> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/County_Wicklow> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Cowdray_House> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Custos_Rotulorum_of_Hampshire> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Dutch_Republic> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Eddie_Redmayne> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Edward_Conway,_1st_Viscount_Conway> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Edward_de_Vere,_17th_Earl_of_Oxford> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Edwin_Sandys_(died_1629)> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Elizabeth_I_(miniseries)> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Elizabeth_I_of_England> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Elizabeth_R> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Elizabeth_Wriothesley,_Countess_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Elizabeth_de_Vere,_Countess_of_Derby> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Esquires_of_the_body> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Essex_in_Ireland> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Fair_Youth> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Fleet_Prison> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/George_Carey,_2nd_Baron_Hunsdon> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/George_Chalmers_(antiquarian)> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/George_Chapman> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/George_Peele> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/George_Villiers,_1st_Duke_of_Buckingham> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Gervase_Markham> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Giovanni_Florio> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Globe_Theatre> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Gray's_Inn> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Hampshire> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Hampton,_Virginia> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Hampton_River> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Hampton_Roads> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henri_IV_of_France> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Danvers,_1st_Earl_of_Danby> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Garnet> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Howard,_1st_Earl_of_Northampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Hudson> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Lok> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Percy,_9th_Earl_of_Northumberland> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wallop_(died_1642)> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_2nd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Hodnet> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Holborn> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/House_of_Lords> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Inn_of_Chancery> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/James_I_of_England> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/James_VI_and_I> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/James_Wriothesley,_Lord_Wriothesley> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Jamestown,_Virginia> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Jane_Browne,_Viscountess_Montague> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/John_Beaumont_(poet)> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/John_Puckering> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/John_de_Critz> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Jousting> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Leucippe_and_Clitophon> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Life_imprisonment> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Lord_Lieutenant_of_Hampshire> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Low_Countries> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Maid_of_Honour> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Main_Plot> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Mary_Wriothesley,_Countess_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Nathan_Drake_(essayist_and_physician)> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/New_England_Company> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/New_World_Tapestry> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Nicholas_Clay> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Nicholas_Rowe_(dramatist)> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Nine_Years_War_(Ireland)> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Northampton_County,_Virginia> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Northwest_Passage> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Order_of_the_Garter> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Oxford_Dictionary_of_National_Biography> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Peregrine_Bertie,_13th_Baron_Willoughby_de_Eresby> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Peter_Egan> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Philip_II_of_Spain> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Picaresque_novel> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Primero> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Protestant> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Richard_Burbage> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Richard_II_(play)> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Robert_Cecil,_1st_Earl_of_Salisbury> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Robert_Devereux,_2nd_Earl_of_Essex> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Robert_Sidney,_1st_Earl_of_Leicester> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Robert_Sidney,_2nd_Earl_of_Leicester> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Robert_Wallop> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Rowland_Whyte> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Samuel_Daniel> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Shakespeare's_Sonnets> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Shaun_Evans> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Southampton_County,_Virginia> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Spain> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/St_John's_College,_Cambridge> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Strand,_London> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Sussex> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/The_Rape_of_Lucrece> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/The_Unfortunate_Traveller> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/The_Virgin_Queen_(TV_serial)> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Thomas_Arundell,_1st_Baron_Arundell_of_Wardour> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Thomas_Burgh,_3rd_Baron_Burgh> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Thomas_Heneage> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Thomas_Heywood> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Thomas_Nashe> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Thomas_Wriothesley,_4th_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Titchfield> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Tower_of_London> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/University_of_Oxford> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Venus_and_Adonis_(Shakespeare_poem)> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Vice-Chamberlain_of_the_Household> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Virginia_Company_of_London> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Will_Shakespeare_(TV_series)> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/William_Burton_(antiquary,_died_1645)> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/William_Cecil,_1st_Baron_Burghley> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/William_Davenant> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/William_Hervey,_1st_Baron_Hervey> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/William_Shakespeare> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/William_Spencer,_2nd_Baron_Spencer_of_Wormleighton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/William_Stanley,_6th_Earl_of_Derby> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Xavier_Samuel> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Edward_Conway,_1st_Viscount_Conway> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wallop_(died_1642)> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Thomas_Wriothesley,_4th_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Charles_Blount,_1st_Earl_of_Devonshire> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/George_Carey,_2nd_Baron_Hunsdon> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_2nd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/James_Wriothesley,_Lord_Wriothesley> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Thomas_Wriothesley,_4th_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Custos_Rotulorum_of_Hampshire> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Lord_Lieutenant_of_Hampshire> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Category:1573_births> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Category:1624_deaths> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Category:16th-century_English_nobility> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Category:17th-century_English_nobility> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Category:Alumni_of_St_John's_College,_Cambridge> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Category:Earls_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Category:Knights_of_the_Garter> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Category:Lord-Lieutenants_of_Hampshire> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Category:People_associated_with_Shakespeare> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Category:People_from_Midhurst> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Category:People_of_Elizabethan_Ireland> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Category:People_of_the_Stuart_period> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Category:People_of_the_Tudor_period> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Category:Prisoners_in_the_Tower_of_London> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Category:Wriothesley_family> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Son> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/ontology/Agent> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/ontology/Noble> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/ontology/Person> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://www.w3.org/2002/07/owl#Thing> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://www.wikidata.org/entity/Q215627> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://www.wikidata.org/entity/Q5> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
