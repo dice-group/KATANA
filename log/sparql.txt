@@ -27,11 +27,6 @@ SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of
 New Query:
 wget -S -O - '
 http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
-SELECT ?label WHERE {<http://dbpedia.org/resource/Henry_Wriothesley,_3rd_Earl_of_Southampton> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
-***********
-New Query:
-wget -S -O - '
-http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
 SELECT ?label WHERE {<http://dbpedia.org/resource/Sussex> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
 ***********
 New Query:
