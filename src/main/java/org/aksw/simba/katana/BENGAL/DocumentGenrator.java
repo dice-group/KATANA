@@ -12,16 +12,15 @@ import org.apache.commons.io.IOUtils;
 
 public class DocumentGenrator {
 	private static final int DEFAULT_NUMBER_OF_DOCUMENTS = 1;
-	private static final SelectorType SELECTOR_TYPE = SelectorType.PATH;
+	private static final SelectorType SELECTOR_TYPE = SelectorType.STAR;
 	private static final boolean USE_PARAPHRASING = true;
 	private static final boolean USE_PRONOUNS = false;
 	private static final boolean USE_SURFACEFORMS = true;
 	private static final boolean USE_AVATAR = false;
+	
+	
 
-	
 	public static void main(String[] args) {
-		
-	
 
 		String typeSubString = "";
 		if (USE_AVATAR) {
