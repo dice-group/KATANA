@@ -22,17 +22,18 @@ import org.aksw.simba.bengal.verbalizer.AvatarVerbalizer;
 import org.aksw.simba.bengal.verbalizer.BVerbalizer;
 import org.aksw.simba.bengal.verbalizer.NumberOfVerbalizedTriples;
 import org.aksw.simba.bengal.verbalizer.SemWeb2NLVerbalizer;
+import org.apache.jena.graph.Triple;
 import org.apache.jena.rdf.model.Statement;
 import org.dllearner.kb.sparql.SparqlEndpoint;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class DocumentGenrator {
+public class DocumentTripleExtractor {
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(DocumentGenrator.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(DocumentTripleExtractor.class);
 	private static final String NUMBEROFDOCS = "numberofdocs";
 
-	private static final int DEFAULT_NUMBER_OF_DOCUMENTS = 10;
+	private static final int DEFAULT_NUMBER_OF_DOCUMENTS = 100;
 	private static final long SEED = 21;
 	private static final int MIN_SENTENCE = 1;
 	private static final int MAX_SENTENCE = 5;
@@ -43,6 +44,7 @@ public class DocumentGenrator {
 	private static final boolean USE_AVATAR = false;
 	private static final boolean USE_ONLY_OBJECT_PROPERTIES = false;
 	private static final long WAITING_TIME_BETWEEN_DOCUMENTS = 500;
+	public List<Triple> triples;
 
 	public static void main(String args[]) {
 		String typeSubString = "";
@@ -71,11 +73,12 @@ public class DocumentGenrator {
 		String corpusName = "bengal_" + typeSubString + "_" + (USE_PRONOUNS ? "pronoun_" : "")
 				+ (USE_SURFACEFORMS ? "surface_" : "") + (USE_PARAPHRASING ? "para_" : "")
 				+ Integer.toString(DEFAULT_NUMBER_OF_DOCUMENTS) + ".ttl";
-		DocumentGenrator.generateCorpus(new HashMap<String, String>(), "http://dbpedia.org/sparql", corpusName);
+		// DocumentGenrator.generateCorpus(new HashMap<String, String>(),
+		// "http://dbpedia.org/sparql", corpusName);
 
 	}
 
-	public static void generateCorpus(Map<String, String> parameters, String endpoint, String corpusName) {
+	public void generateCorpus(Map<String, String> parameters, String endpoint, String corpusName) {
 		if (parameters == null) {
 			parameters = new HashMap<>();
 		}
@@ -120,7 +123,8 @@ public class DocumentGenrator {
 				LOGGER.error("Could not parse number of documents");
 			}
 		}
-		List<Statement> triples;
+		List<Statement> statements;
+
 		Document document = null;
 		List<Document> documents = new ArrayList<>();
 		int counter = 0;
@@ -129,12 +133,15 @@ public class DocumentGenrator {
 				document = alernativeVerbalizer.nextDocument();
 			} else {
 				// select triples
-				triples = tripleSelector.getNextStatements();
-			
-				if ((triples != null) && (triples.size() >= MIN_SENTENCE)) {
+				statements = tripleSelector.getNextStatements();
+
+				if ((statements != null) && (statements.size() >= MIN_SENTENCE)) {
 					// create document
-					System.out.println(triples);
-					document = verbalizer.generateDocument(triples);
+					for (Statement tripleForOneResource : statements) {
+						triples.add(tripleForOneResource.asTriple());
+					}
+
+					document = verbalizer.generateDocument(statements);
 					if (document != null) {
 						List<NumberOfVerbalizedTriples> tripleCounts = document
 								.getMarkings(NumberOfVerbalizedTriples.class);
@@ -197,5 +204,13 @@ public class DocumentGenrator {
 				}
 			}
 		}
+	}
+
+	public List<Triple> getTriples() {
+		return triples;
+	}
+
+	public void setTriples(List<Triple> triples) {
+		this.triples = triples;
 	}
 }

@@ -118,3 +118,23 @@ New Query:
 wget -S -O - '
 http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
 SELECT ?label WHERE {<http://dbpedia.org/resource/Mary_I_of_England> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Catherine_of_Aragon> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/List_of_Irish_consorts> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Arthur_Cohn> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}
+***********
+New Query:
+wget -S -O - '
+http://dbpedia.org/sparql?default-graph-uri=http://dbpedia.org&query=
+SELECT ?label WHERE {<http://dbpedia.org/resource/Basel> <http://www.w3.org/2000/01/rdf-schema#label> ?label. FILTER (lang(?label) = 'en')}

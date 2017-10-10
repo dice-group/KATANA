@@ -12,7 +12,7 @@ import edu.stanford.nlp.ling.CoreAnnotations.TokensAnnotation;
 import edu.stanford.nlp.pipeline.Annotation;
 import edu.stanford.nlp.util.CoreMap;
 
-public class RDFResource {
+public class RDFResource  {
 
 	String uri;
 	String kbLabel;
