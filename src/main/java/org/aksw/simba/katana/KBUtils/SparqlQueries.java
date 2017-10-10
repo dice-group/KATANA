@@ -5,7 +5,7 @@ import org.apache.jena.rdf.model.Resource;
 public class SparqlQueries {
 
 	public String getResourceQuery(String classname) {
-		String sparqlQueryString = "SELECT DISTINCT ?s { ?s a <" + classname + "> } LIMIT 2";
+		String sparqlQueryString = "SELECT DISTINCT ?s ?p ?o{ s ?p ?o.  ?s a <" + classname + "> } ";
 		return sparqlQueryString;
 
 	}

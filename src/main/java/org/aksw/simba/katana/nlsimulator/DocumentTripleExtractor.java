@@ -1,11 +1,13 @@
-package org.aksw.simba.katana.BENGAL;
+package org.aksw.simba.katana.nlsimulator;
 
+import java.util.ArrayList;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 import java.util.Set;
 
 import org.aksw.gerbil.io.nif.NIFWriter;
@@ -30,59 +32,38 @@ import org.slf4j.LoggerFactory;
 
 public class DocumentTripleExtractor {
 
+	public DocumentTripleExtractor() {
+		super();
+		this.triples = new ArrayList<Triple>();
+		this.labeltriples = new ArrayList<Triple>();
+
+	}
+
 	private static final Logger LOGGER = LoggerFactory.getLogger(DocumentTripleExtractor.class);
 	private static final String NUMBEROFDOCS = "numberofdocs";
 
-	private static final int DEFAULT_NUMBER_OF_DOCUMENTS = 100;
 	private static final long SEED = 21;
 	private static final int MIN_SENTENCE = 1;
 	private static final int MAX_SENTENCE = 5;
+
+	private static final boolean USE_AVATAR = false;
 	private static final SelectorType SELECTOR_TYPE = SelectorType.STAR;
 	private static final boolean USE_PARAPHRASING = true;
 	private static final boolean USE_PRONOUNS = false;
 	private static final boolean USE_SURFACEFORMS = true;
-	private static final boolean USE_AVATAR = false;
+	private static final int DEFAULT_NUMBER_OF_DOCUMENTS = 100;
+
 	private static final boolean USE_ONLY_OBJECT_PROPERTIES = false;
 	private static final long WAITING_TIME_BETWEEN_DOCUMENTS = 500;
 	public List<Triple> triples;
-
-	public static void main(String args[]) {
-		String typeSubString = "";
-		if (USE_AVATAR) {
-			typeSubString = "summary";
-		} else {
-			switch (SELECTOR_TYPE) {
-			case STAR: {
-				typeSubString = "star";
-				break;
-			}
-			case HYBRID: {
-				typeSubString = "hybrid";
-				break;
-			}
-			case PATH: {
-				typeSubString = "path";
-				break;
-			}
-			case SIM_STAR: {
-				typeSubString = "sym";
-				break;
-			}
-			}
-		}
-		String corpusName = "bengal_" + typeSubString + "_" + (USE_PRONOUNS ? "pronoun_" : "")
-				+ (USE_SURFACEFORMS ? "surface_" : "") + (USE_PARAPHRASING ? "para_" : "")
-				+ Integer.toString(DEFAULT_NUMBER_OF_DOCUMENTS) + ".ttl";
-		// DocumentGenrator.generateCorpus(new HashMap<String, String>(),
-		// "http://dbpedia.org/sparql", corpusName);
-
-	}
+	public List<Triple> labeltriples;
 
 	public void generateCorpus(Map<String, String> parameters, String endpoint, String corpusName) {
 		if (parameters == null) {
 			parameters = new HashMap<>();
 		}
 
+		// Put names of classes
 		Set<String> classes = new HashSet<>();
 		classes.add("<http://dbpedia.org/ontology/Person>");
 
@@ -139,6 +120,10 @@ public class DocumentTripleExtractor {
 					// create document
 					for (Statement tripleForOneResource : statements) {
 						triples.add(tripleForOneResource.asTriple());
+
+						if (tripleForOneResource.asTriple().getMatchPredicate().getURI().contains("sameAs")) {
+							System.out.println(tripleForOneResource.asTriple());
+						}
 					}
 
 					document = verbalizer.generateDocument(statements);
