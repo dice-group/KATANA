@@ -8,6 +8,7 @@ import java.util.List;
 import org.aksw.simba.bengal.selector.TripleSelectorFactory.SelectorType;
 import org.aksw.simba.katana.model.RDFTriple;
 import org.aksw.simba.katana.nlsimulator.DocumentTripleExtractor;
+import org.apache.jena.graph.Triple;
 
 public class EvaluationHandler {
 	private static final boolean USE_AVATAR = false;
@@ -16,7 +17,8 @@ public class EvaluationHandler {
 	private static final boolean USE_PRONOUNS = false;
 	private static final boolean USE_SURFACEFORMS = true;
 	private static final int DEFAULT_NUMBER_OF_DOCUMENTS = 100;
-	SparqlHandler queryHandler;
+	List<Triple> triplesfromKB;
+	List<Triple> triplesLabelKB;
 
 	public static List<RDFTriple> pickNRandomTriples(List<RDFTriple> lst, int n) {
 		List<RDFTriple> forgottenLabel = new LinkedList<RDFTriple>(lst);
@@ -24,10 +26,20 @@ public class EvaluationHandler {
 		return forgottenLabel.subList(0, n);
 	}
 
+	public EvaluationHandler() {
+
+		SparqlHandler queryHandler = new SparqlHandler();
+		this.triplesfromKB = queryHandler.getResources("http://dbpedia.org/ontology/Person");
+	}
+
+	public void generateTripleLabelList() 
+	{ 
+	}
+
 	public static void main(String args[]) {
-		
-		
-		/*String typeSubString = "";
+		EvaluationHandler eh = new EvaluationHandler();
+
+		String typeSubString = "";
 		if (USE_AVATAR) {
 			typeSubString = "summary";
 		} else {
@@ -55,7 +67,7 @@ public class EvaluationHandler {
 				+ Integer.toString(DEFAULT_NUMBER_OF_DOCUMENTS) + ".ttl";
 
 		DocumentTripleExtractor dc = new DocumentTripleExtractor();
-		dc.generateCorpus(new HashMap<String, String>(), "http://dbpedia.org/sparql", corpusName);*/
+		dc.generateCorpus(new HashMap<String, String>(), "http://dbpedia.org/sparql", corpusName);
 
 	}
 }

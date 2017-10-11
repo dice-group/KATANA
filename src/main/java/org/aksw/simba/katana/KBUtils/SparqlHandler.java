@@ -1,23 +1,18 @@
 package org.aksw.simba.katana.KBUtils;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.aksw.simba.katana.model.RDFProperty;
 import org.aksw.simba.katana.model.RDFResource;
+import org.apache.jena.graph.Triple;
 import org.apache.jena.query.QueryExecution;
 import org.apache.jena.query.QueryExecutionFactory;
 import org.apache.jena.query.QueryFactory;
 import org.apache.jena.query.QuerySolution;
 import org.apache.jena.query.ResultSet;
-import org.apache.jena.query.ResultSetFormatter;
 import org.apache.jena.rdf.model.Model;
 
 import org.apache.jena.rdf.model.Resource;
@@ -28,17 +23,18 @@ public class SparqlHandler {
 	private String endpoint = "http://dbpedia.org/sparql";
 	private String graph = "http://dbpedia.org";
 
-	public List<Resource> getResources(String classname) {
-		List<Resource> results = new ArrayList<Resource>();
+	public List<Triple> getResources(String classname) {
+		List<Triple> results = new ArrayList<Triple>();
 		String sparqlQueryString = queryHandler.getResourceQuery(classname);
 		QueryFactory.create(sparqlQueryString);
 		QueryExecution qexec = QueryExecutionFactory.sparqlService(endpoint, sparqlQueryString, graph);
 		ResultSet queryResults = qexec.execSelect();
 		while (queryResults.hasNext()) {
 			QuerySolution qs = queryResults.nextSolution();
-			results.add(qs.getResource("?s"));
+			results.add(new Triple(qs.get("?s").asNode(), qs.get("?p").asNode(), qs.get("?o").asNode()));
 		}
 		qexec.close();
+
 		return results;
 	}
 
@@ -85,29 +81,6 @@ public class SparqlHandler {
 			map.put(prop, res);
 		}
 		return map;
-	}
-
-	public void generateSampleDataset(ArrayList<String> classNames) throws IOException {
-		FileWriter fw = new FileWriter("src/main/resources/abc.txt", true);
-		BufferedWriter bw = new BufferedWriter(fw);
-		PrintWriter printWriter = new PrintWriter(bw);
-		for (String clas : classNames) {
-			List<Resource> resList = new ArrayList<Resource>();
-			resList = this.getResources(clas);
-			for (Resource res : resList) {
-				String sparqlQueryString = queryHandler.getSampleDatasetQuery(res);
-				QueryFactory.create(sparqlQueryString);
-				QueryExecution qexec = QueryExecutionFactory.sparqlService(endpoint, sparqlQueryString, graph);
-				ResultSet queryResults = qexec.execSelect();
-				while (queryResults.hasNext()) {
-					QuerySolution qs = queryResults.nextSolution();
-					printWriter.println(qs.getLiteral("abstract").getString());
-				}
-
-			}
-		}
-		bw.close();
-		fw.close();
 	}
 
 }

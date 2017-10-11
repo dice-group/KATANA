@@ -2,12 +2,10 @@ package org.aksw.simba.katana.nlsimulator;
 
 import java.util.ArrayList;
 import java.io.FileOutputStream;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Random;
 import java.util.Set;
 
 import org.aksw.gerbil.io.nif.NIFWriter;

@@ -1,8 +1,5 @@
 package org.aksw.simba.katana.NLUtils;
 
-import java.io.File;
-import java.io.IOException;
-import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -11,11 +8,7 @@ import org.aksw.simba.katana.KBUtils.SparqlHandler;
 import org.aksw.simba.katana.model.RDFProperty;
 import org.aksw.simba.katana.model.RDFResource;
 
-import com.google.common.io.Files;
-
 import edu.stanford.nlp.ie.util.RelationTriple;
-import edu.stanford.nlp.ling.CoreAnnotations.SentencesAnnotation;
-import edu.stanford.nlp.pipeline.Annotation;
 
 public class ComparisonUtils {
 	SparqlHandler queryHandler;
