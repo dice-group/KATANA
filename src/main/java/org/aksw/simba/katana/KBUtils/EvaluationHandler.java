@@ -32,8 +32,23 @@ public class EvaluationHandler {
 		this.triplesfromKB = queryHandler.getResources("http://dbpedia.org/ontology/Person");
 	}
 
-	public void generateTripleLabelList() 
-	{ 
+	public void generateTripleLabelList() {
+		for (Triple triple : triplesfromKB) {
+
+			triplesLabelKB.add(triple);
+		}
+	}
+
+	public double calculateAccuracy(List<Triple> resultKatana) {
+		double numberOfCorrectResults = 0;
+		double totalNumberofLabels = resultKatana.size();
+		for (Triple triple : resultKatana) {
+			if (triplesLabelKB.contains(triple))
+				numberOfCorrectResults++;
+		}
+
+		return (numberOfCorrectResults / totalNumberofLabels);
+
 	}
 
 	public static void main(String args[]) {
