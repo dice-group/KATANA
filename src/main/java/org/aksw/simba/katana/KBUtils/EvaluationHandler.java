@@ -9,6 +9,8 @@ import org.aksw.simba.bengal.selector.TripleSelectorFactory.SelectorType;
 import org.aksw.simba.katana.model.RDFTriple;
 import org.aksw.simba.katana.nlsimulator.DocumentTripleExtractor;
 import org.apache.jena.graph.Triple;
+import org.apache.jena.rdf.model.Model;
+import org.apache.jena.rdf.model.ModelFactory;
 
 public class EvaluationHandler {
 	private static final boolean USE_AVATAR = false;
@@ -19,6 +21,8 @@ public class EvaluationHandler {
 	private static final int DEFAULT_NUMBER_OF_DOCUMENTS = 100;
 	List<Triple> triplesfromKB;
 	List<Triple> triplesLabelKB;
+	Model modelKB;
+	SparqlHandler queryHandler;
 
 	public static List<RDFTriple> pickNRandomTriples(List<RDFTriple> lst, int n) {
 		List<RDFTriple> forgottenLabel = new LinkedList<RDFTriple>(lst);
@@ -28,15 +32,16 @@ public class EvaluationHandler {
 
 	public EvaluationHandler() {
 
-		SparqlHandler queryHandler = new SparqlHandler();
+		this.queryHandler = new SparqlHandler();
 		this.triplesfromKB = queryHandler.getFunctionalPropertyResources("http://dbpedia.org/ontology/Person");
+		this.modelKB = ModelFactory.createDefaultModel();
 	}
 
-	public void generateTripleLabelList() {
+	public void getCBDofResource() {
 		for (Triple triple : triplesfromKB) {
-
-			triplesLabelKB.add(triple);
+			modelKB.add(this.queryHandler.getCBD(triple.getSubject().getURI()));
 		}
+		modelKB.write(System.out, "TURTLE");
 	}
 
 	public double calculateAccuracy(List<Triple> resultKatana) {
@@ -53,8 +58,8 @@ public class EvaluationHandler {
 
 	public static void main(String args[]) {
 		EvaluationHandler eh = new EvaluationHandler();
-
-		String typeSubString = "";
+		eh.getCBDofResource();
+	/*	String typeSubString = "";
 		if (USE_AVATAR) {
 			typeSubString = "summary";
 		} else {
@@ -83,6 +88,7 @@ public class EvaluationHandler {
 
 		DocumentTripleExtractor dc = new DocumentTripleExtractor();
 		dc.generateCorpus(new HashMap<String, String>(), "http://dbpedia.org/sparql", corpusName);
-		dc.printModel();
+		dc.printModel();*/
 	}
+	
 }

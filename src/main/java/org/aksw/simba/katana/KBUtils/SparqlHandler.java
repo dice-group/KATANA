@@ -14,14 +14,21 @@ import org.apache.jena.query.QueryFactory;
 import org.apache.jena.query.QuerySolution;
 import org.apache.jena.query.ResultSet;
 import org.apache.jena.rdf.model.Model;
-
+import org.apache.jena.rdf.model.ModelFactory;
 import org.apache.jena.rdf.model.Resource;
 import org.apache.jena.sparql.engine.http.QueryEngineHTTP;
 
 public class SparqlHandler {
-	SparqlQueries queryHandler = new SparqlQueries();
+	SparqlQueries queryHandler ;
 	private String endpoint = "http://dbpedia.org/sparql";
 	private String graph = "http://dbpedia.org";
+	
+	public SparqlHandler() {
+		// TODO Auto-generated constructor stub
+		this.queryHandler= new SparqlQueries();
+		
+	}
+	
 
 	public List<Triple> getResources(String classname) {
 		List<Triple> results = new ArrayList<Triple>();
@@ -38,8 +45,8 @@ public class SparqlHandler {
 		return results;
 	}
 
-	public Model getCBD(Resource r) {
-		String sparqlQueryString = queryHandler.getCBDQuery(r);
+	public Model getCBD(String resourceURI) {
+		String sparqlQueryString = queryHandler.getCBDQuery(resourceURI);
 		QueryFactory.create(sparqlQueryString);
 		QueryExecution qexec = QueryExecutionFactory.sparqlService(endpoint, sparqlQueryString, graph);
 		QueryEngineHTTP qeHttp = (QueryEngineHTTP) qexec;

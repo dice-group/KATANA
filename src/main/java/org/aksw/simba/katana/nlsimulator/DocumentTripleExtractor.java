@@ -22,7 +22,6 @@ import org.aksw.simba.bengal.verbalizer.AvatarVerbalizer;
 import org.aksw.simba.bengal.verbalizer.BVerbalizer;
 import org.aksw.simba.bengal.verbalizer.NumberOfVerbalizedTriples;
 import org.aksw.simba.bengal.verbalizer.SemWeb2NLVerbalizer;
-import org.aksw.simba.katana.KBUtils.SparqlHandler;
 import org.aksw.simba.katana.KBUtils.SparqlQueries;
 import org.apache.jena.graph.Triple;
 import org.apache.jena.query.QueryExecution;
@@ -30,7 +29,6 @@ import org.apache.jena.query.QueryExecutionFactory;
 import org.apache.jena.query.QueryFactory;
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.ModelFactory;
-import org.apache.jena.rdf.model.Resource;
 import org.apache.jena.rdf.model.Statement;
 import org.apache.jena.sparql.engine.http.QueryEngineHTTP;
 import org.dllearner.kb.sparql.SparqlEndpoint;
@@ -202,7 +200,7 @@ public class DocumentTripleExtractor {
 		}
 	}
 
-	public void getCBDofResource(Resource r) {
+	public void getCBDofResource(String r) {
 		String sparqlQueryString = queryHandler.getCBDQuery(r);
 		QueryFactory.create(sparqlQueryString);
 		QueryExecution qexec = QueryExecutionFactory.create(sparqlQueryString, model);
