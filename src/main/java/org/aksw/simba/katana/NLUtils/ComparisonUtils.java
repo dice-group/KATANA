@@ -18,7 +18,7 @@ public class ComparisonUtils {
 	public ComparisonUtils() {
 		this.queryHandler = new SparqlHandler();
 		this.nlHandler = new NLUtils();
-		this.kbPropResourceMap = queryHandler.getPropertyResourceMap();
+		//this.kbPropResourceMap = queryHandler.getPropertyResourceMap();
 	}
 
 	public void addLabels(List<RelationTriple> triplesFromNL, Map<RDFProperty, ArrayList<RDFResource>> map) {

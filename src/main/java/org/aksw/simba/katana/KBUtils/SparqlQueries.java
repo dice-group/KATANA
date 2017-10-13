@@ -18,19 +18,10 @@ public class SparqlQueries {
 
 	}
 
-	public String getFunctionalPropertiesQuery() {
-		String sparqlQueryString = "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\n"
-				+ "Select ?p  ?label where \n{?p a <http://www.w3.org/2002/07/owl#FunctionalProperty>. \n ?p rdfs:label ?label.\n FILTER (lang(?label) = 'en').}";
-		System.out.println("Query Executed :  \n " + sparqlQueryString);
-		return sparqlQueryString;
-
-	}
-
-	public String getResourceMapQuery(String propUri) {
-		String sparqlQueryString = "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\n"
-				+ "select distinct ?s ?label  where  \n{ {?s <" + propUri
-				+ "> ?p .\n ?s rdfs:label ?label. FILTER(!isLiteral(?s) && (lang(?label) = 'en'))} \n union  \n  { ?x <"
-				+ propUri + "> ?s. \n ?s rdfs:label ?label. FILTER(!isLiteral(?s) && (lang(?label) = 'en'))}}LIMIT 100";
+	public String getFunctionalPropertiesResourcesQuery(String classname) {
+		String sparqlQueryString = "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\n" + "select ?s ?p ?o  \n"
+				+ "where {\n" + "?s ?p ?o. \n" + "?s a <" + classname + ">. \n"
+				+ "?p a <http://www.w3.org/2002/07/owl#FunctionalProperty>. \n" + "}";
 		System.out.println("Query Executed :  \n " + sparqlQueryString);
 		return sparqlQueryString;
 

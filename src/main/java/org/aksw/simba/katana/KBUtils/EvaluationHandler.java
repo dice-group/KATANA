@@ -29,7 +29,7 @@ public class EvaluationHandler {
 	public EvaluationHandler() {
 
 		SparqlHandler queryHandler = new SparqlHandler();
-		this.triplesfromKB = queryHandler.getResources("http://dbpedia.org/ontology/Person");
+		this.triplesfromKB = queryHandler.getFunctionalPropertyResources("http://dbpedia.org/ontology/Person");
 	}
 
 	public void generateTripleLabelList() {

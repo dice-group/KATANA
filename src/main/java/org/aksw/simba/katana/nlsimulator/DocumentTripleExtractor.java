@@ -23,6 +23,8 @@ import org.aksw.simba.bengal.verbalizer.BVerbalizer;
 import org.aksw.simba.bengal.verbalizer.NumberOfVerbalizedTriples;
 import org.aksw.simba.bengal.verbalizer.SemWeb2NLVerbalizer;
 import org.apache.jena.graph.Triple;
+import org.apache.jena.rdf.model.Model;
+import org.apache.jena.rdf.model.ModelFactory;
 import org.apache.jena.rdf.model.Statement;
 import org.dllearner.kb.sparql.SparqlEndpoint;
 import org.slf4j.Logger;
@@ -30,10 +32,13 @@ import org.slf4j.LoggerFactory;
 
 public class DocumentTripleExtractor {
 
+	Model model;
+
 	public DocumentTripleExtractor() {
 		super();
 		this.triples = new ArrayList<Triple>();
 		this.labeltriples = new ArrayList<Triple>();
+		this.model = ModelFactory.createDefaultModel();
 
 	}
 
@@ -61,6 +66,7 @@ public class DocumentTripleExtractor {
 			parameters = new HashMap<>();
 		}
 
+		
 		// Put names of classes
 		Set<String> classes = new HashSet<>();
 		classes.add("<http://dbpedia.org/ontology/Person>");
@@ -113,11 +119,13 @@ public class DocumentTripleExtractor {
 			} else {
 				// select triples
 				statements = tripleSelector.getNextStatements();
+				this.model.add(statements);
 
 				if ((statements != null) && (statements.size() >= MIN_SENTENCE)) {
 					// create document
 					for (Statement tripleForOneResource : statements) {
 						triples.add(tripleForOneResource.asTriple());
+					
 
 						if (tripleForOneResource.asTriple().getMatchPredicate().getURI().contains("sameAs")) {
 							System.out.println(tripleForOneResource.asTriple());
