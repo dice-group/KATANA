@@ -22,10 +22,11 @@ public class EvaluationHandler {
 	List<Triple> triplesfromKB;
 	List<Triple> triplesLabelKB;
 	Model modelKB;
+	Model modelDocument;
 	SparqlHandler queryHandler;
 
-	public static List<RDFTriple> pickNRandomTriples(List<RDFTriple> lst, int n) {
-		List<RDFTriple> forgottenLabel = new LinkedList<RDFTriple>(lst);
+	public static List<Triple> pickNRandomTriples(List<Triple> lst, int n) {
+		List<Triple> forgottenLabel = new LinkedList<Triple>(lst);
 		Collections.shuffle(forgottenLabel);
 		return forgottenLabel.subList(0, n);
 	}
@@ -35,6 +36,7 @@ public class EvaluationHandler {
 		this.queryHandler = new SparqlHandler();
 		this.triplesfromKB = queryHandler.getFunctionalPropertyResources("http://dbpedia.org/ontology/Person");
 		this.modelKB = ModelFactory.createDefaultModel();
+		this.modelDocument = ModelFactory.createDefaultModel();
 	}
 
 	public void getCBDofResource() {
@@ -56,10 +58,8 @@ public class EvaluationHandler {
 
 	}
 
-	public static void main(String args[]) {
-		EvaluationHandler eh = new EvaluationHandler();
-		eh.getCBDofResource();
-	/*	String typeSubString = "";
+	public void getDocumentCBD() {
+		String typeSubString = "";
 		if (USE_AVATAR) {
 			typeSubString = "summary";
 		} else {
@@ -88,7 +88,7 @@ public class EvaluationHandler {
 
 		DocumentTripleExtractor dc = new DocumentTripleExtractor();
 		dc.generateCorpus(new HashMap<String, String>(), "http://dbpedia.org/sparql", corpusName);
-		dc.printModel();*/
+		this.modelDocument.add(dc.getModel());
 	}
-	
+
 }

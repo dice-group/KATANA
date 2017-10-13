@@ -211,9 +211,13 @@ public class DocumentTripleExtractor {
 		qexec.close();
 	}
 
-	public void printModel() {
-		this.model.write(System.out, "TURTLE");
+
+
+	public Model getModel() {
+		return model;
 	}
+
+	
 
 	public List<Triple> getTriples() {
 		return triples;
