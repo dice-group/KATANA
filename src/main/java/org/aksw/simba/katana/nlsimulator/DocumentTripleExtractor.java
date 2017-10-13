@@ -22,17 +22,22 @@ import org.aksw.simba.bengal.verbalizer.AvatarVerbalizer;
 import org.aksw.simba.bengal.verbalizer.BVerbalizer;
 import org.aksw.simba.bengal.verbalizer.NumberOfVerbalizedTriples;
 import org.aksw.simba.bengal.verbalizer.SemWeb2NLVerbalizer;
+import org.aksw.simba.katana.KBUtils.SparqlHandler;
+import org.aksw.simba.katana.KBUtils.SparqlQueries;
 import org.apache.jena.graph.Triple;
+import org.apache.jena.query.QueryExecution;
+import org.apache.jena.query.QueryExecutionFactory;
+import org.apache.jena.query.QueryFactory;
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.ModelFactory;
+import org.apache.jena.rdf.model.Resource;
 import org.apache.jena.rdf.model.Statement;
+import org.apache.jena.sparql.engine.http.QueryEngineHTTP;
 import org.dllearner.kb.sparql.SparqlEndpoint;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class DocumentTripleExtractor {
-
-	Model model;
 
 	public DocumentTripleExtractor() {
 		super();
@@ -54,19 +59,20 @@ public class DocumentTripleExtractor {
 	private static final boolean USE_PARAPHRASING = true;
 	private static final boolean USE_PRONOUNS = false;
 	private static final boolean USE_SURFACEFORMS = true;
-	private static final int DEFAULT_NUMBER_OF_DOCUMENTS = 100;
+	private static final int DEFAULT_NUMBER_OF_DOCUMENTS = 10;
 
 	private static final boolean USE_ONLY_OBJECT_PROPERTIES = false;
 	private static final long WAITING_TIME_BETWEEN_DOCUMENTS = 500;
 	public List<Triple> triples;
 	public List<Triple> labeltriples;
+	Model model;
+	SparqlQueries queryHandler = new SparqlQueries();
 
 	public void generateCorpus(Map<String, String> parameters, String endpoint, String corpusName) {
 		if (parameters == null) {
 			parameters = new HashMap<>();
 		}
 
-		
 		// Put names of classes
 		Set<String> classes = new HashSet<>();
 		classes.add("<http://dbpedia.org/ontology/Person>");
@@ -125,7 +131,6 @@ public class DocumentTripleExtractor {
 					// create document
 					for (Statement tripleForOneResource : statements) {
 						triples.add(tripleForOneResource.asTriple());
-					
 
 						if (tripleForOneResource.asTriple().getMatchPredicate().getURI().contains("sameAs")) {
 							System.out.println(tripleForOneResource.asTriple());
@@ -195,6 +200,21 @@ public class DocumentTripleExtractor {
 				}
 			}
 		}
+	}
+
+	public void getCBDofResource(Resource r) {
+		String sparqlQueryString = queryHandler.getCBDQuery(r);
+		QueryFactory.create(sparqlQueryString);
+		QueryExecution qexec = QueryExecutionFactory.create(sparqlQueryString, model);
+		QueryEngineHTTP qeHttp = (QueryEngineHTTP) qexec;
+		qeHttp.setModelContentType("application/rdf+xml");
+		Model cbd = qexec.execDescribe();
+		cbd.write(System.out, "TURTLE");
+		qexec.close();
+	}
+
+	public void printModel() {
+		this.model.write(System.out, "TURTLE");
 	}
 
 	public List<Triple> getTriples() {

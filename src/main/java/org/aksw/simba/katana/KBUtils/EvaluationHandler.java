@@ -83,6 +83,6 @@ public class EvaluationHandler {
 
 		DocumentTripleExtractor dc = new DocumentTripleExtractor();
 		dc.generateCorpus(new HashMap<String, String>(), "http://dbpedia.org/sparql", corpusName);
-
+		dc.printModel();
 	}
 }
