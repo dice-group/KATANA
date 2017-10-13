@@ -5,7 +5,7 @@ public class Example {
 
 		EvaluationHandler eh = new EvaluationHandler();
 		eh.getCBDofResource();
-		eh.getDocumentCBD();
+		//eh.getDocumentCBD();
 	
 
 	}
