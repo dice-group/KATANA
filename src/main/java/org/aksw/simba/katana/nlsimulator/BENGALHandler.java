@@ -1,10 +1,11 @@
 package org.aksw.simba.katana.nlsimulator;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import org.aksw.simba.bengal.selector.TripleSelectorFactory.SelectorType;
 import org.apache.jena.rdf.model.Model;
-import org.apache.jena.rdf.model.ModelFactory;
 
 public class BENGALHandler {
 	private static final boolean USE_AVATAR = false;
@@ -12,14 +13,14 @@ public class BENGALHandler {
 	private static final boolean USE_PARAPHRASING = true;
 	private static final boolean USE_PRONOUNS = false;
 	private static final boolean USE_SURFACEFORMS = true;
-	private static final int DEFAULT_NUMBER_OF_DOCUMENTS = 100;
+	private static final int DEFAULT_NUMBER_OF_DOCUMENTS = 2;
 
-	Model modelDocument;
+	List<Model> docCBDList;
 
 	public BENGALHandler() {
 
-		this.modelDocument = ModelFactory.createDefaultModel();
-
+		this.docCBDList = new ArrayList<Model>();
+		this.getDocumentCBD();
 	}
 
 	public void getDocumentCBD() {
@@ -52,6 +53,14 @@ public class BENGALHandler {
 
 		DocumentTripleExtractor dc = new DocumentTripleExtractor();
 		dc.generateCorpus(new HashMap<String, String>(), "http://dbpedia.org/sparql", corpusName);
-		this.modelDocument.add(dc.getModel());
+		this.docCBDList = dc.docCBDList;
+		
+		
 	}
+
+	public List<Model> getDocCBDList() {
+		return docCBDList;
+	}
+
+
 }

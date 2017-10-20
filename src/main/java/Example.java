@@ -4,8 +4,8 @@ public class Example {
 	public static void main(String[] args) {
 
 		EvaluationHandler eh = new EvaluationHandler();
-	
-	
+
+		eh.getCBDData();
 
 	}
 }

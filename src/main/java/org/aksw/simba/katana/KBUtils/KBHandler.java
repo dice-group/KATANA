@@ -17,17 +17,20 @@ public class KBHandler {
 	SparqlHandler queryHandler;
 	List<Triple> triplesfromKB;
 	List<Triple> triplesLabelKB;
-	Model modelKB;
+	List<Model> kbCBDList;
+
 	List<Statement> correctLabels;
 
-	
-
 	public KBHandler() {
-		// TODO Auto-generated constructor stub
-		this.triplesfromKB = queryHandler.getFunctionalPropertyResources("http://dbpedia.org/ontology/Person");
+		// only resource from one class that have functional properties
+		this.triplesfromKB = new ArrayList<Triple>();
 		this.queryHandler = new SparqlHandler();
+		this.kbCBDList = new ArrayList<Model>();
 		this.correctLabels = new ArrayList<Statement>();
+		this.triplesfromKB = queryHandler.getFunctionalPropertyResources("http://dbpedia.org/ontology/Person");
 		
+		this.getCBDofResource();
+
 	}
 
 	public void getCBDofResource() {
@@ -37,20 +40,53 @@ public class KBHandler {
 		forgottenLabel.subList(0, 5);
 
 		for (Triple triple : forgottenLabel) {
-			modelKB.add(this.queryHandler.getCBD(triple.getSubject().getURI()));
+			kbCBDList.add(this.queryHandler.getCBD(triple.getSubject().getURI()));
 		}
 
-		// saving the correct label info
-		StmtIterator iter = modelKB.listStatements(new SimpleSelector(null, null, (RDFNode) null) {
-			public boolean selects(Statement s) {
-				return (s.getPredicate().equals(RDFS.label));
+		for (Model modelKB : this.kbCBDList) {
+			// saving the correct label info
+			StmtIterator iter = modelKB.listStatements(new SimpleSelector(null, null, (RDFNode) null) {
+				public boolean selects(Statement s) {
+					return (s.getPredicate().equals(RDFS.label));
+				}
+			});
+			while (iter.hasNext()) {
+				this.correctLabels.add(iter.next());
 			}
-		});
-		while (iter.hasNext()) {
-			this.correctLabels.add(iter.next());
+			// Forgetting all the triples with label info
+			modelKB.removeAll(null, RDFS.label, null);
 		}
-		// Forgetting all the triples with label info
-		modelKB.removeAll(null, RDFS.label, null);
+	}
 
+	public List<Triple> getTriplesfromKB() {
+		return triplesfromKB;
+	}
+
+	public void setTriplesfromKB(List<Triple> triplesfromKB) {
+		this.triplesfromKB = triplesfromKB;
+	}
+
+	public List<Triple> getTriplesLabelKB() {
+		return triplesLabelKB;
+	}
+
+	public void setTriplesLabelKB(List<Triple> triplesLabelKB) {
+		this.triplesLabelKB = triplesLabelKB;
+	}
+
+	public List<Model> getKbCBDList() {
+		return kbCBDList;
+	}
+
+	public void setKbCBDList(List<Model> kbCBDList) {
+		this.kbCBDList = kbCBDList;
+	}
+
+	public List<Statement> getCorrectLabels() {
+		return correctLabels;
+	}
+
+	public void setCorrectLabels(List<Statement> correctLabels) {
+		this.correctLabels = correctLabels;
 	}
 }

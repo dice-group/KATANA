@@ -37,14 +37,6 @@ import org.slf4j.LoggerFactory;
 
 public class DocumentTripleExtractor {
 
-	public DocumentTripleExtractor() {
-		super();
-		this.triples = new ArrayList<Triple>();
-		this.labeltriples = new ArrayList<Triple>();
-		this.model = ModelFactory.createDefaultModel();
-
-	}
-
 	private static final Logger LOGGER = LoggerFactory.getLogger(DocumentTripleExtractor.class);
 	private static final String NUMBEROFDOCS = "numberofdocs";
 
@@ -57,24 +49,25 @@ public class DocumentTripleExtractor {
 	private static final boolean USE_PARAPHRASING = true;
 	private static final boolean USE_PRONOUNS = false;
 	private static final boolean USE_SURFACEFORMS = true;
-	private static final int DEFAULT_NUMBER_OF_DOCUMENTS = 10;
+	private static final int DEFAULT_NUMBER_OF_DOCUMENTS = 2;
 
 	private static final boolean USE_ONLY_OBJECT_PROPERTIES = false;
 	private static final long WAITING_TIME_BETWEEN_DOCUMENTS = 500;
-	public List<Triple> triples;
-	public List<Triple> labeltriples;
-	Model model;
-	SparqlQueries queryHandler = new SparqlQueries();
+
+	List<Model> docCBDList;
+
+	public DocumentTripleExtractor() {
+		this.docCBDList = new ArrayList<Model>();
+
+	}
 
 	public void generateCorpus(Map<String, String> parameters, String endpoint, String corpusName) {
 		if (parameters == null) {
 			parameters = new HashMap<>();
 		}
-
 		// Put names of classes
 		Set<String> classes = new HashSet<>();
 		classes.add("<http://dbpedia.org/ontology/Person>");
-
 		// instantiate components;
 		TripleSelectorFactory factory = new TripleSelectorFactory();
 		TripleSelector tripleSelector = null;
@@ -122,18 +115,12 @@ public class DocumentTripleExtractor {
 				document = alernativeVerbalizer.nextDocument();
 			} else {
 				// select triples
+				Model model = ModelFactory.createDefaultModel();
 				statements = tripleSelector.getNextStatements();
-				this.model.add(statements);
+				model.add(statements);
+				this.docCBDList.add(model);
 
 				if ((statements != null) && (statements.size() >= MIN_SENTENCE)) {
-					// create document
-					for (Statement tripleForOneResource : statements) {
-						triples.add(tripleForOneResource.asTriple());
-
-						if (tripleForOneResource.asTriple().getMatchPredicate().getURI().contains("sameAs")) {
-							System.out.println(tripleForOneResource.asTriple());
-						}
-					}
 
 					document = verbalizer.generateDocument(statements);
 					if (document != null) {
@@ -184,7 +171,7 @@ public class DocumentTripleExtractor {
 			for (; i < documents.size(); ++i) {
 				writer.writeNIF(documents.subList(i, i + 1), fout);
 			}
-			// writer.writeNIF(documents, fout);
+
 		} catch (Exception e) {
 			System.out.println(documents.get(i));
 			LOGGER.error("Error while writing the documents to file. Aborting.", e);
@@ -198,32 +185,25 @@ public class DocumentTripleExtractor {
 				}
 			}
 		}
+
+		
 	}
 
-	public void getCBDofResource(String r) {
-		String sparqlQueryString = queryHandler.getCBDQuery(r);
-		QueryFactory.create(sparqlQueryString);
-		QueryExecution qexec = QueryExecutionFactory.create(sparqlQueryString, model);
-		QueryEngineHTTP qeHttp = (QueryEngineHTTP) qexec;
-		qeHttp.setModelContentType("application/rdf+xml");
-		Model cbd = qexec.execDescribe();
-		cbd.write(System.out, "TURTLE");
-		qexec.close();
+	public List<Model> getDocCBDList() {
+		return docCBDList;
 	}
 
-
-
-	public Model getModel() {
-		return model;
+	public void setDocCBDList(List<Model> docCBDList) {
+		this.docCBDList = docCBDList;
 	}
 
-	
+	/*
+	 * public void getCBDofResource(String r) { String sparqlQueryString =
+	 * queryHandler.getCBDQuery(r); QueryFactory.create(sparqlQueryString);
+	 * QueryExecution qexec = QueryExecutionFactory.create(sparqlQueryString,
+	 * model); QueryEngineHTTP qeHttp = (QueryEngineHTTP) qexec;
+	 * qeHttp.setModelContentType("application/rdf+xml"); Model cbd =
+	 * qexec.execDescribe(); cbd.write(System.out, "TURTLE"); qexec.close(); }
+	 */
 
-	public List<Triple> getTriples() {
-		return triples;
-	}
-
-	public void setTriples(List<Triple> triples) {
-		this.triples = triples;
-	}
 }
