@@ -1,16 +1,16 @@
 package org.aksw.simba.katana.model;
 
+import java.util.Optional;
+
 public class RDFProperty {
 
-	String uri;
-	String label;
+    private String uri;
+    private String label;
 
 	public RDFProperty(String uri, String label) {
 		this.uri = uri;
-		if (label.contains(" "))
-			this.label = label.split(" ")[0];
-		else
-			this.label = label;
+        int labelWhitespace = label.indexOf(' ');
+        this.label = (labelWhitespace == -1) ? label : label.substring(0, labelWhitespace);
 
 	}
 
@@ -48,7 +48,8 @@ public class RDFProperty {
 		if (getClass() != obj.getClass())
 			return false;
 		RDFProperty other = (RDFProperty) obj;
-		if (label == null) {
+
+        if (label == null) {
 			if (other.label != null)
 				return false;
 		} else if (!label.equals(other.label))

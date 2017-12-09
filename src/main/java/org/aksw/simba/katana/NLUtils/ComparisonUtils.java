@@ -1,6 +1,7 @@
 package org.aksw.simba.katana.NLUtils;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -11,17 +12,16 @@ import org.aksw.simba.katana.model.RDFResource;
 import edu.stanford.nlp.ie.util.RelationTriple;
 
 public class ComparisonUtils {
-	SparqlHandler queryHandler;
 	NLUtils nlHandler;
 	public Map<RDFProperty, ArrayList<RDFResource>> kbPropResourceMap;
 
 	public ComparisonUtils() {
-		this.queryHandler = new SparqlHandler();
 		this.nlHandler = new NLUtils();
 		//this.kbPropResourceMap = queryHandler.getPropertyResourceMap();
 	}
 
-	public void addLabels(List<RelationTriple> triplesFromNL, Map<RDFProperty, ArrayList<RDFResource>> map) {
+	public Map<RDFResource, List<String>> addLabels(List<RelationTriple> triplesFromNL, Map<RDFProperty, ArrayList<RDFResource>> map) {
+		Map<RDFResource, List<String>> labeledResources = new HashMap<>();
 		for (Map.Entry<RDFProperty, ArrayList<RDFResource>> entry : map.entrySet()) {
 			for (RelationTriple triple : triplesFromNL) {
 				if (entry.getKey().getLabel().contains(triple.relationLemmaGloss())) {
@@ -30,22 +30,38 @@ public class ComparisonUtils {
 					String object = triple.objectLemmaGloss();
 					String subject = triple.subjectLemmaGloss();
 					for (RDFResource resource : res) {
-						if (resource.getKbLabel().toLowerCase().contains(subject.toLowerCase())
-								|| resource.getKbLabel().toLowerCase().contains(object.toLowerCase())) {
-
-							System.out.println("Got Resource match");
+						if (resource.getKbLabel().toLowerCase().contains(subject.toLowerCase())) {
+							System.out.println("Got Resource match with a subject!");
 							System.out
 									.println("Resource : " + resource.getKbLabel() + "  Potential Label : " + subject);
-
+							addLabelToMap(labeledResources, resource, subject);
+						}
+						if (resource.getKbLabel().toLowerCase().contains(object.toLowerCase())) {
+							System.out.println("Got Resource match with a object");
+							System.out
+									.println("Resource : " + resource.getKbLabel() + "  Potential Label : " + object);
+							addLabelToMap(labeledResources, resource, object);
 						}
 					}
 				}
 			}
 		}
 
+		return labeledResources;
 	}
 
-	public void psuedoaddLabels(List<RelationTriple> triplesFromNL, Map<RDFProperty, ArrayList<RDFResource>> map) {
+	private <T1, T2> void addLabelToMap(Map<T1, List<T2>> map, T1 key, T2 value) {
+		List<T2> mapValue = map.get(key);
+		if (mapValue == null) {
+			mapValue = new ArrayList<>(1);
+			mapValue.add(value);
+			map.put(key, mapValue);
+		} else {
+			mapValue.add(value);
+		}
+	}
+
+	public void pseudoAddLabels(List<RelationTriple> triplesFromNL, Map<RDFProperty, ArrayList<RDFResource>> map) {
 
 		for (Map.Entry<RDFProperty, ArrayList<RDFResource>> entry : map.entrySet()) {
 			for (RelationTriple triple : triplesFromNL) {
@@ -63,10 +79,10 @@ public class ComparisonUtils {
 		}
 	}
 
-	public void searchElement(String[] arr, List<RDFResource> res) {
-		for (String nlEle : arr) {
+	public void searchElement(String[] words, List<RDFResource> res) {
+		for (String nlEle : words) {
 			for (RDFResource resource : res) {
-				if (resource.getLabels().contains(nlEle)) {
+				if (resource.getLemmas().contains(nlEle)) {
 					System.out.println(resource.getKbLabel() + ":" + nlEle);
 				}
 			}

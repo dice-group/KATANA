@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.aksw.simba.katana.mainPH.View.TRIPLEStoCONSOLE;
 import org.apache.jena.graph.Triple;
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.RDFNode;
@@ -13,57 +14,71 @@ import org.apache.jena.rdf.model.Statement;
 import org.apache.jena.rdf.model.StmtIterator;
 import org.apache.jena.vocabulary.RDFS;
 
-public class KBHandler {
-	SparqlHandler queryHandler;
-	List<Triple> triplesfromKB;
-	List<Triple> triplesLabelKB;
-	List<Model> kbCBDList;
+public class KBEvaluationHandler {
+	private List<Triple> triplesFromKB;
+	private List<Triple> triplesLabelKB;
+	private List<Model> kbCBDList;
 
-	List<Statement> correctLabels;
+	private List<Statement> correctLabels;
 
-	public KBHandler() {
+	public KBEvaluationHandler() {
 		// only resource from one class that have functional properties
-		this.triplesfromKB = new ArrayList<Triple>();
-		this.queryHandler = new SparqlHandler();
-		this.kbCBDList = new ArrayList<Model>();
-		this.correctLabels = new ArrayList<Statement>();
-		this.triplesfromKB = queryHandler.getFunctionalPropertyResources("http://dbpedia.org/ontology/Person");
-		
-		this.getCBDofResource();
+		this.triplesFromKB = new ArrayList<>();
+		this.kbCBDList = new ArrayList<>();
+		this.correctLabels = new ArrayList<>();
+		this.triplesFromKB = SparqlHandler.getFunctionalPropertyResources("http://dbpedia.org/ontology/Person");
+
+		//this.getCBDofResource();
 
 	}
 
 	public void getCBDofResource() {
-		List<Triple> forgottenLabel = new LinkedList<Triple>(this.triplesfromKB);
+		getCBDofResource(5);
+	}
+
+	public void getCBDofResource(double numberOfLabelsToForget) {
+		if (numberOfLabelsToForget < 0d || numberOfLabelsToForget > 1d) {
+			throw new IllegalArgumentException("We expect a percent value, so a value between 0 and 1");
+		}
+		getCBDofResource((int) Math.round(triplesFromKB.size() * numberOfLabelsToForget));
+	}
+
+	public void getCBDofResource(int numberOfLabelsToForget) {
+		List<Triple> forgottenLabel = new LinkedList<>(this.triplesFromKB);
 		// selecting random 5 triples
 		Collections.shuffle(forgottenLabel);
-		forgottenLabel.subList(0, 5);
+		if (numberOfLabelsToForget < forgottenLabel.size()) {
+			forgottenLabel = forgottenLabel.subList(0, numberOfLabelsToForget);
+		}
 
 		for (Triple triple : forgottenLabel) {
-			kbCBDList.add(this.queryHandler.getCBD(triple.getSubject().getURI()));
+			kbCBDList.add(SparqlHandler.getCBD(triple.getSubject().getURI()));
 		}
 
 		for (Model modelKB : this.kbCBDList) {
 			// saving the correct label info
+			TRIPLEStoCONSOLE.printLabel(modelKB);
 			StmtIterator iter = modelKB.listStatements(new SimpleSelector(null, null, (RDFNode) null) {
 				public boolean selects(Statement s) {
 					return (s.getPredicate().equals(RDFS.label));
 				}
 			});
-			while (iter.hasNext()) {
+			if (iter.hasNext()) {
 				this.correctLabels.add(iter.next());
+			} else {
+				System.out.println("WARN: no label found in " + modelKB.listStatements().nextStatement().getString());
 			}
 			// Forgetting all the triples with label info
 			modelKB.removeAll(null, RDFS.label, null);
 		}
 	}
 
-	public List<Triple> getTriplesfromKB() {
-		return triplesfromKB;
+	public List<Triple> getTriplesFromKB() {
+		return triplesFromKB;
 	}
 
-	public void setTriplesfromKB(List<Triple> triplesfromKB) {
-		this.triplesfromKB = triplesfromKB;
+	public void setTriplesFromKB(List<Triple> triplesFromKB) {
+		this.triplesFromKB = triplesFromKB;
 	}
 
 	public List<Triple> getTriplesLabelKB() {

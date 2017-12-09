@@ -11,20 +11,13 @@ import org.apache.jena.query.ResultSet;
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.sparql.engine.http.QueryEngineHTTP;
 
-public class SparqlHandler {
-	SparqlQueries queryHandler;
-	private String endpoint = "http://dbpedia.org/sparql";
-	private String graph = "http://dbpedia.org";
+public abstract class SparqlHandler {
+	private static String endpoint = "http://dbpedia.org/sparql";
+	private static String graph = "http://dbpedia.org";
 
-	public SparqlHandler() {
-		// TODO Auto-generated constructor stub
-		this.queryHandler = new SparqlQueries();
-
-	}
-
-	public List<Triple> getResources(String classname) {
+	public static List<Triple> getResources(String classname) {
 		List<Triple> results = new ArrayList<Triple>();
-		String sparqlQueryString = queryHandler.getResourceQuery(classname);
+		String sparqlQueryString = SparqlQueries.getResourceQuery(classname);
 		QueryFactory.create(sparqlQueryString);
 		QueryExecution qexec = QueryExecutionFactory.sparqlService(endpoint, sparqlQueryString, graph);
 		ResultSet queryResults = qexec.execSelect();
@@ -37,8 +30,8 @@ public class SparqlHandler {
 		return results;
 	}
 
-	public Model getCBD(String resourceURI) {
-		String sparqlQueryString = queryHandler.getCBDQuery(resourceURI);
+	public static Model getCBD(String resourceURI) {
+		String sparqlQueryString = SparqlQueries.getCBDQuery(resourceURI);
 		QueryFactory.create(sparqlQueryString);
 		QueryExecution qexec = QueryExecutionFactory.sparqlService(endpoint, sparqlQueryString, graph);
 		QueryEngineHTTP qeHttp = (QueryEngineHTTP) qexec;
@@ -48,9 +41,9 @@ public class SparqlHandler {
 		return cbd;
 	}
 
-	public List<Triple> getFunctionalPropertyResources(String classname) {
+	public static List<Triple> getFunctionalPropertyResources(String classname) {
 		List<Triple> results = new ArrayList<Triple>();
-		String sparqlQueryString = queryHandler.getFunctionalPropertiesResourcesQuery(classname);
+		String sparqlQueryString = SparqlQueries.getFunctionalPropertiesResourcesQuery(classname);
 		QueryFactory.create(sparqlQueryString);
 		QueryExecution qexec = QueryExecutionFactory.sparqlService(endpoint, sparqlQueryString, graph);
 		ResultSet queryResults = qexec.execSelect();

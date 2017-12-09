@@ -3,8 +3,7 @@ package org.aksw.simba.katana.algorithm;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.aksw.simba.katana.KBUtils.KBHandler;
-import org.aksw.simba.katana.nlsimulator.BENGALHandler;
+import org.aksw.simba.katana.KBUtils.KBEvaluationHandler;
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.ModelFactory;
 
@@ -23,9 +22,9 @@ public class EvaluationHandler {
 	}
 
 	public void getCBDData() {
-		BENGALHandler bg = new BENGALHandler();
-		this.documentCBDList = bg.getDocCBDList();
-		KBHandler kbh = new KBHandler();
+		//BENGALHandler bg = new BENGALHandler();
+		//this.documentCBDList = bg.getDocCBDList();
+		KBEvaluationHandler kbh = new KBEvaluationHandler();
 		this.kbCBDList = kbh.getKbCBDList();
 
 	}
