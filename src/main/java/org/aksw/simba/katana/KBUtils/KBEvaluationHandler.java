@@ -5,7 +5,7 @@ import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
-import org.aksw.simba.katana.mainPH.View.TRIPLEStoCONSOLE;
+import org.aksw.simba.katana.mainPH.View.JENAtoCONSOLE;
 import org.apache.jena.graph.Triple;
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.RDFNode;
@@ -14,11 +14,31 @@ import org.apache.jena.rdf.model.Statement;
 import org.apache.jena.rdf.model.StmtIterator;
 import org.apache.jena.vocabulary.RDFS;
 
+/**
+ * An Evaluation Handler for the Knowledge base
+ *
+ * @author Kunal-Jha
+ */
 public class KBEvaluationHandler {
+	/**
+	 * All tuples from DBpedia, where the subject is a person and the predicate a functional property
+	 */
 	private List<Triple> triplesFromKB;
+	/**
+	 * All triples with ?s rdfs:label "LABEL" (initial empty)
+	 */
 	private List<Triple> triplesLabelKB;
+	/**
+	 * DEFINED BY getCBDofResource()
+	 * A unsorted list, that contains forach subject with a forgotten label the CBD (DESCRIBE in Sparql)
+	 * Concise Bounded Description: <https://www.w3.org/Submission/CBD/> essentially all ingoing and outgoing edges of a subject
+	 */
 	private List<Model> kbCBDList;
 
+	/**
+	 * DEFINED BY getCBDofResource
+	 * A list of Statements (?s rdfs:label "Label") with all the forgotten Labels - right!
+	 */
 	private List<Statement> correctLabels;
 
 	public KBEvaluationHandler() {
@@ -43,6 +63,10 @@ public class KBEvaluationHandler {
 		getCBDofResource((int) Math.round(triplesFromKB.size() * numberOfLabelsToForget));
 	}
 
+	/**
+	 * Vergisst zufällig 5 Triples von der KB (speichert diese in „forgottenLabel“), holt dann die CBD-Subgraphen vergessenen Label (kbCBDList) und entfernt dann alle Labels aus dem CBD-Subgraphen (vorher aber noch in correctLabels abspeichern)
+	 * @param numberOfLabelsToForget x
+	 */
 	public void getCBDofResource(int numberOfLabelsToForget) {
 		List<Triple> forgottenLabel = new LinkedList<>(this.triplesFromKB);
 		// selecting random 5 triples
@@ -57,7 +81,7 @@ public class KBEvaluationHandler {
 
 		for (Model modelKB : this.kbCBDList) {
 			// saving the correct label info
-			TRIPLEStoCONSOLE.printLabel(modelKB);
+			JENAtoCONSOLE.printLabel(modelKB);
 			StmtIterator iter = modelKB.listStatements(new SimpleSelector(null, null, (RDFNode) null) {
 				public boolean selects(Statement s) {
 					return (s.getPredicate().equals(RDFS.label));

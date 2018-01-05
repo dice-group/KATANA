@@ -7,7 +7,7 @@ import org.apache.jena.vocabulary.RDFS;
 
 import java.util.List;
 
-public abstract class TRIPLEStoCONSOLE {
+public abstract class JENAtoCONSOLE {
 
     public static void print(List<Triple> triples) {
         print(triples, 50);
