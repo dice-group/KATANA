@@ -1,45 +1,44 @@
 package org.aksw.simba.katana.algorithm;
 
-import java.util.ArrayList;
-import java.util.List;
+import org.apache.jena.graph.Triple;
 
-import org.aksw.simba.katana.KBUtils.KBEvaluationHandler;
-import org.apache.jena.rdf.model.Model;
-import org.apache.jena.rdf.model.ModelFactory;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class EvaluationHandler {
 
-	List<Model> kbCBDList;
-	List<Model> documentCBDList;
-	Model modelKB;
+    private List<Triple> labelGuesses;
+    private List<Triple> correctLabels;
 
-	public EvaluationHandler() {
+    public EvaluationHandler(List<Triple> labelGuesses, List<Triple> correctLabels) {
+        this.labelGuesses = labelGuesses;
+        this.correctLabels = correctLabels;
+    }
 
-		this.modelKB = ModelFactory.createDefaultModel();
-		this.kbCBDList = new ArrayList<Model>();
-		this.documentCBDList = new ArrayList<Model>();
-		// this.getCBDData();
-	}
+    /**
+     * compares the labelGuesses with the correctLabels and finds mistaces
+     *
+     * @return a List of all wrong label guesses from labelGuesses
+     */
+    List<Triple> calculteMistaces() {
+        return labelGuesses.stream().filter(triple -> triple.getPredicate().getURI().equals("rdfs:label") && !correctLabels.stream().anyMatch(rightTriple -> rightTriple.getSubject().equals(triple.getSubject()) && rightTriple.getObject().equals(triple.getObject()))).collect(Collectors.toList());
+    }
 
-	public void getCBDData() {
-		//BENGALHandler bg = new BENGALHandler();
-		//this.documentCBDList = bg.getDocCBDList();
-		KBEvaluationHandler kbh = new KBEvaluationHandler();
-		this.kbCBDList = kbh.getKbCBDList();
+    /**
+     * compares the correctLabels with the labelGuesses and finds Triples in correctLabels, that don't appear in labelGuesses
+     *
+     * @return a List of all missing labels from correctLabels in labelGuesses
+     */
+    List<Triple> getMissedLabelMatches() {
+        return correctLabels.stream().filter(triple -> triple.getPredicate().getURI().equals("rdfs:label") && !labelGuesses.stream().anyMatch(guessTriple -> guessTriple.getSubject().equals(triple.getSubject()) && guessTriple.getObject().equals(triple.getObject()))).collect(Collectors.toList());
+    }
 
-	}
-	
-
+    /**
+     * Calculates the accuracy of the given dataset
+     *
+     * @return the accuracy between {@code 1} (good quality) and {@code 0} (nothing is correct)
+     */
+    public double calculateAccuracy() {
+        return (2 - (calculteMistaces().size() / labelGuesses.size()) - (getMissedLabelMatches().size() / correctLabels.size())) / 2d;
+    }
 }
-
-/*
- * public double calculateAccuracy(List<Triple> resultKatana) { double
- * numberOfCorrectResults = 0; double totalNumberofLabels = resultKatana.size();
- * for (Triple triple : resultKatana) { if (triplesLabelKB.contains(triple))
- * numberOfCorrectResults++; }
- * 
- * return (numberOfCorrectResults / totalNumberofLabels);
- * 
- * }
- * 
- */

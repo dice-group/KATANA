@@ -1,22 +1,13 @@
 package org.aksw.simba.katana.algorithm;
 
-import jdk.internal.jline.internal.Urls;
-import org.aksw.simba.katana.KBUtils.KBEvaluationHandler;
 import org.aksw.simba.katana.mainPH.View.JENAtoCONSOLE;
 import org.apache.jena.graph.Node;
-import org.apache.jena.graph.Node_Concrete;
-import org.apache.jena.graph.Node_URI;
+import org.apache.jena.graph.NodeFactory;
 import org.apache.jena.graph.Triple;
-import org.apache.jena.rdf.model.Model;
-import org.apache.jena.rdf.model.ModelFactory;
-import org.apache.jena.rdf.model.StmtIterator;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import java.util.Random;
+import java.util.*;
 import java.util.stream.Stream;
 
 /**
@@ -38,7 +29,7 @@ public class KatanaAlgo {
 	/**
 	 * A list of Nodes (Subjects) for that the KATANA algorithm should find out the right label!
 	 */
-	private List<Node> subjectsWithoutLabels;
+	private List<Node> canidates;
 
 	/**
 	 * A list for many subjects, that contains foreach subject
@@ -53,16 +44,24 @@ public class KatanaAlgo {
 		}
 
 		this.triplesFromKB = triplesFromKB;
-		this.subjectsWithoutLabels = subjectsWithoutLabels;
+		this.canidates = subjectsWithoutLabels;
 		this.knowledgeLabelExtraction = knowledgeLabelExtraction;
 
 		executable = !PROVEVALIDITATE || verify();
 	}
 
+	/**
+	 * Checks, if all 3 parameters in combination are valid
+	 * triplesFromKB: Javadoc-TODO
+	 * canidates: Javadoc-TODO
+	 * knowledgeLabelExtraction: Javadoc-TODO
+	 *
+	 * @return {@code true}, if the model of the KATANA-Algo is valid, otherwise {@code false}
+	 */
 	public boolean verify() {
 		int invalidCount = 0;
 
-		if (subjectsWithoutLabels.stream().anyMatch(node -> !triplesFromKB.stream().anyMatch(triple -> triple.equals(node)))) {
+		if (canidates.stream().anyMatch(node -> !triplesFromKB.stream().anyMatch(triple -> triple.equals(node)))) {
 			log.warn("Not all subjects in subjectsWithoutLabels appear in the triplesFromKB");
 			invalidCount++;
 		}
@@ -81,7 +80,7 @@ public class KatanaAlgo {
 				invalidCount++;
 			}
 			log.debug("Found triple list to the object " + URIofSubject);
-			if (!subjectsWithoutLabels.stream().anyMatch(node -> node.equals(NodeOfSubject))) {
+			if (!canidates.stream().anyMatch(node -> node.equals(NodeOfSubject))) {
 				log.warn("The URI " + URIofSubject + " in knowledgeLabelExtraction is not found in the subjectsWithoutLabels-List! It's useless!");
 				invalidCount++;
 			}
@@ -121,12 +120,14 @@ public class KatanaAlgo {
 	 * @return a list of triples. Foreach subjectsWithoutLabels-Node there will be a guess of a label: ?s rdfs:label "LABELGUESS"
 	 */
 	public List<Triple> matchLabelsRANDOM() {
-		List<Triple> ret = new ArrayList<>(subjectsWithoutLabels.size());
+		List<Triple> ret = new ArrayList<>(canidates.size());
+		if (!checkExecutionPermission())
+			return ret;
 		Random r = new Random();
 
-		long timestart = System.currentTimeMillis();
+		long timeStart = System.currentTimeMillis();
 
-		for (Node subject : subjectsWithoutLabels) {
+		for (Node subject : canidates) {
 			List<Triple> selected = knowledgeLabelExtraction.get(r.nextInt(knowledgeLabelExtraction.size()));
 			Optional<Triple> selectedTriple = selected.stream().filter(triple -> triple.getPredicate().getURI().equals("rdfs:label")).findFirst();
 
@@ -139,8 +140,150 @@ public class KatanaAlgo {
 			selectedTriple.map(triple -> ret.add(new Triple(subject, triple.getPredicate(), triple.getObject())));
 		}
 
-		log.trace("matchLabelsRANDOM is ready and found " + ret.size() + " labels. Took " + (System.currentTimeMillis() - timestart) + "ms");
+		log.trace("matchLabelsRANDOM is ready and found " + ret.size() + " labels. Took " + (System.currentTimeMillis() - timeStart) + "ms");
 
 		return ret;
+	}
+
+	/**
+	 * The approach, that is presented in the paper "KATANA - Knowledge Base Augmentation for Named Entity Surface forms" from Rene Speck, Kunal Jha, Ricardo Usbeck and Axel-Cyrille Ngonga Ngomo
+	 * The scoring foreach candidate to a certain label-subject is calculated via a non-intelligence Psi- and Scorefunction
+	 *
+	 * @return a list of triples. Foreach subjectsWithoutLabels-Node there will be a guess of a label: ?s rdfs:label "LABELGUESS"
+	 */
+	public List<Triple> matchLabelsKATANAv1() {
+		List<Triple> ret = new ArrayList<>(knowledgeLabelExtraction.size());
+		if (!checkExecutionPermission())
+			return ret;
+		Map<AbstractMap.SimpleEntry<Node, String>, Double> score = new HashMap<>(canidates.size() * knowledgeLabelExtraction.size());
+
+		long timeStart = System.currentTimeMillis();
+
+		Map<Triple, Double> psi = calculatePsi();
+		for (Node canidate : canidates) {
+			for (List<Triple> subjectEvidences : knowledgeLabelExtraction) {
+				Stream<Triple> M = subjectEvidences.stream().filter(triple -> triplesFromKB.stream().anyMatch(t -> t.getSubject().equals(canidate) && t.getPredicate().equals(triple.getPredicate()) && t.getObject().equals(triple.getObject())));
+				String label = findLabel(subjectEvidences);
+				if (M.count() == 0) {
+					log.trace("For the candidate " + canidate + " there are no evidences for the label " + label);
+					score.put(new AbstractMap.SimpleEntry<>(canidate, label), 0d);
+				} else {
+					log.trace("The size of M for the canidate " + canidate + " withe the label " + label + " is " + M.count());
+					double scoreDiffMult = 1;
+					for (Triple tripleM : (Triple[]) M.toArray()) {
+						try {
+							double psiValue = psi.get(tripleM);
+							scoreDiffMult *= psiValue;
+							if (psiValue == 0) {
+								break;
+							}
+						} catch (NullPointerException e) {
+							log.error("There was no psi-Entry in " + psi + " for the Triple " + tripleM + "!", e);
+						}
+					}
+					double calculatedScore = 1d - scoreDiffMult;
+					log.trace("For the candidate " + canidate + " there is a evidences rate of " + Math.round(calculatedScore * 100) + "% for the label " + label);
+					score.put(new AbstractMap.SimpleEntry<>(canidate, label), calculatedScore);
+				}
+			}
+		}
+		log.debug("Close indexing process. Each canidate has now a score to each label (" + score.size() + " entries). Calculate now the highest core --> caindate for each label!");
+
+		Map<String, AbstractMap.SimpleEntry<Node, Double>> highestScore = new HashMap<>(knowledgeLabelExtraction.size());
+
+		for (Map.Entry<AbstractMap.SimpleEntry<Node, String>, Double> entry : score.entrySet()) {
+			String label = entry.getKey().getValue();
+
+			Optional<Map.Entry<String, AbstractMap.SimpleEntry<Node, Double>>> highestScoreEntry = highestScore.entrySet().stream().filter(e -> e.getKey().equals("label")).findFirst();
+
+			if (highestScoreEntry.isPresent()) {
+				if (highestScoreEntry.get().getValue().getValue() < entry.getValue()) {
+					highestScore.replace(highestScoreEntry.get().getKey(), new AbstractMap.SimpleEntry<>(entry.getKey().getKey(), entry.getValue()));
+					log.debug("New highscore for the label " + label + " is found: " + entry.getKey().getValue() + " with score " + entry.getValue());
+				}
+			} else {
+				highestScore.put(highestScoreEntry.get().getKey(), new AbstractMap.SimpleEntry<>(entry.getKey().getKey(), entry.getValue()));
+				log.trace("Fill highestScore: " + highestScore.size() + "/" + knowledgeLabelExtraction.size());
+			}
+		}
+		log.debug("Close comparing process...");
+
+		Node p = NodeFactory.createURI("rdfs:label");
+		for (Map.Entry<String, AbstractMap.SimpleEntry<Node, Double>> entry : highestScore.entrySet()) {
+			ret.add(new Triple(entry.getValue().getKey(), p, NodeFactory.createLiteral(entry.getKey())));
+		}
+
+		log.debug("matchLabelsKATANAv1 is ready and found " + ret.size() + " labels. Took " + (System.currentTimeMillis() - timeStart) + "ms");
+
+		return ret;
+	}
+
+	/**
+	 * Calculates the Psi-Function of the KATANA-paper
+	 * psi(p,o) = 1-(1/(|{s|(s,p,o)\in KB}|))
+	 *
+	 * @return a mapping of each triple in knowledgeLabelExtraction to the psi value
+	 */
+	private Map<Triple, Double> calculatePsi() {
+		Map<Triple, Double> dic = new HashMap<>(knowledgeLabelExtraction.size());
+
+		long timesTart = System.currentTimeMillis();
+
+		for (List<Triple> subjectEvidences : knowledgeLabelExtraction) {
+			for (Triple triple : subjectEvidences) {
+				if (!dic.containsKey(triple)) {
+					double psi = 1 - 1 / (Math.max(1, triplesFromKB.stream().filter(kb -> kb.getPredicate().equals(triple.getPredicate()) && kb.getObject().equals(triple.getObject())).count()));
+					log.trace("psi(" + triple.getPredicate() + ", " + triple.getObject() + ") = " + (Math.round(psi * 1000) / 1000));
+					dic.put(triple, psi);
+				}
+			}
+		}
+
+		log.debug("Psi function successfully calculated in " + (System.currentTimeMillis() - timesTart) + "ms. Contains " + dic.size() + " entries!");
+		return dic;
+	}
+
+	/**
+	 * Find the Label in a selection
+	 *
+	 * @param selection the set of triples, including one triple with ?s rdfs:label "LABEL"
+	 * @return the label
+	 */
+	private String findLabel(List<Triple> selection) {
+		StringBuilder ret = new StringBuilder("ERROR: no label found...");
+
+		Optional<Triple> selectedTriple = selection.stream().filter(triple -> triple.getPredicate().getURI().equals("rdfs:label")).findFirst();
+
+		selectedTriple.map(triple -> ret.replace(0, ret.length() - 1, (triple.getObject().isLiteral()) ? triple.getObject().getName() : "EXCEPTION: label is no literal ::" + triple.getObject()));
+
+		return ret.toString();
+	}
+
+	/**
+	 * @return {@code true}, if the Object is runnable in a fine way, otherwise {@code false}
+	 */
+	private boolean checkExecutionPermission() {
+		if (executable)
+			return true;
+
+		log.error("You're not allowed to execute this function, because this object " + this + " is not valid!");
+		return false;
+	}
+
+	/**
+	 * Compute/ create an {@link EvaluationHandler}
+	 *
+	 * @param labelGuesses a set of guessed Labels, e.g from the method matchLabelsKATANAv1
+	 * @return an {@link EvaluationHandler}. With that you can determine the goodness of your algorithm
+	 */
+	public EvaluationHandler getEvaluationHandler(List<Triple> labelGuesses) {
+		List<Triple> correctLabels = new ArrayList<>(knowledgeLabelExtraction.size());
+		for (List<Triple> subjectEvidences : knowledgeLabelExtraction) {
+			Optional<Triple> labelTriple = subjectEvidences.stream().filter(triple -> triple.getPredicate().getURI().equals("rdfs:label")).findFirst();
+			labelTriple.map(triple -> correctLabels.add(triple));
+		}
+		log.info("Extract the correct labels from knowledgeLabelExtraction. Found " + correctLabels.size() + " of " + knowledgeLabelExtraction.size());
+		log.trace("Create an EvaluationHandler out of " + labelGuesses + " and " + correctLabels);
+		return new EvaluationHandler(labelGuesses, correctLabels);
 	}
 }
