@@ -19,6 +19,7 @@ public class KatanaAlgo {
 
 	private Logger log = LogManager.getLogger(KatanaAlgo.class);
 	private static final boolean PROVEVALIDITATE = true;
+	private static final String URITOLABEL = "rdfs:label";
 	private boolean executable = true;
 
 	/**
@@ -90,7 +91,7 @@ public class KatanaAlgo {
 				invalidCount++;
 			}
 
-			Stream<Triple> labels = subjectEvidences.stream().filter(triple -> triple.getPredicate().getURI().equals("rdfs:label"));
+			Stream<Triple> labels = subjectEvidences.stream().filter(triple -> triple.getPredicate().getURI().equals(URITOLABEL));
 			if (labels.count() == 0) {
 				log.warn("There is no label for " + URIofSubject);
 				invalidCount++;
@@ -129,7 +130,7 @@ public class KatanaAlgo {
 
 		for (Node subject : canidates) {
 			List<Triple> selected = knowledgeLabelExtraction.get(r.nextInt(knowledgeLabelExtraction.size()));
-			Optional<Triple> selectedTriple = selected.stream().filter(triple -> triple.getPredicate().getURI().equals("rdfs:label")).findFirst();
+			Optional<Triple> selectedTriple = selected.stream().filter(triple -> triple.getPredicate().getURI().equals(URITOLABEL)).findFirst();
 
 			if (selectedTriple.isPresent()) {
 				log.debug("There is a match for " + subject + ": " + selectedTriple.get().getObject());
@@ -208,7 +209,7 @@ public class KatanaAlgo {
 		}
 		log.debug("Close comparing process...");
 
-		Node p = NodeFactory.createURI("rdfs:label");
+		Node p = NodeFactory.createURI(URITOLABEL);
 		for (Map.Entry<String, AbstractMap.SimpleEntry<Node, Double>> entry : highestScore.entrySet()) {
 			ret.add(new Triple(entry.getValue().getKey(), p, NodeFactory.createLiteral(entry.getKey())));
 		}
@@ -252,7 +253,7 @@ public class KatanaAlgo {
 	private String findLabel(List<Triple> selection) {
 		StringBuilder ret = new StringBuilder("ERROR: no label found...");
 
-		Optional<Triple> selectedTriple = selection.stream().filter(triple -> triple.getPredicate().getURI().equals("rdfs:label")).findFirst();
+		Optional<Triple> selectedTriple = selection.stream().filter(triple -> triple.getPredicate().getURI().equals(URITOLABEL)).findFirst();
 
 		selectedTriple.map(triple -> ret.replace(0, ret.length() - 1, (triple.getObject().isLiteral()) ? triple.getObject().getName() : "EXCEPTION: label is no literal ::" + triple.getObject()));
 
@@ -279,7 +280,7 @@ public class KatanaAlgo {
 	public EvaluationHandler getEvaluationHandler(List<Triple> labelGuesses) {
 		List<Triple> correctLabels = new ArrayList<>(knowledgeLabelExtraction.size());
 		for (List<Triple> subjectEvidences : knowledgeLabelExtraction) {
-			Optional<Triple> labelTriple = subjectEvidences.stream().filter(triple -> triple.getPredicate().getURI().equals("rdfs:label")).findFirst();
+			Optional<Triple> labelTriple = subjectEvidences.stream().filter(triple -> triple.getPredicate().getURI().equals(URITOLABEL)).findFirst();
 			labelTriple.map(triple -> correctLabels.add(triple));
 		}
 		log.info("Extract the correct labels from knowledgeLabelExtraction. Found " + correctLabels.size() + " of " + knowledgeLabelExtraction.size());

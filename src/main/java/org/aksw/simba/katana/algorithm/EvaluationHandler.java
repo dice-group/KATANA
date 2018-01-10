@@ -9,6 +9,7 @@ public class EvaluationHandler {
 
     private List<Triple> labelGuesses;
     private List<Triple> correctLabels;
+    private static final String URITOLABEL = "rdfs:label";
 
     public EvaluationHandler(List<Triple> labelGuesses, List<Triple> correctLabels) {
         this.labelGuesses = labelGuesses;
@@ -20,8 +21,8 @@ public class EvaluationHandler {
      *
      * @return a List of all wrong label guesses from labelGuesses
      */
-    List<Triple> calculteMistaces() {
-        return labelGuesses.stream().filter(triple -> triple.getPredicate().getURI().equals("rdfs:label") && !correctLabels.stream().anyMatch(rightTriple -> rightTriple.getSubject().equals(triple.getSubject()) && rightTriple.getObject().equals(triple.getObject()))).collect(Collectors.toList());
+    List<Triple> calculateMistakes() {
+        return labelGuesses.stream().filter(triple -> triple.getPredicate().getURI().equals(URITOLABEL) && !correctLabels.stream().anyMatch(rightTriple -> rightTriple.getSubject().equals(triple.getSubject()) && rightTriple.getObject().equals(triple.getObject()))).collect(Collectors.toList());
     }
 
     /**
@@ -30,7 +31,7 @@ public class EvaluationHandler {
      * @return a List of all missing labels from correctLabels in labelGuesses
      */
     List<Triple> getMissedLabelMatches() {
-        return correctLabels.stream().filter(triple -> triple.getPredicate().getURI().equals("rdfs:label") && !labelGuesses.stream().anyMatch(guessTriple -> guessTriple.getSubject().equals(triple.getSubject()) && guessTriple.getObject().equals(triple.getObject()))).collect(Collectors.toList());
+        return correctLabels.stream().filter(triple -> triple.getPredicate().getURI().equals(URITOLABEL) && !labelGuesses.stream().anyMatch(guessTriple -> guessTriple.getSubject().equals(triple.getSubject()) && guessTriple.getObject().equals(triple.getObject()))).collect(Collectors.toList());
     }
 
     /**
@@ -39,6 +40,6 @@ public class EvaluationHandler {
      * @return the accuracy between {@code 1} (good quality) and {@code 0} (nothing is correct)
      */
     public double calculateAccuracy() {
-        return (2 - (calculteMistaces().size() / labelGuesses.size()) - (getMissedLabelMatches().size() / correctLabels.size())) / 2d;
+        return (2d - ((double) calculateMistakes().size() / (double) Math.max(1, labelGuesses.size())) - ((double) getMissedLabelMatches().size() / (double) Math.max(1, correctLabels.size()))) / 2d;
     }
 }
