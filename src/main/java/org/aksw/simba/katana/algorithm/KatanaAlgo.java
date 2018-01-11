@@ -1,13 +1,15 @@
 package org.aksw.simba.katana.algorithm;
 
+import org.aksw.simba.katana.mainPH.Main;
 import org.aksw.simba.katana.mainPH.View.JENAtoCONSOLE;
 import org.apache.jena.graph.Node;
 import org.apache.jena.graph.NodeFactory;
 import org.apache.jena.graph.Triple;
-import org.apache.log4j.LogManager;
-import org.apache.log4j.Logger;
+import org.apache.log4j.*;
+import org.apache.log4j.spi.LoggingEvent;
 
 import java.util.*;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 /**
@@ -49,6 +51,11 @@ public class KatanaAlgo {
 		this.knowledgeLabelExtraction = knowledgeLabelExtraction;
 
 		executable = !PROVEVALIDITATE || verify();
+
+        Layout l = new SimpleLayout();
+        Appender appender = new ConsoleAppender(l, ConsoleAppender.SYSTEM_OUT);
+        appender.setName("Console");
+        log.addAppender(appender);
 	}
 
 	/**
@@ -62,9 +69,9 @@ public class KatanaAlgo {
 	public boolean verify() {
 		int invalidCount = 0;
 
-		if (canidates.stream().anyMatch(node -> !triplesFromKB.stream().anyMatch(triple -> triple.equals(node)))) {
-			log.warn("Not all subjects in subjectsWithoutLabels appear in the triplesFromKB");
-			invalidCount++;
+        if (canidates.stream().anyMatch(node -> !triplesFromKB.stream().anyMatch(triple -> triple.getSubject().equals(node)))) {
+            log.warn("Not all subjects in candidates appear in the triplesFromKB");
+            //invalidCount++;
 		}
 
 		for (List<Triple> subjectEvidences : knowledgeLabelExtraction) {
@@ -91,13 +98,13 @@ public class KatanaAlgo {
 				invalidCount++;
 			}
 
-			Stream<Triple> labels = subjectEvidences.stream().filter(triple -> triple.getPredicate().getURI().equals(URITOLABEL));
-			if (labels.count() == 0) {
+            long labelsCount = subjectEvidences.stream().filter(triple -> triple.getPredicate().getURI().equals(URITOLABEL)).count();
+            if (labelsCount == 0) {
 				log.warn("There is no label for " + URIofSubject);
 				invalidCount++;
-			} else if (labels.count() > 1) {
-				log.warn("There are more than 1 (" + labels.count() + ") labels for " + URIofSubject);
-				invalidCount += labels.count() - 1;
+            } else if (labelsCount > 1) {
+                log.warn("There are more than 1 (" + labelsCount + ") labels for " + URIofSubject);
+                invalidCount += labelsCount - 1;
 			}
 		}
 
@@ -161,17 +168,17 @@ public class KatanaAlgo {
 		long timeStart = System.currentTimeMillis();
 
 		Map<Triple, Double> psi = calculatePsi();
-		for (Node canidate : canidates) {
+        for (Node candidate : canidates) {
 			for (List<Triple> subjectEvidences : knowledgeLabelExtraction) {
-				Stream<Triple> M = subjectEvidences.stream().filter(triple -> triplesFromKB.stream().anyMatch(t -> t.getSubject().equals(canidate) && t.getPredicate().equals(triple.getPredicate()) && t.getObject().equals(triple.getObject())));
+                List<Triple> M = subjectEvidences.stream().filter(triple -> triplesFromKB.stream().anyMatch(t -> t.getSubject().equals(candidate) && t.getPredicate().equals(triple.getPredicate()) && t.getObject().equals(triple.getObject()))).collect(Collectors.toList());
 				String label = findLabel(subjectEvidences);
-				if (M.count() == 0) {
-					log.trace("For the candidate " + canidate + " there are no evidences for the label " + label);
-					score.put(new AbstractMap.SimpleEntry<>(canidate, label), 0d);
+                if (M.size() == 0) {
+                    log.trace("For the candidate " + candidate + " there are no evidences for the label " + label);
+                    score.put(new AbstractMap.SimpleEntry<>(candidate, label), 0d);
 				} else {
-					log.trace("The size of M for the canidate " + canidate + " withe the label " + label + " is " + M.count());
+                    log.trace("The size of M for the candidate " + candidate + " with the label " + label + " is " + M.size());
 					double scoreDiffMult = 1;
-					for (Triple tripleM : (Triple[]) M.toArray()) {
+                    for (Triple tripleM : M) {
 						try {
 							double psiValue = psi.get(tripleM);
 							scoreDiffMult *= psiValue;
@@ -183,19 +190,19 @@ public class KatanaAlgo {
 						}
 					}
 					double calculatedScore = 1d - scoreDiffMult;
-					log.trace("For the candidate " + canidate + " there is a evidences rate of " + Math.round(calculatedScore * 100) + "% for the label " + label);
-					score.put(new AbstractMap.SimpleEntry<>(canidate, label), calculatedScore);
+                    log.trace("For the candidate " + candidate + " there is a evidences rate of " + Math.round(calculatedScore * 100) + "% for the label " + label);
+                    score.put(new AbstractMap.SimpleEntry<>(candidate, label), calculatedScore);
 				}
 			}
 		}
-		log.debug("Close indexing process. Each canidate has now a score to each label (" + score.size() + " entries). Calculate now the highest core --> caindate for each label!");
+        log.debug("Close indexing process. Each candidate has now a score to each label (" + score.size() + " entries). Calculate now the highest score --> candidate for each label!");
 
 		Map<String, AbstractMap.SimpleEntry<Node, Double>> highestScore = new HashMap<>(knowledgeLabelExtraction.size());
 
 		for (Map.Entry<AbstractMap.SimpleEntry<Node, String>, Double> entry : score.entrySet()) {
 			String label = entry.getKey().getValue();
 
-			Optional<Map.Entry<String, AbstractMap.SimpleEntry<Node, Double>>> highestScoreEntry = highestScore.entrySet().stream().filter(e -> e.getKey().equals("label")).findFirst();
+            Optional<Map.Entry<String, AbstractMap.SimpleEntry<Node, Double>>> highestScoreEntry = highestScore.entrySet().stream().filter(e -> e.getKey().equals(label)).findFirst();
 
 			if (highestScoreEntry.isPresent()) {
 				if (highestScoreEntry.get().getValue().getValue() < entry.getValue()) {
@@ -203,7 +210,7 @@ public class KatanaAlgo {
 					log.debug("New highscore for the label " + label + " is found: " + entry.getKey().getValue() + " with score " + entry.getValue());
 				}
 			} else {
-				highestScore.put(highestScoreEntry.get().getKey(), new AbstractMap.SimpleEntry<>(entry.getKey().getKey(), entry.getValue()));
+                highestScore.put(label, new AbstractMap.SimpleEntry<>(entry.getKey().getKey(), entry.getValue()));
 				log.trace("Fill highestScore: " + highestScore.size() + "/" + knowledgeLabelExtraction.size());
 			}
 		}
@@ -214,7 +221,7 @@ public class KatanaAlgo {
 			ret.add(new Triple(entry.getValue().getKey(), p, NodeFactory.createLiteral(entry.getKey())));
 		}
 
-		log.debug("matchLabelsKATANAv1 is ready and found " + ret.size() + " labels. Took " + (System.currentTimeMillis() - timeStart) + "ms");
+        log.debug("matchLabelsKATANAv1 is finished and found " + ret.size() + " labels. Took " + (System.currentTimeMillis() - timeStart) + "ms");
 
 		return ret;
 	}
@@ -233,7 +240,7 @@ public class KatanaAlgo {
 		for (List<Triple> subjectEvidences : knowledgeLabelExtraction) {
 			for (Triple triple : subjectEvidences) {
 				if (!dic.containsKey(triple)) {
-					double psi = 1 - 1 / (Math.max(1, triplesFromKB.stream().filter(kb -> kb.getPredicate().equals(triple.getPredicate()) && kb.getObject().equals(triple.getObject())).count()));
+                    double psi = 1d - (1d / (double) (Math.max(1, triplesFromKB.stream().filter(kb -> kb.getPredicate().equals(triple.getPredicate()) && kb.getObject().equals(triple.getObject())).count())));
 					log.trace("psi(" + triple.getPredicate() + ", " + triple.getObject() + ") = " + (Math.round(psi * 1000) / 1000));
 					dic.put(triple, psi);
 				}
@@ -255,7 +262,7 @@ public class KatanaAlgo {
 
 		Optional<Triple> selectedTriple = selection.stream().filter(triple -> triple.getPredicate().getURI().equals(URITOLABEL)).findFirst();
 
-		selectedTriple.map(triple -> ret.replace(0, ret.length() - 1, (triple.getObject().isLiteral()) ? triple.getObject().getName() : "EXCEPTION: label is no literal ::" + triple.getObject()));
+        selectedTriple.map(triple -> ret.replace(0, ret.length() - 1, (triple.getObject().isLiteral()) ? triple.getObject().getLiteral().getLexicalForm() : "EXCEPTION: label is no literal ::" + triple.getObject()));
 
 		return ret.toString();
 	}

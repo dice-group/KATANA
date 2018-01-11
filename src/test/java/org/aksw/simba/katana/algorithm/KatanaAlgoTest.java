@@ -32,7 +32,7 @@ public class KatanaAlgoTest extends TestCase {
         pascalBorn = new Triple(pascal, born, NodeFactory.createLiteral("19.06.1623"));
         galileoBorn = new Triple(galileo, born, NodeFactory.createLiteral("15.02.1564"));
         pascalTriple = new Triple(pascal, label, NodeFactory.createLiteral("Blaise Pascal"));
-        galileoTriple = new Triple(galileo, label, NodeFactory.createLiteral("Blaise Pascal"));
+        galileoTriple = new Triple(galileo, label, NodeFactory.createLiteral("Galileo Galilei"));
 
         List<Triple> triplesFromKB = new ArrayList<>(5);
         triplesFromKB.add(pascalBorn);
@@ -44,15 +44,16 @@ public class KatanaAlgoTest extends TestCase {
         canidates.add(pascal);
         canidates.add(galileo);
         //canidates.add(einstein);
-        List<List<Triple>> knowledgeLabelExtraction = new ArrayList<>(1);
+        List<List<Triple>> knowledgeLabelExtraction = new ArrayList<>(2);
         List<Triple> i = new ArrayList<>(3);
         i.add(pascalTriple);
         i.add(pascalWasChrist);
         i.add(pascalBorn);
         knowledgeLabelExtraction.add(i);
-        List<Triple> ii = new ArrayList<>(3);
+        List<Triple> ii = new ArrayList<>(2);
         ii.add(galileoTriple);
-        ii.add(new Triple(einstein, NodeFactory.createURI("http://dbpedia.org/dbo/profession"), NodeFactory.createURI("http://dbpedia.org/resource/scientist")));
+        ii.add(new Triple(galileo, NodeFactory.createURI("http://dbpedia.org/dbo/profession"), NodeFactory.createURI("http://dbpedia.org/resource/scientist")));
+        knowledgeLabelExtraction.add(ii);
 
         handler = new KatanaAlgo(triplesFromKB, canidates, knowledgeLabelExtraction);
     }
@@ -63,10 +64,10 @@ public class KatanaAlgoTest extends TestCase {
 
     public void testMatchLabelsKATANAv1() {
         List<Triple> result = handler.matchLabelsKATANAv1();
-        assertEquals("2 candidates - 2 guesses", 3, result.size());
+        assertEquals("2 candidates - 2 guesses", 2, result.size());
         if (!result.isEmpty()) {
-            assertEquals("Pascal is obvious :)", pascalTriple, result.get(0));
-            assertEquals("Second guess has no evidencies :/", galileoTriple, result.get(Math.min(1, result.size() - 1)));
+            assertEquals("Second guess has no evidences :/", galileoTriple, result.get(0));
+            assertEquals("Pascal is obvious :)", pascalTriple, result.get(Math.min(1, result.size() - 1)));
         }
     }
 }
