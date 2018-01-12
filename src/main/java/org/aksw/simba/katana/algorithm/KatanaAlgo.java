@@ -1,16 +1,13 @@
 package org.aksw.simba.katana.algorithm;
 
-import org.aksw.simba.katana.mainPH.Main;
 import org.aksw.simba.katana.mainPH.View.JENAtoCONSOLE;
 import org.apache.jena.graph.Node;
 import org.apache.jena.graph.NodeFactory;
 import org.apache.jena.graph.Triple;
 import org.apache.log4j.*;
-import org.apache.log4j.spi.LoggingEvent;
 
 import java.util.*;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 /**
  * The KATANA algorithm - the heartbeat!
@@ -32,7 +29,7 @@ public class KatanaAlgo {
 	/**
 	 * A list of Nodes (Subjects) for that the KATANA algorithm should find out the right label!
 	 */
-	private List<Node> canidates;
+    private List<Node> candidates;
 
 	/**
 	 * A list for many subjects, that contains foreach subject
@@ -47,15 +44,18 @@ public class KatanaAlgo {
 		}
 
 		this.triplesFromKB = triplesFromKB;
-		this.canidates = subjectsWithoutLabels;
+        this.candidates = subjectsWithoutLabels;
 		this.knowledgeLabelExtraction = knowledgeLabelExtraction;
 
 		executable = !PROVEVALIDITATE || verify();
 
+        //Logger-setup
         Layout l = new SimpleLayout();
         Appender appender = new ConsoleAppender(l, ConsoleAppender.SYSTEM_OUT);
-        appender.setName("Console");
+        appender.setName("Console - " + KatanaAlgo.class.getName());
         log.addAppender(appender);
+        log.trace("Logging is enabled (" + log.getAllAppenders().hasMoreElements() + ") for the class " + KatanaAlgo.class.getName() + "!");
+
 	}
 
 	/**
@@ -69,7 +69,7 @@ public class KatanaAlgo {
 	public boolean verify() {
 		int invalidCount = 0;
 
-        if (canidates.stream().anyMatch(node -> !triplesFromKB.stream().anyMatch(triple -> triple.getSubject().equals(node)))) {
+        if (candidates.stream().anyMatch(node -> !triplesFromKB.stream().anyMatch(triple -> triple.getSubject().equals(node)))) {
             log.warn("Not all subjects in candidates appear in the triplesFromKB");
             //invalidCount++;
 		}
@@ -88,7 +88,7 @@ public class KatanaAlgo {
 				invalidCount++;
 			}
 			log.debug("Found triple list to the object " + URIofSubject);
-			if (!canidates.stream().anyMatch(node -> node.equals(NodeOfSubject))) {
+            if (!candidates.stream().anyMatch(node -> node.equals(NodeOfSubject))) {
 				log.warn("The URI " + URIofSubject + " in knowledgeLabelExtraction is not found in the subjectsWithoutLabels-List! It's useless!");
 				invalidCount++;
 			}
@@ -128,14 +128,14 @@ public class KatanaAlgo {
 	 * @return a list of triples. Foreach subjectsWithoutLabels-Node there will be a guess of a label: ?s rdfs:label "LABELGUESS"
 	 */
 	public List<Triple> matchLabelsRANDOM() {
-		List<Triple> ret = new ArrayList<>(canidates.size());
+        List<Triple> ret = new ArrayList<>(candidates.size());
 		if (!checkExecutionPermission())
 			return ret;
 		Random r = new Random();
 
 		long timeStart = System.currentTimeMillis();
 
-		for (Node subject : canidates) {
+        for (Node subject : candidates) {
 			List<Triple> selected = knowledgeLabelExtraction.get(r.nextInt(knowledgeLabelExtraction.size()));
 			Optional<Triple> selectedTriple = selected.stream().filter(triple -> triple.getPredicate().getURI().equals(URITOLABEL)).findFirst();
 
@@ -163,12 +163,12 @@ public class KatanaAlgo {
 		List<Triple> ret = new ArrayList<>(knowledgeLabelExtraction.size());
 		if (!checkExecutionPermission())
 			return ret;
-		Map<AbstractMap.SimpleEntry<Node, String>, Double> score = new HashMap<>(canidates.size() * knowledgeLabelExtraction.size());
+        Map<AbstractMap.SimpleEntry<Node, String>, Double> score = new HashMap<>(candidates.size() * knowledgeLabelExtraction.size());
 
 		long timeStart = System.currentTimeMillis();
 
 		Map<Triple, Double> psi = calculatePsi();
-        for (Node candidate : canidates) {
+        for (Node candidate : candidates) {
 			for (List<Triple> subjectEvidences : knowledgeLabelExtraction) {
                 List<Triple> M = subjectEvidences.stream().filter(triple -> triplesFromKB.stream().anyMatch(t -> t.getSubject().equals(candidate) && t.getPredicate().equals(triple.getPredicate()) && t.getObject().equals(triple.getObject()))).collect(Collectors.toList());
 				String label = findLabel(subjectEvidences);
