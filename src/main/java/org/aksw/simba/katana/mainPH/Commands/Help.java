@@ -41,7 +41,7 @@ public class Help implements Command {
                 if (Main.Get(helpCommand).isPresent()) {
                     log.info(Main.Get(helpCommand).get().getValue().getLongHelp());
                 } else {
-                    log.warn("The command " + com + " doesn't exist!");
+                    log.warn("The command " + helpCommand + " doesn't exist!");
                 }
             } else {
                 log.warn("Please don't write any \"--\" in the help command, just the command name!");

@@ -2,19 +2,23 @@ package org.aksw.simba.katana.mainPH;
 
 import org.aksw.simba.katana.KBUtils.KBEvaluationHandler;
 import org.aksw.simba.katana.KBUtils.SparqlHandler;
-import org.aksw.simba.katana.mainPH.Commands.Command;
-import org.aksw.simba.katana.mainPH.Commands.Exit;
-import org.aksw.simba.katana.mainPH.Commands.Help;
+import org.aksw.simba.katana.mainPH.Commands.*;
 import org.aksw.simba.katana.mainPH.View.JENAtoCONSOLE;
+import org.apache.jena.graph.Node;
 import org.apache.jena.graph.Triple;
 import org.apache.log4j.*;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.*;
 
 public class Main {
 
     private static Logger log = LogManager.getLogger(Main.class);
     public static Map<String, Command> commands = new HashMap<>();
+    public static List<List<Triple>> database = null;
+    public static List<Node> subjects = null;
 
     public static void main(String[] args) {
         //Logger-setup
@@ -27,18 +31,31 @@ public class Main {
         //Command power
         commands.put("exit", new Exit());
         commands.put("help", new Help());
+        commands.put("load", new LoadDatabase());
+        commands.put("edit", new EditDatabase());
+        commands.put("print", new PrintDatabase());
 
         boolean allowInput = true;
         log.trace("Application is loaded...");
+        BufferedReader bufferRead = new BufferedReader(new InputStreamReader(System.in));
         while (allowInput) {
-            String input = System.console().readLine();
+            String input = null;
+            try {
+                input = bufferRead.readLine();
+            } catch (IOException e) {
+                log.fatal("Failed to read the user input", e);
+                e.printStackTrace();
+                return;
+            }
             String[] parts = input.split("\\s");
             Optional<Map.Entry<String, Command>> com = Get(parts[0].trim());
             if (com.isPresent()) {
                 Map<String, String> params = new HashMap<>();
                 String paramCommandString = null;
                 StringBuilder paramArgumentString = new StringBuilder("");
-                for (String part : parts) {
+                ArrayList<String> paramsList = new ArrayList<>(Arrays.asList(parts));
+                paramsList.remove(0);
+                for (String part : paramsList) {
                     if (part.startsWith("--")) {
                         if (paramCommandString != null) {
                             params.putIfAbsent(paramCommandString, paramArgumentString.toString().trim());

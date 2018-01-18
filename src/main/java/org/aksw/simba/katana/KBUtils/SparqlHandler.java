@@ -2,6 +2,8 @@ package org.aksw.simba.katana.KBUtils;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import org.apache.jena.graph.Node;
 import org.apache.jena.graph.Triple;
 import org.apache.jena.query.QueryExecution;
 import org.apache.jena.query.QueryExecutionFactory;
@@ -15,9 +17,9 @@ public abstract class SparqlHandler {
 	private static String endpoint = "http://dbpedia.org/sparql";
 	private static String graph = "http://dbpedia.org";
 
-	public static List<Triple> getResources(String classname) {
-		List<Triple> results = new ArrayList<Triple>();
-		String sparqlQueryString = SparqlQueries.getResourceQuery(classname);
+	public static List<Triple> getResources(String className) {
+		List<Triple> results = new ArrayList<>();
+		String sparqlQueryString = SparqlQueries.getResourceQuery(className);
 		QueryFactory.create(sparqlQueryString);
 		QueryExecution qexec = QueryExecutionFactory.sparqlService(endpoint, sparqlQueryString, graph);
 		ResultSet queryResults = qexec.execSelect();
@@ -41,11 +43,41 @@ public abstract class SparqlHandler {
 		return cbd;
 	}
 
-	public static List<Triple> getFunctionalPropertyResources(String classname) {
-		List<Triple> results = new ArrayList<Triple>();
-		String sparqlQueryString = SparqlQueries.getFunctionalPropertiesResourcesQuery(classname);
+	public static List<Triple> getFunctionalPropertyResources(String className) {
+		List<Triple> results = new ArrayList<>();
+		String sparqlQueryString = SparqlQueries.getFunctionalPropertiesResourcesQuery(className);
 		QueryFactory.create(sparqlQueryString);
 		QueryExecution qexec = QueryExecutionFactory.sparqlService(endpoint, sparqlQueryString, graph);
+		ResultSet queryResults = qexec.execSelect();
+		while (queryResults.hasNext()) {
+			QuerySolution qs = queryResults.nextSolution();
+			results.add(new Triple(qs.get("?s").asNode(), qs.get("?p").asNode(), qs.get("?o").asNode()));
+		}
+		qexec.close();
+
+		return results;
+
+	}
+
+	public static List<Node> executeSingle(String sparqlQuery) {
+		List<Node> results = new ArrayList<>();
+		QueryFactory.create(sparqlQuery);
+		QueryExecution qexec = QueryExecutionFactory.sparqlService(endpoint, sparqlQuery, graph);
+		ResultSet queryResults = qexec.execSelect();
+		while (queryResults.hasNext()) {
+			QuerySolution qs = queryResults.nextSolution();
+			results.add(qs.get("?s").asNode());
+		}
+		qexec.close();
+
+		return results;
+
+	}
+
+	public static List<Triple> executeTriple(String sparqlQuery) {
+		List<Triple> results = new ArrayList<>();
+		QueryFactory.create(sparqlQuery);
+		QueryExecution qexec = QueryExecutionFactory.sparqlService(endpoint, sparqlQuery, graph);
 		ResultSet queryResults = qexec.execSelect();
 		while (queryResults.hasNext()) {
 			QuerySolution qs = queryResults.nextSolution();

@@ -33,7 +33,7 @@ public class KatanaAlgo {
 
 	/**
 	 * A list for many subjects, that contains foreach subject
-	 * a list of Triples, that is something like the CBD auf a certain subject, that contains (at least) one ?s rdfs:label "LABEL"
+     * a list of Triples, that is something like the CBD of a certain subject, that contains (at least) one ?s rdfs:label "LABEL"
 	 */
 	private List<List<Triple>> knowledgeLabelExtraction;
 
