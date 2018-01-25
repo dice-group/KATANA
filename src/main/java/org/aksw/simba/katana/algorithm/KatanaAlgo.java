@@ -32,7 +32,7 @@ public class KatanaAlgo {
     private List<Node> candidates;
 
 	/**
-	 * A list for many subjects, that contains foreach subject
+     * A list for many subjects, that contains foreach candidate
      * a list of Triples, that is something like the CBD of a certain subject, that contains (at least) one ?s rdfs:label "LABEL"
 	 */
 	private List<List<Triple>> knowledgeLabelExtraction;
@@ -61,10 +61,10 @@ public class KatanaAlgo {
 	/**
 	 * Checks, if all 3 parameters in combination are valid
 	 * triplesFromKB: Javadoc-TODO
-	 * canidates: Javadoc-TODO
+     * candidates: Javadoc-TODO
 	 * knowledgeLabelExtraction: Javadoc-TODO
 	 *
-	 * @return {@code true}, if the model of the KATANA-Algo is valid, otherwise {@code false}
+     * @return {@code true}, if the model of the KATANA-algorithm is valid, otherwise {@code false}
 	 */
 	public boolean verify() {
 		int invalidCount = 0;
@@ -155,7 +155,7 @@ public class KatanaAlgo {
 
 	/**
 	 * The approach, that is presented in the paper "KATANA - Knowledge Base Augmentation for Named Entity Surface forms" from Rene Speck, Kunal Jha, Ricardo Usbeck and Axel-Cyrille Ngonga Ngomo
-	 * The scoring foreach candidate to a certain label-subject is calculated via a non-intelligence Psi- and Scorefunction
+     * The scoring foreach candidate to a certain label-subject is calculated via a non-intelligence psi- and score function
 	 *
 	 * @return a list of triples. Foreach subjectsWithoutLabels-Node there will be a guess of a label: ?s rdfs:label "LABELGUESS"
 	 */

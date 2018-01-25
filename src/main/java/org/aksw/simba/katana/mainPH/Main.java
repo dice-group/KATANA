@@ -37,6 +37,7 @@ public class Main {
 
         boolean allowInput = true;
         log.trace("Application is loaded...");
+        log.debug("Java version " + System.getProperty("java.version") + " on " + System.getProperty("os.name") + "/" + System.getProperty("os.version") + System.getProperty("os.arch"));
         BufferedReader bufferRead = new BufferedReader(new InputStreamReader(System.in));
         while (allowInput) {
             String input = null;
@@ -69,7 +70,7 @@ public class Main {
                 if (paramCommandString != null) {
                     params.putIfAbsent(paramCommandString, paramArgumentString.toString().trim());
                 } else if (paramArgumentString.length() > 0) {
-                    params.put("general", paramArgumentString.toString());
+                    params.put("general", paramArgumentString.toString().trim());
                 }
 
                 if (com.get().getValue().execute(params)) {

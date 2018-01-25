@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Random;
 
 /**
- * Just an HelperClass
+ * Just a HelperClass
  *
  * @author Philipp Heinisch
  */

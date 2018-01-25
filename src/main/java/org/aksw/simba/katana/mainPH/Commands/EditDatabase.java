@@ -121,7 +121,11 @@ public class EditDatabase implements Command {
             }
         }
 
-        log.debug(changeOperationsSucceeded + " change operations succeeded!");
+        if (changeOperationsSucceeded == 0) {
+            log.warn("No operations were executed :(. Maybe you missed to type in a parameter like \"--random\", \"--cutHead\" or \"--cutTail\"");
+        } else {
+            log.debug(changeOperationsSucceeded + " change operations succeeded!");
+        }
         return true;
     }
 }

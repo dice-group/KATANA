@@ -141,7 +141,7 @@ public class LoadDatabase implements Command {
                 return false;
             }
         } else {
-            log.info("Your result is emoty and you want to abort the command therefore. It's ok!");
+            log.info("Your result is empty and you want to abort the command therefore. It's ok!");
             return true;
         }
     }
