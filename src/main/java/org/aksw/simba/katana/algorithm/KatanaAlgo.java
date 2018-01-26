@@ -89,7 +89,7 @@ public class KatanaAlgo {
 			}
 			log.debug("Found triple list to the object " + URIofSubject);
             if (!candidates.stream().anyMatch(node -> node.equals(NodeOfSubject))) {
-				log.warn("The URI " + URIofSubject + " in knowledgeLabelExtraction is not found in the subjectsWithoutLabels-List! It's useless!");
+				log.warn("The URI " + URIofSubject + " in knowledgeLabelExtraction is not found in the candidates-List! It's useless!");
 				invalidCount++;
 			}
 

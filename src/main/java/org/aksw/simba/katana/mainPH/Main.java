@@ -34,6 +34,7 @@ public class Main {
         commands.put("load", new LoadDatabase());
         commands.put("edit", new EditDatabase());
         commands.put("print", new PrintDatabase());
+        commands.put("katana", new RunKatana());
 
         boolean allowInput = true;
         log.trace("Application is loaded...");

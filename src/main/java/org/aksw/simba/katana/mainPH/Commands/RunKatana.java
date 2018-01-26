@@ -1,17 +1,17 @@
 package org.aksw.simba.katana.mainPH.Commands;
 
+import org.aksw.simba.katana.algorithm.EvaluationHandler;
 import org.aksw.simba.katana.mainPH.Main;
 import org.apache.log4j.*;
 
-import java.io.File;
-import java.util.Map;
-import java.util.Optional;
+import java.io.*;
+import java.util.*;
 
 import static org.aksw.simba.katana.mainPH.Main.Get;
 
 public class RunKatana implements Command {
 
-    private static Logger log = LogManager.getLogger(RunKatana.class);
+    private Logger log = LogManager.getLogger(RunKatana.class);
 
     public RunKatana() {
         //Logger-setup
@@ -161,6 +161,76 @@ public class RunKatana implements Command {
             log.info("The CSV result file will be saved in the directory " + pathCSV);
         }
 
-        return false;
+        //RUN!!!!
+        List<RunKatanaThread> runThreads = new ArrayList<>(runs);
+        for (int i = 0; i < runsPerAxis; i++) {
+            for (int j = 0; j < runsPerAxis; j++) {
+                RunKatanaThread thread = new RunKatanaThread(algoVersion, (int) Math.round(forgottenLabelsMin + i * stepWidthForgottenLabels), randomPropertyLabelsMin + j * stepWidthRandomPropertyLabels, evaluation);
+                runThreads.add(thread);
+                thread.run();
+                log.debug("Started thread at " + i + "|" + j);
+            }
+        }
+
+
+        //Evaluation
+        String fileNameCSV = pathCSV + System.getProperty("file.separator") + "katanaResult_" + new Date().getTime() + ".csv";
+        FileWriter fileWriterTemp = null;
+        try {
+            fileWriterTemp = new FileWriter(fileNameCSV, true);
+            fileWriterTemp.write("#forgotten labels; %random property labels deleted; reconstruction rate" + System.lineSeparator());
+        } catch (IOException e) {
+            fileWriterTemp = null;
+            log.error("Can't write the csv file :(", e);
+            if (evaluation)
+                return false;
+        }
+        final FileWriter fileWriter = fileWriterTemp;
+
+        runThreads.forEach(runKatanaThread -> {
+            try {
+                runKatanaThread.wait(600000);
+                log.debug("One thread is finished!");
+                if (evaluation) {
+                    EvaluationHandler handler = runKatanaThread.getHandler();
+                    if (fileWriter != null) {
+                        try {
+                            fileWriter.write(runKatanaThread.forgottenLabels + ";" + Double.valueOf(runKatanaThread.randomPropertyLabels).toString().replace('.', ',') + ";" + Double.valueOf(handler.calculateAccuracy()).toString().replace('.', ',') + System.lineSeparator());
+                            log.trace("Result successfully appended to " + fileNameCSV);
+                        } catch (IOException e) {
+                            log.warn("Can't append the result (" + handler.calculateAccuracy() + ") of the handler " + handler + "to the file " + fileNameCSV, e);
+                        }
+                    }
+                }
+            } catch (InterruptedException e) {
+                log.error(e.getMessage(), e);
+            }
+        });
+
+        //FINISH
+        if (fileWriter != null) {
+            try {
+                fileWriter.flush();
+                fileWriter.close();
+            } catch (IOException e) {
+                log.warn("Cannit close the FileWrite " + fileWriter, e);
+            }
+        }
+        if (open) {
+            try {
+                log.trace("Open " + fileNameCSV + "...");
+                Process p = Runtime.getRuntime().exec(fileNameCSV);
+                p.wait(2000);
+            } catch (IOException e) {
+                log.info("Can't open the file/ process " + fileNameCSV + ". Do it manually!", e);
+                return false;
+            } catch (InterruptedException e) {
+                log.debug(e.getMessage(), e);
+            }
+        } else if (evaluation) {
+            log.info("You can find the csv in " + fileNameCSV + " now");
+        }
+
+        return true;
     }
 }

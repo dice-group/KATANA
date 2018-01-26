@@ -8,7 +8,7 @@ import java.util.Optional;
 
 public class Help implements Command {
 
-    private static Logger log = LogManager.getLogger(Help.class);
+    private Logger log = LogManager.getLogger(Help.class);
 
     public Help() {
         //Logger-setup

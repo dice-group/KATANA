@@ -15,7 +15,7 @@ import java.util.Map;
  */
 public class EditDatabase implements Command {
 
-    private static Logger log = LogManager.getLogger(EditDatabase.class);
+    private Logger log = LogManager.getLogger(EditDatabase.class);
 
     public EditDatabase() {
         //Logger-setup

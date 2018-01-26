@@ -17,7 +17,7 @@ import java.util.Map;
  */
 public class LoadDatabase implements Command {
 
-    private static Logger log = LogManager.getLogger(LoadDatabase.class);
+    private Logger log = LogManager.getLogger(LoadDatabase.class);
 
     public LoadDatabase() {
         //Logger-setup

@@ -13,7 +13,7 @@ import java.util.Map;
  */
 public class PrintDatabase implements Command {
 
-    private static Logger log = LogManager.getLogger(PrintDatabase.class);
+    private Logger log = LogManager.getLogger(PrintDatabase.class);
 
     public PrintDatabase() {
         //Logger-setup
