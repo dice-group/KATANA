@@ -90,8 +90,8 @@ public class EditDatabase implements Command {
                 return false;
             }
             try {
-                Main.database = Main.database.subList(0, number);
-                Main.subjects = Main.subjects.subList(0, number);
+                Main.database = Main.database.subList(number, Main.database.size());
+                Main.subjects = Main.subjects.subList(number, Main.subjects.size());
             } catch (IndexOutOfBoundsException e) {
                 log.warn("The list contains only " + Main.database.size() + " list elements, not " + number + "! Remove the complete List...", e);
                 Main.database.clear();
@@ -110,8 +110,8 @@ public class EditDatabase implements Command {
                 return false;
             }
             try {
-                Main.database = Main.database.subList(Main.database.size() - number, Main.database.size());
-                Main.subjects = Main.subjects.subList(Main.database.size() - number, Main.database.size());
+                Main.database = Main.database.subList(0, Main.database.size() - number);
+                Main.subjects = Main.subjects.subList(0, Main.subjects.size() - number);
             } catch (IndexOutOfBoundsException e) {
                 log.warn("The list contains only " + Main.database.size() + " list elements, not " + number + "! Remove the complete List...", e);
                 Main.database.clear();

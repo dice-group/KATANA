@@ -8,10 +8,7 @@ import org.apache.jena.graph.Node;
 import org.apache.jena.graph.Triple;
 import org.apache.log4j.*;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 
 /**
  * A class, that runs a single time the KATANA algorithm
@@ -23,13 +20,19 @@ public class RunKatanaThread implements Runnable {
     private final Logger log;
     private volatile static int ID = 0;
 
-    private volatile EvaluationHandler handler = null;
-
     private final int version;
-    final int forgottenLabels;
-    final double randomPropertyLabels;
+    private final int forgottenLabels;
+    private final double randomPropertyLabels;
     private final boolean evaluate;
 
+    /**
+     * creates a Thread, in that the KATANA algorithm runs
+     *
+     * @param version              version of the {@link KatanaAlgo} alogithm, that should run. Version {@code 0} means, that the randomMatching algorithm runs
+     * @param forgottenLabels      how much labels should we forget? For each forgotten label there is an candidate for matching the labeks from the algorithm
+     * @param randomPropertyLabels our data in the relation to the possible label. Value must be between {@code 0} (no data is deleted - we have full knowledge) and {@code 1} (all data is deleted - only the pure labels are left)
+     * @param evaluate             if {@code true}, an EvaluationHandler will be created to the result of the algorithm, otherwise mot (faster)
+     */
     public RunKatanaThread(int version, int forgottenLabels, double randomPropertyLabels, boolean evaluate) {
         //Logger-setup
         log = LogManager.getLogger(Thread.currentThread().getName() + "[" + ID + "]");
@@ -67,7 +70,7 @@ public class RunKatanaThread implements Runnable {
             actualSubjects = Collections.EMPTY_LIST;
         } else {
             List<Node> actualSubjectsTemp = new ArrayList<>(Main.subjects.size());
-            Collections.copy(actualSubjectsTemp, Main.subjects);
+            actualSubjectsTemp.addAll(Main.subjects);
             Collections.shuffle(actualSubjectsTemp);
             actualSubjects = actualSubjectsTemp.subList(0, Math.min(forgottenLabels, actualSubjectsTemp.size()));
         }
@@ -82,10 +85,10 @@ public class RunKatanaThread implements Runnable {
         });
         StringBuilder out = new StringBuilder("actualKnowledgeLabelExtraction for the KATANArun was calculated. Contains " + actualKnowledgeLabelExtraction.size() + " triple lists with max. ");
         actualKnowledgeLabelExtraction.stream().max(Comparator.comparingInt(List::size)).ifPresent(l -> out.append(l.size()));
-        out.append("XXX");
+        out.append(" elements");
         log.debug(out);
 
-        List<Triple> actualDatabase = Main.database.stream().collect(ArrayList::new, ArrayList::add, ArrayList::addAll);
+        List<Triple> actualDatabase = Main.database.stream().collect(ArrayList::new, ArrayList::addAll, ArrayList::addAll);
         log.debug("Created the actualDatabase from the Main.database: " + actualDatabase.size() + " elements");
 
         //run it!
@@ -100,21 +103,13 @@ public class RunKatanaThread implements Runnable {
                 labelGuesses = katanaAlgo.matchLabelsKATANAv1();
                 break;
             default:
-                log.error("No algorithmn matches to the version input " + version + "! CANCEL!");
+                log.error("No algorithm matches to the version input " + version + "! CANCEL!");
                 labelGuesses = Collections.EMPTY_LIST;
                 break;
         }
 
-        if (evaluate) {
-            katanaAlgo.getEvaluationHandler(labelGuesses);
-        }
+        RunKatanaReturn.put(forgottenLabels, randomPropertyLabels, (evaluate) ? katanaAlgo.getEvaluationHandler(labelGuesses).clone() : null);
 
         log.info(log.getName() + "\t Finished! The algorithm matched " + labelGuesses.size() + " labels!");
-
-        notify();
-    }
-
-    public EvaluationHandler getHandler() {
-        return handler;
     }
 }

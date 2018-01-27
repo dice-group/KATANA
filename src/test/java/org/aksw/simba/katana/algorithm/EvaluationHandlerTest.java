@@ -10,7 +10,7 @@ import java.util.List;
 
 public class EvaluationHandlerTest extends TestCase {
 
-    private static final String URITOLABEL = "rdfs:label";
+    private static final String URITOLABEL = "http://www.w3.org/2000/01/rdf-schema#label";
     private EvaluationHandler handler;
     private Triple pascalTriple;
     private Triple wrongGalileoTriple, rightGalileoTriple;

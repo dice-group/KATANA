@@ -18,8 +18,8 @@ public class KatanaAlgo {
 
 	private Logger log = LogManager.getLogger(KatanaAlgo.class);
 	private static final boolean PROVEVALIDITATE = true;
-	private static final String URITOLABEL = "rdfs:label";
-	private boolean executable = true;
+	private static final String URITOLABEL = "http://www.w3.org/2000/01/rdf-schema#label";
+	private boolean executable;
 
 	/**
 	 * Main database, where the KATANA algorithm should run
@@ -50,12 +50,13 @@ public class KatanaAlgo {
 		executable = !PROVEVALIDITATE || verify();
 
         //Logger-setup
-        Layout l = new SimpleLayout();
-        Appender appender = new ConsoleAppender(l, ConsoleAppender.SYSTEM_OUT);
-        appender.setName("Console - " + KatanaAlgo.class.getName());
-        log.addAppender(appender);
-        log.trace("Logging is enabled (" + log.getAllAppenders().hasMoreElements() + ") for the class " + KatanaAlgo.class.getName() + "!");
-
+		if (!log.getAllAppenders().hasMoreElements()) {
+			Layout l = new SimpleLayout();
+			Appender appender = new ConsoleAppender(l, ConsoleAppender.SYSTEM_OUT);
+			appender.setName("Console - " + KatanaAlgo.class.getName());
+			log.addAppender(appender);
+			log.trace("Logging is enabled (" + log.getAllAppenders().hasMoreElements() + ") for the class " + KatanaAlgo.class.getName() + "!");
+		}
 	}
 
 	/**

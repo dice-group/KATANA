@@ -1,6 +1,5 @@
 package org.aksw.simba.katana.mainPH.Commands;
 
-import org.aksw.simba.katana.algorithm.EvaluationHandler;
 import org.aksw.simba.katana.mainPH.Main;
 import org.apache.log4j.*;
 
@@ -47,6 +46,7 @@ public class RunKatana implements Command {
                 "--forgottenLabelsMin <number>, --forgottenLabelsMax <number>" + System.lineSeparator() +
                 "--randomPropertyLabelsMin <double 0-1> --randomPropertyLabelsMax <double 0-1>" + System.lineSeparator() +
                 "--runs <number>: the number of runs, that you wish (approximately). Notice: a high number here increase the granularity of the result, but increase the runtime, too" + System.lineSeparator() +
+                "--reruns <number>: the number of runs for each run (for the same input parameters). A high number ensure a result next to the mathematical expectation (\"Stochastik\"), but increases the runtime!" + System.lineSeparator() +
                 "Regarding the output..." + System.lineSeparator() +
                 "--noEvaluation: disables the Evaluation. Saves runtime..." + System.lineSeparator() +
                 "--file [<path>]: with this parameter the core result will be written to a csv file. If you determine a path, the file will be saved in that path" + System.lineSeparator() +
@@ -61,6 +61,11 @@ public class RunKatana implements Command {
      */
     @Override
     public boolean execute(Map<String, String> params) {
+        if (Main.database == null || Main.subjects == null) {
+            log.warn("Database is empty. Please load first a database!");
+            return false;
+        }
+
         //Params
         int algoVersion = 1;
         Optional<Map.Entry<String, String>> getter = Main.Get(params, "--version");
@@ -78,76 +83,97 @@ public class RunKatana implements Command {
             try {
                 forgottenLabelsMin = Integer.parseInt(getter.get().getValue());
                 if (forgottenLabelsMin < 0) {
-                    log.warn("Negative numbers are not allowed! Set to 0! (" + getter.get() + ")");
+                    log.warn(getter + ": Negative numbers are not allowed! Set to 0!");
                     forgottenLabelsMin = 0;
                 }
             } catch (NumberFormatException e) {
-                log.warn("Can't parse the input " + getter.get(), e);
+                log.warn(getter + ": Can't parse the input " + getter.get(), e);
             }
         }
-        int forgottenLabelsMax = 1;
+
+        int forgottenLabelsMax = Main.subjects.size();
         getter = Main.Get(params, "--forgottenLabelsMax");
         if (getter.isPresent()) {
             try {
                 forgottenLabelsMax = Integer.parseInt(getter.get().getValue());
                 if (forgottenLabelsMax < 0 || forgottenLabelsMax < forgottenLabelsMin) {
-                    log.warn("Negative numbers or numbers smalles than \"--forgottenLabelsMin\" are not allowed! Set to " + forgottenLabelsMin + "! (" + getter.get() + ")");
+                    log.warn(getter + ": Negative numbers or numbers smalles than \"--forgottenLabelsMin\" are not allowed! Set to " + forgottenLabelsMin + "!");
                     forgottenLabelsMax = forgottenLabelsMin;
                 }
             } catch (NumberFormatException e) {
-                log.warn("Can't parse the input " + getter.get(), e);
+                log.warn(getter + ": Can't parse the input " + getter.get(), e);
             }
         }
+
         double randomPropertyLabelsMin = 0.1;
         getter = Main.Get(params, "--randomPropertyLabelsMin");
         if (getter.isPresent()) {
             try {
                 randomPropertyLabelsMin = Double.parseDouble(getter.get().getValue());
                 if (randomPropertyLabelsMin < 0) {
-                    log.warn("Negative numbers are not allowed! Set to 0! (" + getter.get() + ")");
+                    log.warn(getter + ": Negative numbers are not allowed! Set to 0!");
                     randomPropertyLabelsMin = 0;
                 } else if (randomPropertyLabelsMin > 1) {
-                    log.warn("Because it's a rate, numbers greater than 1 are not allowed! Set it to 1! (" + getter.get() + ")");
+                    log.warn(getter + ": Because it's a rate, numbers greater than 1 are not allowed! Set it to 1!");
                     randomPropertyLabelsMin = 1;
                 }
             } catch (NumberFormatException e) {
                 log.warn("Can't parse the input " + getter.get(), e);
             }
         }
+
         double randomPropertyLabelsMax = 1;
         getter = Main.Get(params, "--randomPropertyLabelsMax");
         if (getter.isPresent()) {
             try {
                 forgottenLabelsMax = Integer.parseInt(getter.get().getValue());
                 if (forgottenLabelsMax < 0 || forgottenLabelsMax < forgottenLabelsMin) {
-                    log.warn("Negative numbers or numbers smalles then \"--randomPropertyLabelsMin\" are not allowed! Set to " + randomPropertyLabelsMin + "! (" + getter.get() + ")");
+                    log.warn(getter + ": Negative numbers or numbers smalles then \"--randomPropertyLabelsMin\" are not allowed! Set to " + randomPropertyLabelsMin + "!");
                     randomPropertyLabelsMax = forgottenLabelsMin;
                 } else if (randomPropertyLabelsMax > 1) {
-                    log.warn("Because it's a rate, numbers greater than 1 are not allowed! Set it to 1! (" + getter.get() + ")");
+                    log.warn(getter + ": Because it's a rate, numbers greater than 1 are not allowed! Set it to 1!");
                     randomPropertyLabelsMax = 1;
                 }
             } catch (NumberFormatException e) {
-                log.warn("Can't parse the input " + getter.get(), e);
+                log.warn(getter + ": Can't parse the input " + getter.get(), e);
             }
         }
+
         int runs = 5;
         getter = Main.Get(params, "--runs");
         if (getter.isPresent()) {
             try {
                 runs = Integer.parseInt(getter.get().getValue());
                 if (runs <= 0) {
-                    log.warn("Negative numbers are not allowed! Set to 1! (" + getter.get() + ")");
+                    log.warn(getter + ": Negative numbers are not allowed! Set to 1!");
                     runs = 1;
                 }
             } catch (NumberFormatException e) {
-                log.warn("Can't parse the input " + getter.get(), e);
+                log.warn(getter + ": Can't parse the input " + getter.get(), e);
             }
         }
         int runsPerAxis = (int) Math.sqrt(runs);
-        double stepWidthForgottenLabels = ((double) (forgottenLabelsMax - forgottenLabelsMin)) / ((double) runsPerAxis);
-        double stepWidthRandomPropertyLabels = (randomPropertyLabelsMax - randomPropertyLabelsMin) / ((double) runsPerAxis);
+        double stepWidthForgottenLabels = ((double) (forgottenLabelsMax - forgottenLabelsMin)) / ((double) runsPerAxis - 1);
+        double stepWidthRandomPropertyLabels = (randomPropertyLabelsMax - randomPropertyLabelsMin) / ((double) runsPerAxis - 1);
+
+        int reruns = 1;
+        getter = Main.Get(params, "--reruns");
+        if (getter.isPresent()) {
+            try {
+                reruns = Integer.parseInt(getter.get().getValue());
+                if (runs <= 0) {
+                    log.warn(getter + ": Negative numbers are not allowed! Set to 10! (" + getter.get() + ")");
+                    reruns = 10;
+                }
+            } catch (NumberFormatException e) {
+                log.warn(getter + ": Can't parse the input " + getter.get(), e);
+            }
+        }
+
         boolean evaluation = !Main.Get(params, "--noEvaluation").isPresent();
+
         boolean open = evaluation && Main.Get(params, "--open").isPresent();
+
         getter = Main.Get(params, "--file");
         boolean writeCSV = getter.isPresent();
         String pathCSV = System.getProperty("user.dir");
@@ -162,20 +188,34 @@ public class RunKatana implements Command {
         }
 
         //RUN!!!!
-        List<RunKatanaThread> runThreads = new ArrayList<>(runs);
+        log.debug("There are " + RunKatanaReturn.CountOfCurrentEntries() + " entries in the " + RunKatanaReturn.class.getName() + " store - clear it!");
+        RunKatanaReturn.clear();
+
+        int expectedSizeOfResultMap = 0;
+        double forgottenLabelsRunOld = -1, forgottenLabelsRun = forgottenLabelsMin, randomPropertyLabelsRunOld = -1, randomPropertyLabelsRun = randomPropertyLabelsMin;
         for (int i = 0; i < runsPerAxis; i++) {
             for (int j = 0; j < runsPerAxis; j++) {
-                RunKatanaThread thread = new RunKatanaThread(algoVersion, (int) Math.round(forgottenLabelsMin + i * stepWidthForgottenLabels), randomPropertyLabelsMin + j * stepWidthRandomPropertyLabels, evaluation);
-                runThreads.add(thread);
-                thread.run();
-                log.debug("Started thread at " + i + "|" + j);
+                if (Math.round(forgottenLabelsRun) > Math.round(forgottenLabelsRunOld) && randomPropertyLabelsRun > randomPropertyLabelsRunOld) {
+                    for (int k = 0; k < reruns; k++) {
+                        RunKatanaThread thread = new RunKatanaThread(algoVersion, (int) Math.round(forgottenLabelsRun), randomPropertyLabelsRun, evaluation);
+                        log.debug("Start thread at " + i + "|" + j + " (" + k + ". run [see \"--reruns\"])");
+                        thread.run();
+                    }
+                    expectedSizeOfResultMap++;
+                }
+                randomPropertyLabelsRunOld = randomPropertyLabelsRun;
+                randomPropertyLabelsRun += stepWidthRandomPropertyLabels;
             }
+            randomPropertyLabelsRunOld = -1;
+            randomPropertyLabelsRun = randomPropertyLabelsMin;
+            forgottenLabelsRunOld = forgottenLabelsRun;
+            forgottenLabelsRun += stepWidthForgottenLabels;
         }
-
+        log.trace("actuallyRuns: " + expectedSizeOfResultMap);
 
         //Evaluation
         String fileNameCSV = pathCSV + System.getProperty("file.separator") + "katanaResult_" + new Date().getTime() + ".csv";
-        FileWriter fileWriterTemp = null;
+        FileWriter fileWriterTemp;
         try {
             fileWriterTemp = new FileWriter(fileNameCSV, true);
             fileWriterTemp.write("#forgotten labels; %random property labels deleted; reconstruction rate" + System.lineSeparator());
@@ -187,45 +227,47 @@ public class RunKatana implements Command {
         }
         final FileWriter fileWriter = fileWriterTemp;
 
-        runThreads.forEach(runKatanaThread -> {
+        int lookupTimes = 0;
+        while (RunKatanaReturn.CountOfCurrentEntries() < expectedSizeOfResultMap) {
             try {
-                runKatanaThread.wait(600000);
-                log.debug("One thread is finished!");
-                if (evaluation) {
-                    EvaluationHandler handler = runKatanaThread.getHandler();
-                    if (fileWriter != null) {
-                        try {
-                            fileWriter.write(runKatanaThread.forgottenLabels + ";" + Double.valueOf(runKatanaThread.randomPropertyLabels).toString().replace('.', ',') + ";" + Double.valueOf(handler.calculateAccuracy()).toString().replace('.', ',') + System.lineSeparator());
-                            log.trace("Result successfully appended to " + fileNameCSV);
-                        } catch (IOException e) {
-                            log.warn("Can't append the result (" + handler.calculateAccuracy() + ") of the handler " + handler + "to the file " + fileNameCSV, e);
-                        }
-                    }
+                Thread.sleep(100);
+                lookupTimes++;
+                if (lookupTimes % 10 == 0) {
+                    log.info(RunKatanaReturn.CountOfCurrentEntries() + " out of " + expectedSizeOfResultMap + " are already finished...");
                 }
             } catch (InterruptedException e) {
-                log.error(e.getMessage(), e);
+                log.trace(e.getMessage(), e);
+            }
+        }
+
+        RunKatanaReturn.getKeys().forEach(k -> {
+            if (evaluation) {
+                if (fileWriter != null) {
+                    try {
+                        fileWriter.write(k.getKey() + ";" + k.getValue().toString().replace('.', ',') + ";" + Double.valueOf(RunKatanaReturn.getAccuracy(k)).toString().replace('.', ',') + System.lineSeparator());
+                        log.trace("Result successfully appended to " + fileNameCSV);
+                    } catch (IOException e) {
+                        log.warn("Can't append the result (" + RunKatanaReturn.getAccuracy(k) + ") for the key " + k + "to the file " + fileNameCSV, e);
+                    }
+                }
             }
         });
-
         //FINISH
         if (fileWriter != null) {
             try {
                 fileWriter.flush();
                 fileWriter.close();
             } catch (IOException e) {
-                log.warn("Cannit close the FileWrite " + fileWriter, e);
+                log.warn("Cannot close the FileWrite " + fileWriter, e);
             }
         }
         if (open) {
             try {
                 log.trace("Open " + fileNameCSV + "...");
-                Process p = Runtime.getRuntime().exec(fileNameCSV);
-                p.wait(2000);
+                Process p = Runtime.getRuntime().exec(new String[]{"explorer.exe", "\"" + fileNameCSV + "\""});
             } catch (IOException e) {
                 log.info("Can't open the file/ process " + fileNameCSV + ". Do it manually!", e);
                 return false;
-            } catch (InterruptedException e) {
-                log.debug(e.getMessage(), e);
             }
         } else if (evaluation) {
             log.info("You can find the csv in " + fileNameCSV + " now");

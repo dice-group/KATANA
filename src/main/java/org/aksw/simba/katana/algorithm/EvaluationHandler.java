@@ -9,7 +9,7 @@ public class EvaluationHandler {
 
     private List<Triple> labelGuesses;
     private List<Triple> correctLabels;
-    private static final String URITOLABEL = "rdfs:label";
+    private static final String URITOLABEL = "http://www.w3.org/2000/01/rdf-schema#label";
 
     public EvaluationHandler(List<Triple> labelGuesses, List<Triple> correctLabels) {
         this.labelGuesses = labelGuesses;
@@ -41,5 +41,9 @@ public class EvaluationHandler {
      */
     public double calculateAccuracy() {
         return (2d - ((double) calculateMistakes().size() / (double) Math.max(1, labelGuesses.size())) - ((double) getMissedLabelMatches().size() / (double) Math.max(1, correctLabels.size()))) / 2d;
+    }
+
+    public EvaluationHandler clone() {
+        return new EvaluationHandler(labelGuesses, correctLabels);
     }
 }

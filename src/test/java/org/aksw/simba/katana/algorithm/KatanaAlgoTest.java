@@ -10,7 +10,7 @@ import java.util.List;
 
 public class KatanaAlgoTest extends TestCase {
 
-    private static final String URITOLABEL = "rdfs:label";
+    private static final String URITOLABEL = "http://www.w3.org/2000/01/rdf-schema#label";
     private KatanaAlgo handler;
 
     private Node pascal = NodeFactory.createURI("http://dbpedia.org/resource/Blaise_Pascal");
