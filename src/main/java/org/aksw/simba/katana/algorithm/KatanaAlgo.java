@@ -61,9 +61,9 @@ public class KatanaAlgo {
 
 	/**
 	 * Checks, if all 3 parameters in combination are valid
-	 * triplesFromKB: Javadoc-TODO
-     * candidates: Javadoc-TODO
-	 * knowledgeLabelExtraction: Javadoc-TODO
+     * triplesFromKB: your database
+     * candidates: your candidates list
+     * knowledgeLabelExtraction: a list of triples (something like an (incomplete) CBD) for each candidate
 	 *
      * @return {@code true}, if the model of the KATANA-algorithm is valid, otherwise {@code false}
 	 */
@@ -118,10 +118,13 @@ public class KatanaAlgo {
 		return false;
 	}
 
-	public void print() {
-		JENAtoCONSOLE.print(triplesFromKB, 25);
-		knowledgeLabelExtraction.forEach(subjectEvidences -> JENAtoCONSOLE.print(subjectEvidences, 8));
-	}
+    /**
+     * prints the subjectEvidences
+     */
+    public void print() {
+        JENAtoCONSOLE.print(triplesFromKB, 25);
+        knowledgeLabelExtraction.forEach(subjectEvidences -> JENAtoCONSOLE.print(subjectEvidences, 8));
+    }
 
 	/**
 	 * A stupid approach (only for testing): picks a random label and match them to a subject
@@ -130,7 +133,7 @@ public class KatanaAlgo {
 	 */
 	public List<Triple> matchLabelsRANDOM() {
         List<Triple> ret = new ArrayList<>(candidates.size());
-		if (!checkExecutionPermission())
+        if (!checkExecutionPermission() || knowledgeLabelExtraction.isEmpty())
 			return ret;
 		Random r = new Random();
 
@@ -162,7 +165,7 @@ public class KatanaAlgo {
 	 */
 	public List<Triple> matchLabelsKATANAv1() {
 		List<Triple> ret = new ArrayList<>(knowledgeLabelExtraction.size());
-		if (!checkExecutionPermission())
+        if (!checkExecutionPermission() || knowledgeLabelExtraction.isEmpty())
 			return ret;
         Map<AbstractMap.SimpleEntry<Node, String>, Double> score = new HashMap<>(candidates.size() * knowledgeLabelExtraction.size());
 
@@ -171,7 +174,11 @@ public class KatanaAlgo {
 		Map<Triple, Double> psi = calculatePsi();
         for (Node candidate : candidates) {
 			for (List<Triple> subjectEvidences : knowledgeLabelExtraction) {
-                List<Triple> M = subjectEvidences.stream().filter(triple -> triplesFromKB.stream().anyMatch(t -> t.getSubject().equals(candidate) && t.getPredicate().equals(triple.getPredicate()) && t.getObject().equals(triple.getObject()))).collect(Collectors.toList());
+                //finds matches between our database and the knowledgeLabelExtraction-triples from the text
+                List<Triple> M = subjectEvidences.stream().filter(triple -> triplesFromKB.stream().anyMatch(t -> t.getSubject().equals(candidate) &&
+                        //of course sort out the label-triples - results in the forgotten effect
+                        (!t.getPredicate().isURI() || !t.getPredicate().getURI().equals(URITOLABEL)) && t.getPredicate().equals(triple.getPredicate()) &&
+                        t.getObject().equals(triple.getObject()))).collect(Collectors.toList());
 				String label = findLabel(subjectEvidences);
                 if (M.size() == 0) {
                     log.trace("For the candidate " + candidate + " there are no evidences for the label " + label);
@@ -263,7 +270,7 @@ public class KatanaAlgo {
 
 		Optional<Triple> selectedTriple = selection.stream().filter(triple -> triple.getPredicate().getURI().equals(URITOLABEL)).findFirst();
 
-        selectedTriple.map(triple -> ret.replace(0, ret.length() - 1, (triple.getObject().isLiteral()) ? triple.getObject().getLiteral().getLexicalForm() : "EXCEPTION: label is no literal ::" + triple.getObject()));
+        selectedTriple.map(triple -> ret.replace(0, ret.length(), (triple.getObject().isLiteral()) ? triple.getObject().getLiteral().getLexicalForm() : "EXCEPTION: label is no literal ::" + triple.getObject()));
 
 		return ret.toString();
 	}

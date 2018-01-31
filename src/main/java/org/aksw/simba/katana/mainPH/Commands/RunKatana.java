@@ -215,17 +215,22 @@ public class RunKatana implements Command {
 
         //Evaluation
         String fileNameCSV = pathCSV + System.getProperty("file.separator") + "katanaResult_" + new Date().getTime() + ".csv";
-        FileWriter fileWriterTemp;
-        try {
-            fileWriterTemp = new FileWriter(fileNameCSV, true);
-            fileWriterTemp.write("#forgotten labels; %random property labels deleted; reconstruction rate" + System.lineSeparator());
-        } catch (IOException e) {
-            fileWriterTemp = null;
-            log.error("Can't write the csv file :(", e);
-            if (evaluation)
-                return false;
+        final FileWriter fileWriter;
+        if (writeCSV) {
+            FileWriter fileWriterTemp;
+            try {
+                fileWriterTemp = new FileWriter(fileNameCSV, true);
+                fileWriterTemp.write("#forgotten labels; %random property labels deleted; reconstruction rate" + System.lineSeparator());
+            } catch (IOException e) {
+                fileWriterTemp = null;
+                log.error("Can't write the csv file :(", e);
+                if (evaluation)
+                    return false;
+            }
+            fileWriter = fileWriterTemp;
+        } else {
+            fileWriter = null;
         }
-        final FileWriter fileWriter = fileWriterTemp;
 
         int lookupTimes = 0;
         while (RunKatanaReturn.CountOfCurrentEntries() < expectedSizeOfResultMap) {
@@ -240,18 +245,16 @@ public class RunKatana implements Command {
             }
         }
 
-        RunKatanaReturn.getKeys().forEach(k -> {
-            if (evaluation) {
-                if (fileWriter != null) {
-                    try {
-                        fileWriter.write(k.getKey() + ";" + k.getValue().toString().replace('.', ',') + ";" + Double.valueOf(RunKatanaReturn.getAccuracy(k)).toString().replace('.', ',') + System.lineSeparator());
-                        log.trace("Result successfully appended to " + fileNameCSV);
-                    } catch (IOException e) {
-                        log.warn("Can't append the result (" + RunKatanaReturn.getAccuracy(k) + ") for the key " + k + "to the file " + fileNameCSV, e);
-                    }
+        if (evaluation && writeCSV && fileWriter != null) {
+            RunKatanaReturn.getKeys().forEach(k -> {
+                try {
+                    fileWriter.write(k.getKey() + ";" + k.getValue().toString().replace('.', ',') + ";" + Double.valueOf(RunKatanaReturn.getAccuracy(k)).toString().replace('.', ',') + System.lineSeparator());
+                    log.trace("Result successfully appended to " + fileNameCSV);
+                } catch (IOException e) {
+                    log.warn("Can't append the result (" + RunKatanaReturn.getAccuracy(k) + ") for the key " + k + "to the file " + fileNameCSV, e);
                 }
-            }
-        });
+            });
+        }
         //FINISH
         if (fileWriter != null) {
             try {
@@ -269,7 +272,7 @@ public class RunKatana implements Command {
                 log.info("Can't open the file/ process " + fileNameCSV + ". Do it manually!", e);
                 return false;
             }
-        } else if (evaluation) {
+        } else if (evaluation && writeCSV) {
             log.info("You can find the csv in " + fileNameCSV + " now");
         }
 

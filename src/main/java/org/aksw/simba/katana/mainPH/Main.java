@@ -1,9 +1,6 @@
 package org.aksw.simba.katana.mainPH;
 
-import org.aksw.simba.katana.KBUtils.KBEvaluationHandler;
-import org.aksw.simba.katana.KBUtils.SparqlHandler;
 import org.aksw.simba.katana.mainPH.Commands.*;
-import org.aksw.simba.katana.mainPH.View.JENAtoCONSOLE;
 import org.apache.jena.graph.Node;
 import org.apache.jena.graph.Triple;
 import org.apache.log4j.*;
@@ -85,7 +82,7 @@ public class Main {
         }
 
 
-        KBEvaluationHandler handler = new KBEvaluationHandler();
+/*        KBEvaluationHandler handler = new KBEvaluationHandler();
 
         List<Triple> model = SparqlHandler.getResources("http://dbpedia.org/ontology/Person");
 
@@ -95,7 +92,7 @@ public class Main {
         handler.getCBDofResource(0.1);
         System.out.println("kbCBDList()");
         handler.getKbCBDList().forEach(m -> JENAtoCONSOLE.print(m, 3));
-        handler.getCorrectLabels().forEach(System.out::println);
+        handler.getCorrectLabels().forEach(System.out::println);*/
     }
 
     public static Optional<Map.Entry<String, Command>> Get(String key) {

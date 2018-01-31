@@ -17,12 +17,12 @@ public class EvaluationHandler {
     }
 
     /**
-     * compares the labelGuesses with the correctLabels and finds mistaces
+     * compares the labelGuesses with the correctLabels and finds mistakes
      *
      * @return a List of all wrong label guesses from labelGuesses
      */
     List<Triple> calculateMistakes() {
-        return labelGuesses.stream().filter(triple -> triple.getPredicate().getURI().equals(URITOLABEL) && !correctLabels.stream().anyMatch(rightTriple -> rightTriple.getSubject().equals(triple.getSubject()) && rightTriple.getObject().equals(triple.getObject()))).collect(Collectors.toList());
+        return labelGuesses.stream().filter(triple -> triple.getPredicate().getURI().equals(URITOLABEL) && !correctLabels.stream().anyMatch(rightTriple -> rightTriple.getSubject().equals(triple.getSubject()) && rightTriple.getObject().getLiteralLexicalForm().equals(triple.getObject().getLiteralLexicalForm()))).collect(Collectors.toList());
     }
 
     /**
@@ -31,7 +31,7 @@ public class EvaluationHandler {
      * @return a List of all missing labels from correctLabels in labelGuesses
      */
     List<Triple> getMissedLabelMatches() {
-        return correctLabels.stream().filter(triple -> triple.getPredicate().getURI().equals(URITOLABEL) && !labelGuesses.stream().anyMatch(guessTriple -> guessTriple.getSubject().equals(triple.getSubject()) && guessTriple.getObject().equals(triple.getObject()))).collect(Collectors.toList());
+        return correctLabels.stream().filter(triple -> triple.getPredicate().getURI().equals(URITOLABEL) && !labelGuesses.stream().anyMatch(guessTriple -> guessTriple.getSubject().equals(triple.getSubject()) && guessTriple.getObject().getLiteralLexicalForm().equals(triple.getObject().getLiteralLexicalForm()))).collect(Collectors.toList());
     }
 
     /**
@@ -43,6 +43,11 @@ public class EvaluationHandler {
         return (2d - ((double) calculateMistakes().size() / (double) Math.max(1, labelGuesses.size())) - ((double) getMissedLabelMatches().size() / (double) Math.max(1, correctLabels.size()))) / 2d;
     }
 
+    /**
+     * Clones the {@link EvaluationHandler} (Shallow Java Cloning)
+     *
+     * @return a new instance of the same {@link EvaluationHandler} object
+     */
     public EvaluationHandler clone() {
         return new EvaluationHandler(labelGuesses, correctLabels);
     }

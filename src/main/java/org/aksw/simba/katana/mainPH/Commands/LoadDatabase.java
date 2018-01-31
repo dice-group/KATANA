@@ -6,6 +6,7 @@ import org.apache.jena.graph.Node;
 import org.apache.jena.graph.Triple;
 import org.apache.log4j.*;
 
+import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -94,8 +95,14 @@ public class LoadDatabase implements Command {
 
         log.trace("Execute the following sparqlQuery: " + sparqlQuery);
 
-        List<Node> resultSubjects = SparqlHandler.executeSingle(sparqlQuery);
-        log.info("The Query to get subjects was executed. Result contains " + resultSubjects.size() + " triples.");
+        List<Node> resultSubjects;
+        try {
+            resultSubjects = SparqlHandler.executeSingle(sparqlQuery);
+            log.info("The Query to get subjects was executed. Result contains " + resultSubjects.size() + " triples.");
+        } catch (Exception e) {
+            log.error("Please enable your internet connection", e);
+            return false;
+        }
 
         if (params.containsKey("--domain") && resultSubjects.isEmpty()) {
             log.info("Your result is empty. Please look again to your --domain input! E.g., if you write \"person\" instead of \"Person\", you get nothing. Try it out e.g. with \"Software\" :)");

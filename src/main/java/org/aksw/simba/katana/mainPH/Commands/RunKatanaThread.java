@@ -93,7 +93,7 @@ public class RunKatanaThread implements Runnable {
 
         //run it!
         KatanaAlgo katanaAlgo = new KatanaAlgo(actualDatabase, actualSubjects, actualKnowledgeLabelExtraction);
-        log.trace("Inputs for the KATANA algorithmn are valid? [" + katanaAlgo.verify() + "]");
+        log.trace("Inputs for the KATANA algorithm are valid? [" + katanaAlgo.verify() + "]");
         List<Triple> labelGuesses;
         switch (version) {
             case 0:
