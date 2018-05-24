@@ -1,4 +1,4 @@
-package org.aksw.katana.evaluation;
+package org.aksw.katana.evaluation.benchmark;
 
 import com.google.common.collect.ImmutableMap;
 import org.aksw.katana.algorithm.KATANA;
@@ -9,6 +9,7 @@ import org.apache.jena.rdf.model.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
 import java.util.*;
@@ -24,21 +25,23 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 
 @Component
-public class HappyPathEvaluation implements Runnable {
+@Profile({"benchmark","test"})
+public class BenchMarkEvaluation implements Runnable {
 
-    private static final Logger logger = LoggerFactory.getLogger(HappyPathEvaluation.class);
+    private static final Logger logger = LoggerFactory.getLogger(BenchMarkEvaluation.class);
 
     private final SparQL sparQL;
     private final KATANA katana;
 
     @Autowired
-    public HappyPathEvaluation(SparQL sparQL, KATANA katana) {
+    public BenchMarkEvaluation(SparQL sparQL, KATANA katana) {
         this.sparQL = sparQL;
         this.katana = katana;
     }
 
     @Override
     public void run() {
+
 
         List<Pair<Resource, String>> allLabels = GetAllLabels();
         Map<Resource, String> deletedLabels = RemoveSomeLabelsArbitrary(allLabels);

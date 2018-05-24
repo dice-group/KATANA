@@ -1,4 +1,4 @@
-package org.aksw.katana.evaluation;
+package org.aksw.katana.evaluation.benchmark;
 
 import org.apache.commons.lang3.tuple.Pair;
 import org.apache.jena.rdf.model.*;
@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Profile;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Component;
-import org.springframework.test.context.TestPropertySource;
 
 import java.io.BufferedOutputStream;
 import java.io.FileNotFoundException;
@@ -20,23 +19,22 @@ import java.util.Arrays;
 import java.util.List;
 
 @Component
-@Profile("test")
-@PropertySource("classpath:test.properties")
+@Profile({"benchmark", "test"})
 public class KnowledgeBaseGenerator {
 
     private static int cntResource = 0;
     private static int cntProperty = 0;
     private static int cntObject = 0;
 
-    @Value("${info.allEntities}")
+    @Value("${graph.allEntities}")
     private int numberOfAllEntities;
 
-    @Value("${info.shareSomePO.percentage}")
+    @Value("${graph.shareSomePO_percentage}")
     private int shareSomePO_Percentage;
-    @Value("${info.exactlyTheSamePO.percentage}")
+    @Value("${graph.exactlyTheSamePO_percentage}")
     private int exactlyTheSamePO_Percentage;
 
-    @Value("${info.outputFilePath}")
+    @Value("${graph.outputFilePath}")
     private String outputFilePath;
 
     private final PropertiesGenerator propertiesGenerator;
@@ -49,20 +47,15 @@ public class KnowledgeBaseGenerator {
 
     public Model generate() {
         Model model = ModelFactory.createDefaultModel();
-        try {
-            OutputStream out = new BufferedOutputStream(new FileOutputStream(outputFilePath));
+        model.add(shareSomePO((int) (shareSomePO_Percentage / 100.0 * numberOfAllEntities)));
+        model.add(exactlyTheSamePO((int) (exactlyTheSamePO_Percentage / 100.0 * numberOfAllEntities)));
+        int distinctPO_Percentage = 100 - (exactlyTheSamePO_Percentage + shareSomePO_Percentage);
+        model.add(distinctPO((int) (distinctPO_Percentage / 100.0 * numberOfAllEntities)));
 
-            model.add(shareSomePO((int) (shareSomePO_Percentage / 100.0 * numberOfAllEntities)));
-            model.add(exactlyTheSamePO((int) (exactlyTheSamePO_Percentage / 100.0 * numberOfAllEntities)));
-            int distinctPO_Percentage = 100 - (exactlyTheSamePO_Percentage + shareSomePO_Percentage);
-            model.add(distinctPO((int) (distinctPO_Percentage / 100.0 * numberOfAllEntities)));
-
-            //you can save it for later usages
+        //you can save it for later usages
+//            OutputStream out = new BufferedOutputStream(new FileOutputStream(outputFilePath));
 //            model.write(out, "TURTLE");
 
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
         return model;
     }
 

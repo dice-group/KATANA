@@ -1,4 +1,4 @@
-package org.aksw.katana.evaluation;
+package org.aksw.katana.evaluation.benchmark;
 
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 @Component
-@Profile("test")
+@Profile({"benchmark","test"})
 public interface PropertiesGenerator {
     List<Integer> getShareCandidateIndices(int i, int numberOfShareSomePO);
 

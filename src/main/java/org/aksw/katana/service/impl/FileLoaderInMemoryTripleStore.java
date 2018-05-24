@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 import javax.annotation.PostConstruct;
 
 @Service
-@Profile("InMemory")
+@Profile("FileLoaderInMemory")
 public class FileLoaderInMemoryTripleStore implements InMemoryTripleStore {// TODO: 5/14/18 Better name
 
 //    @Value("${info.SparQL.FileAddress}")

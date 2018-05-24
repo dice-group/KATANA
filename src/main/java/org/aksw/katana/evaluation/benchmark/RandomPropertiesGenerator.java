@@ -1,24 +1,33 @@
-package org.aksw.katana.evaluation;
+package org.aksw.katana.evaluation.benchmark;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Profile;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Component;
 
 import java.util.*;
 
 @Component
 @Profile({"random"})
+@PropertySource("classpath:application-benchmark.properties")
 public class RandomPropertiesGenerator implements PropertiesGenerator {
     private static final Random random = new Random();
 
-    @Value("${info.numberOfShareCandidate}")
-    private int numberOfShareCandidate;
-    @Value("${info.sizeOfOneSubsetOfShareSome}")
-    private int sizeOfOneSubsetOfShareSome;
-    @Value("${info.sizeOfOneSubsetOfAllTheSame}")
-    private int sizeOfOneSubsetOfAllTheSame;
-    @Value("${info.numberOfProperties}")
-    private int numberOfProperties;
+    //    @Value("${graph.numberOfShareCandidate}")
+//    private int numberOfShareCandidate;
+//    @Value("${graph.sizeOfOneSubsetOfShareSome}")
+//    private int sizeOfOneSubsetOfShareSome;
+//    @Value("${graph.sizeOfOneSubsetOfAllTheSame}")
+//    private int sizeOfOneSubsetOfAllTheSame;
+//    @Value("${graph.numberOfProperties}")
+//    private int numberOfProperties;
+    private final GraphProperties graphProperties;
+
+    @Autowired
+    public RandomPropertiesGenerator(GraphProperties graphProperties) {
+        this.graphProperties = graphProperties;
+    }
 
     @Override
     public List<Integer> getShareCandidateIndices(int i, int numberOfShareSomePO) {
@@ -54,22 +63,22 @@ public class RandomPropertiesGenerator implements PropertiesGenerator {
 
     private int getNumberOfShareCandidate(int i, int numberOfShareSomePO) {
         int max = Math.max(1, random.nextInt(numberOfShareSomePO - i));
-        return Math.min(numberOfShareCandidate, max);
+        return Math.min(graphProperties.getNumberOfShareCandidate(), max);
     }
 
     private int getSizeOfOneSubsetOfShareSome(int numberOfProperties) {
         int max = Math.max(1, random.nextInt(numberOfProperties + 1));
-        return Math.min(sizeOfOneSubsetOfShareSome, max);
+        return Math.min(graphProperties.getSizeOfOneSubsetOfShareSome(), max);
     }
 
     @Override
     public int getSizeOfOneSubsetOfAllTheSame() {
-        return random.nextInt(sizeOfOneSubsetOfAllTheSame) + 2;
+        return random.nextInt(graphProperties.getSizeOfOneSubsetOfAllTheSame()) + 2;
     }
 
     @Override
     public int getNumberOfProperties() {
-        return random.nextInt(numberOfProperties) + 1;
+        return random.nextInt(graphProperties.getNumberOfProperties()) + 1;
     }
 
 }

@@ -1,5 +1,7 @@
 package org.aksw.katana.evaluation;
 
+import org.aksw.katana.evaluation.benchmark.BenchMarkEvaluation;
+import org.aksw.katana.evaluation.benchmark.KnowledgeBaseGenerator;
 import org.aksw.katana.service.InMemoryTripleStore;
 import org.apache.jena.rdf.model.Model;
 import org.junit.Test;
@@ -16,10 +18,10 @@ import org.springframework.test.context.junit4.SpringRunner;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @TestPropertySource(locations = "classpath:test.properties")
-public class HappyPathEvaluationTest {
+public class BenchMarkEvaluationTest {
 
     @Autowired
-    private HappyPathEvaluation happyPathEvaluation;
+    private BenchMarkEvaluation benchMarkEvaluation;
 
     @Autowired
     private InMemoryTripleStore inMemoryTripleStore;
@@ -31,7 +33,7 @@ public class HappyPathEvaluationTest {
     public void run() {
         Model model = knowledgeBaseGenerator.generate();
         Mockito.when(inMemoryTripleStore.getModel()).thenReturn(model);
-        happyPathEvaluation.run();
+        benchMarkEvaluation.run();
     }
 }
 

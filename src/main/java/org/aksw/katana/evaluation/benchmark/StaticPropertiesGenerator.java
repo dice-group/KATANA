@@ -1,7 +1,9 @@
-package org.aksw.katana.evaluation;
+package org.aksw.katana.evaluation.benchmark;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Profile;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -9,16 +11,24 @@ import java.util.List;
 
 @Component
 @Profile({"static"})
+@PropertySource("classpath:application-benchmark.properties")
 public class StaticPropertiesGenerator implements PropertiesGenerator {
 
-    @Value("${info.numberOfShareCandidate}")
-    private int numberOfShareCandidate;
-    @Value("${info.sizeOfOneSubsetOfShareSome}")
-    private int sizeOfOneSubsetOfShareSome;
-    @Value("${info.sizeOfOneSubsetOfAllTheSame}")
-    private int sizeOfOneSubsetOfAllTheSame;
-    @Value("${info.numberOfProperties}")
-    private int numberOfProperties;
+//    @Value("${graph.numberOfShareCandidate}")
+//    private int numberOfShareCandidate;
+//    @Value("${graph.sizeOfOneSubsetOfShareSome}")
+//    private int sizeOfOneSubsetOfShareSome;
+//    @Value("${graph.sizeOfOneSubsetOfAllTheSame}")
+//    private int sizeOfOneSubsetOfAllTheSame;
+//    @Value("${graph.numberOfProperties}")
+//    private int numberOfProperties;
+
+    private final GraphProperties graphProperties;
+
+    @Autowired
+    public StaticPropertiesGenerator(GraphProperties graphProperties) {
+        this.graphProperties = graphProperties;
+    }
 
     @Override
     public List<Integer> getShareCandidateIndices(int i, int numberOfShareSomePO) {
@@ -44,21 +54,21 @@ public class StaticPropertiesGenerator implements PropertiesGenerator {
     }
 
     private int getNumberOfShareCandidate(int i, int numberOfShareSomePO) {
-        return numberOfShareSomePO - i - 1 > numberOfShareCandidate ? numberOfShareCandidate : numberOfShareSomePO - i - 1;
+        return numberOfShareSomePO - i - 1 > graphProperties.getNumberOfShareCandidate() ? graphProperties.getNumberOfShareCandidate() : numberOfShareSomePO - i - 1;
     }
 
     private int getSizeOfOneSubsetOfShareSome(int numberOfProperties) {
-        return sizeOfOneSubsetOfShareSome;
+        return graphProperties.getSizeOfOneSubsetOfShareSome();
     }
 
     @Override
     public int getSizeOfOneSubsetOfAllTheSame() {
-        return sizeOfOneSubsetOfAllTheSame;
+        return graphProperties.getSizeOfOneSubsetOfAllTheSame();
     }
 
     @Override
     public int getNumberOfProperties() {
-        return numberOfProperties;
+        return graphProperties.getNumberOfProperties();
     }
 
 }
