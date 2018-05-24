@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Profile;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -11,7 +12,7 @@ import java.util.List;
 
 @Component
 @Profile({"static"})
-@PropertySource("classpath:application-benchmark.properties")
+@Scope("prototype")
 public class StaticPropertiesGenerator implements PropertiesGenerator {
 
 //    @Value("${graph.numberOfShareCandidate}")

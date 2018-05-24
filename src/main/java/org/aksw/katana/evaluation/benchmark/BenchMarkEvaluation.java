@@ -10,6 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import java.util.*;
@@ -26,6 +27,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 @Component
 @Profile({"benchmark","test"})
+@Scope("prototype")
 public class BenchMarkEvaluation implements Runnable {
 
     private static final Logger logger = LoggerFactory.getLogger(BenchMarkEvaluation.class);
@@ -41,7 +43,6 @@ public class BenchMarkEvaluation implements Runnable {
 
     @Override
     public void run() {
-
 
         List<Pair<Resource, String>> allLabels = GetAllLabels();
         Map<Resource, String> deletedLabels = RemoveSomeLabelsArbitrary(allLabels);

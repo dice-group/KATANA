@@ -1,8 +1,11 @@
 package org.aksw.katana.evaluation.benchmark;
 
+import lombok.Builder;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import javax.validation.constraints.Max;
@@ -12,7 +15,7 @@ import javax.validation.constraints.Min;
 @Component
 @Getter
 @Setter
-@ConfigurationProperties("graph")
+@Scope("prototype")
 public class GraphProperties {
     @Min(1)
     private int allEntities;

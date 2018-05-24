@@ -10,6 +10,7 @@ import org.apache.jena.rdf.model.Resource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import java.util.*;
@@ -22,6 +23,7 @@ import java.util.concurrent.atomic.AtomicReference;
 // TODO: 26.04.18 for multiple result set a better rule
 
 @Component
+@Scope("prototype")
 public class KATANA {
 
     private static final Logger logger = LoggerFactory.getLogger(KATANA.class);

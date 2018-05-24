@@ -1,27 +1,18 @@
 package org.aksw.katana.evaluation.benchmark;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Profile;
-import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import java.util.*;
 
 @Component
 @Profile({"random"})
-@PropertySource("classpath:application-benchmark.properties")
+@Scope("prototype")
 public class RandomPropertiesGenerator implements PropertiesGenerator {
     private static final Random random = new Random();
 
-    //    @Value("${graph.numberOfShareCandidate}")
-//    private int numberOfShareCandidate;
-//    @Value("${graph.sizeOfOneSubsetOfShareSome}")
-//    private int sizeOfOneSubsetOfShareSome;
-//    @Value("${graph.sizeOfOneSubsetOfAllTheSame}")
-//    private int sizeOfOneSubsetOfAllTheSame;
-//    @Value("${graph.numberOfProperties}")
-//    private int numberOfProperties;
     private final GraphProperties graphProperties;
 
     @Autowired

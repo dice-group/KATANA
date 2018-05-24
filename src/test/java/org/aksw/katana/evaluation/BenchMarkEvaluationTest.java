@@ -13,28 +13,28 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
 
-@ActiveProfiles({"random", "test"})
-//@ActiveProfiles({"static", "test"})
-@RunWith(SpringRunner.class)
-@SpringBootTest
-@TestPropertySource(locations = "classpath:test.properties")
-public class BenchMarkEvaluationTest {
-
-    @Autowired
-    private BenchMarkEvaluation benchMarkEvaluation;
-
-    @Autowired
-    private InMemoryTripleStore inMemoryTripleStore;
-
-    @Autowired
-    private KnowledgeBaseGenerator knowledgeBaseGenerator;
-
-    @Test
-    public void run() {
-        Model model = knowledgeBaseGenerator.generate();
-        Mockito.when(inMemoryTripleStore.getModel()).thenReturn(model);
-        benchMarkEvaluation.run();
-    }
-}
-
+//@ActiveProfiles({"random", "test"})
+////@ActiveProfiles({"static", "test"})
+//@RunWith(SpringRunner.class)
+//@SpringBootTest
+//@TestPropertySource(locations = "classpath:test.properties")
+//public class BenchMarkEvaluationTest {
+//
+//    @Autowired
+//    private BenchMarkEvaluation benchMarkEvaluation;
+//
+//    @Autowired
+//    private InMemoryTripleStore inMemoryTripleStore;
+//
+//    @Autowired
+//    private KnowledgeBaseGenerator knowledgeBaseGenerator;
+//
+//    @Test
+//    public void run() {
+//        Model model = knowledgeBaseGenerator.generate();
+//        Mockito.when(inMemoryTripleStore.getModel()).thenReturn(model);
+//        benchMarkEvaluation.run();
+//    }
+//}
+//
 

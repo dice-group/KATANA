@@ -7,50 +7,39 @@ import org.apache.jena.vocabulary.RDFS;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Profile;
-import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
-import java.io.BufferedOutputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 @Component
 @Profile({"benchmark", "test"})
+@Scope("prototype")
 public class KnowledgeBaseGenerator {
 
     private static int cntResource = 0;
     private static int cntProperty = 0;
     private static int cntObject = 0;
 
-    @Value("${graph.allEntities}")
-    private int numberOfAllEntities;
-
-    @Value("${graph.shareSomePO_percentage}")
-    private int shareSomePO_Percentage;
-    @Value("${graph.exactlyTheSamePO_percentage}")
-    private int exactlyTheSamePO_Percentage;
-
-    @Value("${graph.outputFilePath}")
-    private String outputFilePath;
-
     private final PropertiesGenerator propertiesGenerator;
+    private final GraphProperties graphProperties;
 
     @Autowired
-    public KnowledgeBaseGenerator(PropertiesGenerator propertiesGenerator) {
+    public KnowledgeBaseGenerator(PropertiesGenerator propertiesGenerator, GraphProperties graphProperties) {
         this.propertiesGenerator = propertiesGenerator;
+        this.graphProperties = graphProperties;
     }
 
 
     public Model generate() {
+
         Model model = ModelFactory.createDefaultModel();
-        model.add(shareSomePO((int) (shareSomePO_Percentage / 100.0 * numberOfAllEntities)));
-        model.add(exactlyTheSamePO((int) (exactlyTheSamePO_Percentage / 100.0 * numberOfAllEntities)));
-        int distinctPO_Percentage = 100 - (exactlyTheSamePO_Percentage + shareSomePO_Percentage);
-        model.add(distinctPO((int) (distinctPO_Percentage / 100.0 * numberOfAllEntities)));
+        model.add(shareSomePO((int) (graphProperties.getShareSomePO_percentage() / 100.0 * graphProperties.getAllEntities())));
+        model.add(exactlyTheSamePO((int) (graphProperties.getExactlyTheSamePO_percentage() / 100.0 * graphProperties.getAllEntities())));
+        int distinctPO_Percentage = 100 - (graphProperties.getExactlyTheSamePO_percentage() + graphProperties.getShareSomePO_percentage());
+        model.add(distinctPO((int) (distinctPO_Percentage / 100.0 * graphProperties.getAllEntities())));
 
         //you can save it for later usages
 //            OutputStream out = new BufferedOutputStream(new FileOutputStream(outputFilePath));
