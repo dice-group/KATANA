@@ -14,6 +14,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import java.util.*;
+import java.util.concurrent.Callable;
 import java.util.concurrent.atomic.AtomicInteger;
 
 //Get all labels (rdfs:label) from the given KB
@@ -28,7 +29,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 @Component
 @Profile({"benchmark","test"})
 @Scope("prototype")
-public class BenchMarkEvaluation implements Runnable {
+public class BenchMarkEvaluation implements Callable<Pair<Integer, Integer>> {
 
     private static final Logger logger = LoggerFactory.getLogger(BenchMarkEvaluation.class);
 
@@ -42,7 +43,7 @@ public class BenchMarkEvaluation implements Runnable {
     }
 
     @Override
-    public void run() {
+    public Pair<Integer, Integer> call() {
 
         List<Pair<Resource, String>> allLabels = GetAllLabels();
         Map<Resource, String> deletedLabels = RemoveSomeLabelsArbitrary(allLabels);
@@ -50,10 +51,10 @@ public class BenchMarkEvaluation implements Runnable {
 
         Map<String, Resource> result = katana.run(EKB);
 
-        checkResult(deletedLabels, result);
+        return checkResult(deletedLabels, result);
     }
 
-    private void checkResult(Map<Resource, String> deletedLabels, Map<String, Resource> result) {
+    private Pair<Integer, Integer> checkResult(Map<Resource, String> deletedLabels, Map<String, Resource> result) {
         AtomicInteger cntTruePositive = new AtomicInteger();
         result.forEach((label, entity) -> {
             if (deletedLabels.containsKey(entity))
@@ -69,6 +70,7 @@ public class BenchMarkEvaluation implements Runnable {
         result.forEach((x, y) -> logger.debug("label: {}, resource: {}", x, y));
         logger.info("#True Positive: {}", cntTruePositive);
         logger.info("#All deleted labels: {}", deletedLabels.size());
+        return Pair.of(cntTruePositive.get(), deletedLabels.size());
     }
 
     private Map<String, HashSet<Pair<Property, RDFNode>>> generateExtractedKnowledgeBaseAndShrankKnowledgeBase(Map<Resource, String> deletedLabels) {
