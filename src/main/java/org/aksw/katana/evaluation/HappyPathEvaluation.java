@@ -104,12 +104,12 @@ public class HappyPathEvaluation implements Runnable {
     }
 
     private Map<Resource, String> RemoveSomeLabelsArbitrary(List<Pair<Resource, String>> allLabels) {
-        Random rnd = new Random();
+//        Random rnd = new Random();
 
         Map<Resource, String> deletedLabels = new HashMap<>();
 
         allLabels.forEach(x -> {
-            if (rnd.nextDouble() < 0.3)// TODO: 24.04.18 make 0.3 a variable
+//            if (rnd.nextDouble() < 0.3)// TODO: 24.04.18 make 0.3 a variable
                 deletedLabels.put(x.getKey(), x.getValue());
         });
         return deletedLabels;
