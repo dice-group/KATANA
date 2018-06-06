@@ -3,6 +3,7 @@ package org.aksw.katana.algorithm;
 import com.google.common.collect.ImmutableMap;
 import org.aksw.katana.service.SparQL;
 import org.apache.commons.lang3.tuple.Pair;
+import org.apache.commons.lang3.tuple.Triple;
 import org.apache.jena.query.*;
 import org.apache.jena.rdf.model.Property;
 import org.apache.jena.rdf.model.RDFNode;
@@ -28,6 +29,11 @@ public class KATANA {
 
     private static final Logger logger = LoggerFactory.getLogger(KATANA.class);
     private static final double EPS = 1e-8;
+    private static final ImmutableMap<String, String> PREFIXES = ImmutableMap.<String, String>builder()
+            .put("rdf", "http://www.w3.org/1999/02/22-rdf-syntax-ns#")
+            .put("rdfs", "http://www.w3.org/2000/01/rdf-schema#")
+            .put("owl", "http://www.w3.org/2002/07/owl#")
+            .build();
 
     private final SparQL sparQL;
 
@@ -37,36 +43,47 @@ public class KATANA {
         this.sparQL = sparQL;
     }
 
-    public Map<String, Resource> run(Map<String, HashSet<Pair<Property, RDFNode>>> EKB) {
+    public Map<String, Resource> runBenchmark(Map<String, HashSet<Pair<Property, RDFNode>>> EKB) {
 
         Map<String, Resource> result = new HashMap<>();
 
         EKB.entrySet().forEach(candidate -> {
-            Set<Resource> possibleTargetResources = calculatePossibleTargetResources(candidate);
-            Resource resource = extractMostPossibleTarget(possibleTargetResources, candidate);
+            Set<Resource> possibleTargetResources = calculatePossibleTargetResources(candidate.getValue());
+            logger.debug("possible target resources for candidate {} are {}", candidate, Arrays.toString(possibleTargetResources.toArray()));
+            Resource resource = extractMostPossibleTarget(candidate.getKey(), possibleTargetResources, candidate.getValue());
             result.put(candidate.getKey(), resource);
         });
 
         return result;
     }
 
-    private Resource extractMostPossibleTarget(Set<Resource> possibleTargetResources,
-                                               Map.Entry<String, HashSet<Pair<Property, RDFNode>>> candidate) {
+    public Map<Triple<String, Integer, Double>, Resource> runEnhancedBenchMark
+            (Map<Pair<String, Integer>, HashSet<Pair<Property, RDFNode>>> EKB) {
+
+        Map<Triple<String, Integer, Double>, Resource> result = new HashMap<>();
+
+        EKB.forEach((key, value) -> {
+            Set<Resource> possibleTargetResources = calculatePossibleTargetResources(value);
+            Resource resource = extractMostPossibleTarget(key.getLeft(), possibleTargetResources, value);
+            double score = calculateScore(value);
+            result.put(Triple.of(key.getLeft(), key.getRight(), score), resource);
+        });
+
+        return result;
+    }
+
+    private Resource extractMostPossibleTarget(String label, Set<Resource> possibleTargetResources,
+                                               HashSet<Pair<Property, RDFNode>> allPOs) {
         double maxPossibleScore = -1;
         ArrayList<Resource> targetResource = new ArrayList<>();
         for (Resource s : possibleTargetResources) { // TODO: 26.04.18 Can be parallelled
-            Set<Pair<Property, RDFNode>> M = calculateM_c_s(candidate, s);
+            Set<Pair<Property, RDFNode>> M = calculateM_c_s(s, allPOs);
 
-            logger.debug("extractMostPossibleTarget, candidate: {}, s:{}, M: {} ", candidate.getKey(), M);
+            logger.debug("extractMostPossibleTarget, candidate: {}, s:{}, M: {} ", label, M);
 
-            AtomicReference<Double> tempProduct = new AtomicReference<>((double) 1);
-            M.forEach(po -> {
-                double psi = calculatePsi(po);
-                tempProduct.updateAndGet(v -> v * psi);
-            });
-            double score = 1 - tempProduct.get(); //if M is an empty set then score is 0
+            double score = calculateScore(M);
 
-            logger.debug("extractMostPossibleTarget, candidate: {}, possible Target Resource: {}, score: {}", candidate.getKey(), s, score);
+            logger.debug("extractMostPossibleTarget, candidate: {}, possible Target Resource: {}, score: {}", label, s, score);
 
             if (Math.abs(score - maxPossibleScore) < EPS) {
                 targetResource.add(s);
@@ -78,11 +95,20 @@ public class KATANA {
         }
         logger.debug("extractMostPossibleTarget, result: Score: {} Resource: {}", maxPossibleScore, targetResource);
         if(targetResource.size() != 1){
-            logger.info(" candidate {} , non unique targetResources are {}",candidate, Arrays.toString(targetResource.toArray()));
+            logger.info(" label {}, POs {} , non unique targetResources are {}",label, allPOs, Arrays.toString(targetResource.toArray()));
         }
         if (targetResource.size() == 0)
             return null;
         return targetResource.get(new Random().nextInt(targetResource.size()));
+    }
+
+    private double calculateScore(Set<Pair<Property, RDFNode>> m) {
+        AtomicReference<Double> tempProduct = new AtomicReference<>((double) 1);
+        m.forEach(po -> {
+            double psi = calculatePsi(po);
+            tempProduct.updateAndGet(v -> v * psi);
+        });
+        return 1 - tempProduct.get();
     }
 
     private double calculatePsi(Pair<Property, RDFNode> po) {
@@ -95,10 +121,7 @@ public class KATANA {
                 "?subject ?property ?object\n" +
                 "} ");
 
-        pss.setNsPrefixes(ImmutableMap.<String, String>builder()
-                .put("rdf", "http://www.w3.org/1999/02/22-rdf-syntax-ns#")
-                .put("rdfs", "http://www.w3.org/2000/01/rdf-schema#")
-                .build());
+        pss.setNsPrefixes(PREFIXES);
 
         pss.setParam("property", property);
         pss.setParam("object", object);
@@ -121,11 +144,11 @@ public class KATANA {
     }
 
     private Set<Pair<Property, RDFNode>> calculateM_c_s(
-            Map.Entry<String, HashSet<Pair<Property, RDFNode>>> candidate, Resource s) {
+            Resource s, HashSet<Pair<Property, RDFNode>> allPOs) {
 
         Set<Pair<Property, RDFNode>> M = new HashSet<>();
 
-        for (Pair<Property, RDFNode> po : candidate.getValue()) {
+        for (Pair<Property, RDFNode> po : allPOs) {
             Property property = po.getLeft();
             RDFNode object = po.getRight();
 
@@ -134,10 +157,7 @@ public class KATANA {
                     "?subject ?property ?object\n" +
                     "} ");
 
-            pss.setNsPrefixes(ImmutableMap.<String, String>builder()
-                    .put("rdf", "http://www.w3.org/1999/02/22-rdf-syntax-ns#")
-                    .put("rdfs", "http://www.w3.org/2000/01/rdf-schema#")
-                    .build());
+            pss.setNsPrefixes(PREFIXES);
 
             pss.setParam("subject", s);
             pss.setParam("property", property);
@@ -156,9 +176,9 @@ public class KATANA {
         return M;
     }
 
-    private Set<Resource> calculatePossibleTargetResources(Map.Entry<String, HashSet<Pair<Property, RDFNode>>> candidate) {
+    private Set<Resource> calculatePossibleTargetResources(HashSet<Pair<Property, RDFNode>> allPOs) {
         Set<Resource> possibleTargetResources = new HashSet<>();
-        candidate.getValue().forEach(po -> {
+        allPOs.forEach(po -> {
             //select all s that have po explicitly
             Property property = po.getLeft();
             RDFNode object = po.getRight();
@@ -168,10 +188,7 @@ public class KATANA {
                     "  ?subject ?property ?object .\n" +
                     "}");
 
-            pss.setNsPrefixes(ImmutableMap.<String, String>builder()
-                    .put("rdf", "http://www.w3.org/1999/02/22-rdf-syntax-ns#")
-                    .put("rdfs", "http://www.w3.org/2000/01/rdf-schema#")
-                    .build());
+            pss.setNsPrefixes(PREFIXES);
 
             pss.setParam("property", property);
             pss.setParam("object", object);
@@ -187,7 +204,6 @@ public class KATANA {
                 logger.error(Arrays.toString(e.getStackTrace()));
             }
         });
-        logger.debug("possible target resources for candidate {} are {}", candidate, Arrays.toString(possibleTargetResources.toArray()));
         return possibleTargetResources;
     }
 

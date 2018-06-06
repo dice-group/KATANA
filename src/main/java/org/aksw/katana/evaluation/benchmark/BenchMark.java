@@ -53,9 +53,11 @@ public class BenchMark {
 
                 InMemorySparQL sparQL = context.getBean(InMemorySparQL.class, inMemoryTripleStore);
 
+                SparqlUtility sparqlUtility = context.getBean(SparqlUtility.class, sparQL);
+
                 KATANA katana = context.getBean(KATANA.class, sparQL);
 
-                BenchMarkEvaluation benchMarkEvaluation = context.getBean(BenchMarkEvaluation.class, sparQL, katana);
+                BenchMarkEvaluation benchMarkEvaluation = context.getBean(BenchMarkEvaluation.class, katana, sparqlUtility);
 
                 Pair<Integer, Integer> res = benchMarkEvaluation.call();
                 System.out.println(res.getLeft() + " of " + res.getRight());

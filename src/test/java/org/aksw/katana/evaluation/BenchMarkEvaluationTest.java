@@ -30,10 +30,10 @@ import org.springframework.test.context.junit4.SpringRunner;
 //    private KnowledgeBaseGenerator knowledgeBaseGenerator;
 //
 //    @Test
-//    public void run() {
+//    public void runBenchmark() {
 //        Model model = knowledgeBaseGenerator.generate();
 //        Mockito.when(inMemoryTripleStore.getModel()).thenReturn(model);
-//        benchMarkEvaluation.run();
+//        benchMarkEvaluation.runBenchmark();
 //    }
 //}
 //
