@@ -1,4 +1,4 @@
-package org.aksw.katana.evaluation.benchmark;
+package org.aksw.katana.evaluation;
 
 import com.google.common.collect.ImmutableMap;
 import org.aksw.katana.service.SparQL;
@@ -59,7 +59,7 @@ public class SparqlUtility {
 
             try (QueryExecution exec = sparQL.createQueryExecution(pss.asQuery())) {
                 ResultSet results = exec.execSelect();
-                if (results.hasNext()) {
+                while (results.hasNext()) {
                     QuerySolution solution = results.nextSolution();
                     Property property = ResourceFactory.createProperty(solution.getResource("property").getURI());
                     RDFNode object = solution.get("object");

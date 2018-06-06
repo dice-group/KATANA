@@ -1,4 +1,4 @@
-package org.aksw.katana.evaluation.benchmark;
+package org.aksw.katana.evaluation;
 
 import org.aksw.katana.service.InMemoryTripleStore;
 import org.apache.jena.rdf.model.Model;
@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 @Component
-@Profile({"benchmark"})
+@Profile({"benchmark","enhancedBenchmark"})
 @Scope("prototype")
 public class BenchMarkInMemoryTripleStore implements InMemoryTripleStore {
 

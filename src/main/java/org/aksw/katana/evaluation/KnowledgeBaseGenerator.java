@@ -1,11 +1,10 @@
-package org.aksw.katana.evaluation.benchmark;
+package org.aksw.katana.evaluation;
 
 import org.apache.commons.lang3.tuple.Pair;
 import org.apache.jena.rdf.model.*;
 import org.apache.jena.rdf.model.impl.StatementImpl;
 import org.apache.jena.vocabulary.RDFS;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Profile;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
@@ -15,13 +14,14 @@ import java.util.Arrays;
 import java.util.List;
 
 @Component
-@Profile({"benchmark", "test"})
+@Profile({"benchmark", "enhancedBenchmark", "test"})
 @Scope("prototype")
 public class KnowledgeBaseGenerator {
 
-    private static int cntResource = 0;
-    private static int cntProperty = 0;
-    private static int cntObject = 0;
+    private int cntResource = 0;
+    private int cntProperty = 0;
+    private int cntObject = 0;
+
 
     private final PropertiesGenerator propertiesGenerator;
     private final GraphProperties graphProperties;

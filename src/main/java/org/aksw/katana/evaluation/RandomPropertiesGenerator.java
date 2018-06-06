@@ -1,4 +1,4 @@
-package org.aksw.katana.evaluation.benchmark;
+package org.aksw.katana.evaluation;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;

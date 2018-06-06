@@ -1,4 +1,4 @@
-package org.aksw.katana.evaluation.benchmark;
+package org.aksw.katana.evaluation;
 
 import lombok.Builder;
 import lombok.EqualsAndHashCode;

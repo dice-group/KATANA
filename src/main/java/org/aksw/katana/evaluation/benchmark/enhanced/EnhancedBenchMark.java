@@ -1,4 +1,4 @@
-package org.aksw.katana.evaluation.benchmark;
+package org.aksw.katana.evaluation.benchmark.enhanced;
 
 import org.aksw.katana.algorithm.KATANA;
 import org.aksw.katana.evaluation.*;
@@ -14,14 +14,14 @@ import java.io.FileNotFoundException;
 import java.io.PrintStream;
 
 @Component
-@Profile("benchmark")
-public class BenchMark {
+@Profile("enhancedBenchmark")
+public class EnhancedBenchMark {
 
     private final ApplicationContext context;
 
 
     @Autowired
-    public BenchMark(ApplicationContext context) {
+    public EnhancedBenchMark(ApplicationContext context) {
         this.context = context;
     }
 
@@ -33,14 +33,13 @@ public class BenchMark {
         for(int exactlyTheSamePO_percentage = 0; exactlyTheSamePO_percentage <= 10; exactlyTheSamePO_percentage++)
             for(int shareSomePO_percentage = 0; shareSomePO_percentage < 10; shareSomePO_percentage++) {
                 GraphProperties graphProperties = context.getBean(GraphProperties.class);
-                graphProperties.setAllEntities(1000);
+                graphProperties.setAllEntities(100);
                 graphProperties.setExactlyTheSamePO_percentage(exactlyTheSamePO_percentage);
                 graphProperties.setShareSomePO_percentage(shareSomePO_percentage);
-                graphProperties.setNumberOfProperties(8);
+                graphProperties.setNumberOfProperties(4);
                 graphProperties.setNumberOfShareCandidate(4);
                 graphProperties.setSizeOfOneSubsetOfShareSome(5);
-                graphProperties.setSizeOfOneSubsetOfAllTheSame(8);
-                graphProperties.setNumberOfProperties(8);
+                graphProperties.setSizeOfOneSubsetOfAllTheSame(4);
 
                 PropertiesGenerator propertiesGenerator = context.getBean(PropertiesGenerator.class, graphProperties);
 
@@ -56,9 +55,9 @@ public class BenchMark {
 
                 KATANA katana = context.getBean(KATANA.class, sparQL);
 
-                BenchMarkEvaluation benchMarkEvaluation = context.getBean(BenchMarkEvaluation.class, katana, sparqlUtility);
+                EnhancedBenchMarkEvaluation enhancedBenchMarkEvaluation = context.getBean(EnhancedBenchMarkEvaluation.class, katana, sparqlUtility);
 
-                Pair<Integer, Integer> res = benchMarkEvaluation.call();
+                Pair<Integer, Integer> res = enhancedBenchMarkEvaluation.call();
                 System.out.println(res.getLeft() + " of " + res.getRight());
                 printStream.println(exactlyTheSamePO_percentage + "," + shareSomePO_percentage + "," +res.getLeft() + "," + res.getRight());
             }
