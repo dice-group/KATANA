@@ -1,6 +1,7 @@
 package org.aksw.katana.evaluation.benchmark;
 
 import org.aksw.katana.algorithm.KATANA;
+import org.aksw.katana.evaluation.SparqlUtility;
 import org.apache.commons.lang3.tuple.Pair;
 import org.apache.jena.rdf.model.*;
 import org.slf4j.Logger;
@@ -48,23 +49,25 @@ public class BenchMarkEvaluation implements Callable<Pair<Integer, Integer>> {
     }
 
 
-    private Pair<Integer, Integer> checkResult(Map<Resource, String> deletedLabels, Map<String, Resource> result) {
+    private Pair<Integer, Integer> checkResult(Map<Resource, String> allLabels, Map<String, Resource> result) {
         AtomicInteger cntTruePositive = new AtomicInteger();
+        AtomicInteger all = new AtomicInteger();
         result.forEach((label, entity) -> {
-            if (deletedLabels.containsKey(entity))
-                cntTruePositive.addAndGet((deletedLabels.get(entity).equals(label)) ? 1 : 0);
+            all.addAndGet(1);
+            if (allLabels.containsKey(entity))
+                cntTruePositive.addAndGet((allLabels.get(entity).equals(label)) ? 1 : 0);
             else
                 logger.info("not found with the label {}, and entity {}", label, entity);
         });
 
         logger.debug("Deleted labels: ");
-        deletedLabels.forEach((x, y) -> logger.debug("label: {}, resource: {}", y, x));
+        allLabels.forEach((x, y) -> logger.debug("label: {}, resource: {}", y, x));
 
         logger.debug("Found labels: ");
         result.forEach((x, y) -> logger.debug("label: {}, resource: {}", x, y));
         logger.info("#True Positive: {}", cntTruePositive);
-        logger.info("#All deleted labels: {}", deletedLabels.size());
-        return Pair.of(cntTruePositive.get(), deletedLabels.size());
+        logger.info("#All deleted labels: {}", all);
+        return Pair.of(cntTruePositive.get(), all.get());
     }
 
 
