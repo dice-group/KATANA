@@ -42,8 +42,12 @@ public class KnowledgeBaseGenerator {
         model.add(distinctPO((int) (distinctPO_Percentage / 100.0 * graphProperties.getAllEntities())));
 
         //you can save it for later usages
-//            OutputStream out = new BufferedOutputStream(new FileOutputStream(outputFilePath));
+//        try {
+//            OutputStream out = new BufferedOutputStream(new FileOutputStream("/home/afshin/Desktop/output.ttl"));
 //            model.write(out, "TURTLE");
+//        } catch (FileNotFoundException e) {
+//            e.printStackTrace();
+//        }
 
         return model;
     }

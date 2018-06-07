@@ -30,7 +30,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 @Component
 @Profile({"enhancedBenchmark", "test"})
 @Scope("prototype")
-public class EnhancedBenchMarkEvaluation implements Callable<Pair<Integer, Integer>> {
+public class EnhancedBenchMarkEvaluation implements Callable<List<Pair<Triple<String, Integer, Double>, Boolean>>> {
 
     private static final Logger logger = LoggerFactory.getLogger(EnhancedBenchMarkEvaluation.class);
 
@@ -44,7 +44,7 @@ public class EnhancedBenchMarkEvaluation implements Callable<Pair<Integer, Integ
     }
 
     @Override
-    public Pair<Integer, Integer> call() {
+    public List<Pair<Triple<String, Integer, Double>, Boolean>> call() {
         Map<Resource, String> allLabels = sparqlUtility.GetAllLabels();
         Map<String, HashSet<Pair<Property, RDFNode>>> EKB = sparqlUtility.generateExtractedKnowledgeBase(allLabels);
         Map<Pair<String, Integer>, HashSet<Pair<Property, RDFNode>>> EEKB = getEnhancedEKB(EKB);
@@ -52,35 +52,36 @@ public class EnhancedBenchMarkEvaluation implements Callable<Pair<Integer, Integ
         return checkResult(allLabels, result);
     }
 
-    private Pair<Integer, Integer> checkResult(Map<Resource, String> allLabels, Map<Triple<String, Integer, Double>, Resource> result) {
+    private List<Pair<Triple<String, Integer, Double>, Boolean>> checkResult(Map<Resource, String> allLabels, Map<Triple<String, Integer, Double>, Resource> result) {
+
+        List<Pair<Triple<String, Integer, Double>, Boolean>> ret = new ArrayList<>();
+
         AtomicInteger cntTruePositive = new AtomicInteger();
         AtomicInteger all = new AtomicInteger();
         result.forEach((key, entity) -> {
+            boolean isCorrect = false;
             all.addAndGet(1);
-            if (allLabels.containsKey(entity))
-                cntTruePositive.addAndGet((allLabels.get(entity).equals(key.getLeft())) ? 1 : 0);
+            if (allLabels.containsKey(entity)) {
+                isCorrect = allLabels.get(entity).equals(key.getLeft());
+                cntTruePositive.addAndGet(isCorrect ? 1 : 0);
+            }
             else
                 logger.info("not found with the label {}, and entity {}", key.getLeft(), entity);
+            ret.add(Pair.of(key, isCorrect));
         });
 
-        logger.debug("Deleted labels: ");
-        allLabels.forEach((x, y) -> logger.debug("label: {}, resource: {}", y, x));
-
-        logger.debug("Found labels: ");
-        result.forEach((x, y) -> logger.debug("label: {}, resource: {}", x, y));
-        logger.info("#True Positive: {}", cntTruePositive);
-        logger.info("#All deleted labels: {}", all);
-        return Pair.of(cntTruePositive.get(), all.get());
+        return ret;
     }
 
     private Map<Pair<String, Integer>, HashSet<Pair<Property, RDFNode>>> getEnhancedEKB(Map<String, HashSet<Pair<Property, RDFNode>>> EKB) {
         Map<Pair<String, Integer>, HashSet<Pair<Property, RDFNode>>> EEKB = new HashMap<>();
         EKB.forEach((label, allPOs) -> {
             List<Pair<Property, RDFNode>> pairs = new ArrayList<>(allPOs);
-            for (int i = 1; i < (1 << pairs.size()); i++) { //skip empty subset
+            int len = pairs.size();
+            for (int i = 1; i < (1 << len); i++) { //skip empty subset
                 HashSet<Pair<Property, RDFNode>> subset = new HashSet<>();
-                for (int j = 0; j < pairs.size(); j++)
-                    if ((i & j) > 0) {
+                for (int j = 0; j < len; j++)
+                    if ((i & (1 << j)) != 0) {
                         subset.add(pairs.get(j));
                     }
                 EEKB.put(Pair.of(label, i), subset);
@@ -88,26 +89,5 @@ public class EnhancedBenchMarkEvaluation implements Callable<Pair<Integer, Integ
         });
         return EEKB;
     }
-
-
-//    private Pair<Integer, Integer> checkResult(Map<Resource, String> deletedLabels, Map<String, Resource> result) {
-//        AtomicInteger cntTruePositive = new AtomicInteger();
-//        result.forEach((label, entity) -> {
-//            if (deletedLabels.containsKey(entity))
-//                cntTruePositive.addAndGet((deletedLabels.get(entity).equals(label)) ? 1 : 0);
-//            else
-//                logger.info("not found with the label {}, and entity {}", label, entity);
-//        });
-//
-//        logger.debug("Deleted labels: ");
-//        deletedLabels.forEach((x, y) -> logger.debug("label: {}, resource: {}", y, x));
-//
-//        logger.debug("Found labels: ");
-//        result.forEach((x, y) -> logger.debug("label: {}, resource: {}", x, y));
-//        logger.info("#True Positive: {}", cntTruePositive);
-//        logger.info("#All deleted labels: {}", deletedLabels.size());
-//        return Pair.of(cntTruePositive.get(), deletedLabels.size());
-//    }
-
 
 }

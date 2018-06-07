@@ -66,7 +66,7 @@ public class KATANA {
             Set<Resource> possibleTargetResources = calculatePossibleTargetResources(value);
             Resource resource = extractMostPossibleTarget(key.getLeft(), possibleTargetResources, value);
             double score = calculateScore(value);
-            result.put(Triple.of(key.getLeft(), key.getRight(), score), resource);
+            result.put(Triple.of(key.getLeft(), key.getRight(), 1 - score), resource);
         });
 
         return result;
