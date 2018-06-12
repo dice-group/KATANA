@@ -12,10 +12,14 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
 import org.springframework.context.annotation.Scope;
+import org.springframework.scheduling.annotation.Async;
+import org.springframework.scheduling.annotation.AsyncResult;
 import org.springframework.stereotype.Component;
 
 import java.util.*;
 import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Future;
 import java.util.concurrent.atomic.AtomicInteger;
 
 //Get all labels (rdfs:label) from the given KB
@@ -44,12 +48,13 @@ public class EnhancedBenchMarkEvaluation implements Callable<List<Pair<Triple<St
     }
 
     @Override
-    public List<Pair<Triple<String, Integer, Double>, Boolean>> call() {
+    public List<Pair<Triple<String, Integer, Double>, Boolean>> call() throws ExecutionException, InterruptedException {
         Map<Resource, String> allLabels = sparqlUtility.GetAllLabels();
         Map<String, HashSet<Pair<Property, RDFNode>>> EKB = sparqlUtility.generateExtractedKnowledgeBase(allLabels);
         Map<Pair<String, Integer>, HashSet<Pair<Property, RDFNode>>> EEKB = getEnhancedEKB(EKB);
-        Map<Triple<String, Integer, Double>, Resource> result = katana.runEnhancedBenchMark(EEKB);
-        return checkResult(allLabels, result);
+        Map<Triple<String, Integer, Double>, Resource> result = katana.runEnhancedBenchMark(EEKB).get();
+        List<Pair<Triple<String, Integer, Double>, Boolean>> ret = checkResult(allLabels, result);
+        return ret;
     }
 
     private List<Pair<Triple<String, Integer, Double>, Boolean>> checkResult(Map<Resource, String> allLabels, Map<Triple<String, Integer, Double>, Resource> result) {
@@ -66,7 +71,7 @@ public class EnhancedBenchMarkEvaluation implements Callable<List<Pair<Triple<St
                 cntTruePositive.addAndGet(isCorrect ? 1 : 0);
             }
             else
-                logger.info("not found with the label {}, and entity {}", key.getLeft(), entity);
+                logger.debug("not found with the label {}, and entity {}", key.getLeft(), entity);
             ret.add(Pair.of(key, isCorrect));
         });
 

@@ -96,7 +96,7 @@ public class KnowledgeBaseGenerator {
             Resource s = ResourceFactory.createResource("http://example.de/resource" + cntResource);
             ret.add(new StatementImpl(s, RDFS.label, ResourceFactory.createStringLiteral(Integer.toString(cntResource))));
             cntResource++;
-            int numberOfProperties = propertiesGenerator.getNumberOfProperties();//maximum 8 po and at least one
+            int numberOfProperties = propertiesGenerator.getNumberOfProperties();//At least one
             for (int k = 0; k < numberOfProperties; k++) {
                 Property p = ResourceFactory.createProperty("http://example.de/property" + cntProperty++);
                 RDFNode o = ResourceFactory.createStringLiteral("" + cntObject++);

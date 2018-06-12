@@ -57,7 +57,7 @@ public class BenchMarkEvaluation implements Callable<Pair<Integer, Integer>> {
             if (allLabels.containsKey(entity))
                 cntTruePositive.addAndGet((allLabels.get(entity).equals(label)) ? 1 : 0);
             else
-                logger.info("not found with the label {}, and entity {}", label, entity);
+                logger.debug("not found with the label {}, and entity {}", label, entity);
         });
 
         logger.debug("Deleted labels: ");

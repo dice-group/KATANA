@@ -11,10 +11,16 @@ import org.apache.jena.rdf.model.Resource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Scope;
+import org.springframework.scheduling.annotation.Async;
+import org.springframework.scheduling.annotation.AsyncResult;
+import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.stereotype.Component;
 
 import java.util.*;
+import java.util.concurrent.Executor;
+import java.util.concurrent.Future;
 import java.util.concurrent.atomic.AtomicReference;
 
 
@@ -57,7 +63,16 @@ public class KATANA {
         return result;
     }
 
-    public Map<Triple<String, Integer, Double>, Resource> runEnhancedBenchMark
+//    @Bean(name = "threadPoolTaskExecutor")
+//    public Executor threadPoolTaskExecutor() {
+//        ThreadPoolTaskExecutor threadPoolTaskExecutor = new ThreadPoolTaskExecutor();
+//        threadPoolTaskExecutor.setMaxPoolSize(1000);
+//        threadPoolTaskExecutor.setCorePoolSize(100);
+//        return threadPoolTaskExecutor;
+//    }
+
+//    @Async
+    public Future<Map<Triple<String, Integer, Double>, Resource>> runEnhancedBenchMark
             (Map<Pair<String, Integer>, HashSet<Pair<Property, RDFNode>>> EKB) {
 
         Map<Triple<String, Integer, Double>, Resource> result = new HashMap<>();
@@ -69,7 +84,7 @@ public class KATANA {
             result.put(Triple.of(key.getLeft(), key.getRight(), 1 - score), resource);
         });
 
-        return result;
+        return new AsyncResult<>(result);
     }
 
     private Resource extractMostPossibleTarget(String label, Set<Resource> possibleTargetResources,
@@ -95,7 +110,7 @@ public class KATANA {
         }
         logger.debug("extractMostPossibleTarget, result: Score: {} Resource: {}", maxPossibleScore, targetResource);
         if(targetResource.size() != 1){
-            logger.info(" label {}, POs {} , non unique targetResources are {}",label, allPOs, Arrays.toString(targetResource.toArray()));
+            logger.debug(" label {}, POs {} , non unique targetResources are {}",label, allPOs, Arrays.toString(targetResource.toArray()));
         }
         if (targetResource.size() == 0)
             return null;

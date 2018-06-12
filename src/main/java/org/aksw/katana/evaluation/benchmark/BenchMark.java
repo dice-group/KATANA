@@ -5,6 +5,7 @@ import org.aksw.katana.evaluation.*;
 import org.aksw.katana.service.impl.InMemorySparQL;
 import org.apache.commons.lang3.tuple.Pair;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Profile;
@@ -19,6 +20,8 @@ public class BenchMark {
 
     private final ApplicationContext context;
 
+    @Value("${info.outputFileAddress}")
+    private String outputFileAddress;
 
     @Autowired
     public BenchMark(ApplicationContext context) {
@@ -28,7 +31,7 @@ public class BenchMark {
     @Bean
     public Boolean doBenchMark() throws FileNotFoundException {
 
-        PrintStream printStream = new PrintStream("/home/afshin/Desktop/res.csv");
+        PrintStream printStream = new PrintStream(outputFileAddress);
 
         for(int exactlyTheSamePO_percentage = 0; exactlyTheSamePO_percentage <= 10; exactlyTheSamePO_percentage++)
             for(int shareSomePO_percentage = 0; shareSomePO_percentage < 10; shareSomePO_percentage++) {
