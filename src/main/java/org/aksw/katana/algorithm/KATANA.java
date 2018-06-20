@@ -1,13 +1,15 @@
 package org.aksw.katana.algorithm;
 
 import com.google.common.collect.ImmutableMap;
+import org.aksw.katana.service.InMemoryTripleStore;
 import org.aksw.katana.service.SparQL;
+import org.apache.commons.collections15.SetUtils;
 import org.apache.commons.lang3.tuple.Pair;
 import org.apache.commons.lang3.tuple.Triple;
+import org.apache.jena.atlas.iterator.Iter;
 import org.apache.jena.query.*;
-import org.apache.jena.rdf.model.Property;
-import org.apache.jena.rdf.model.RDFNode;
-import org.apache.jena.rdf.model.Resource;
+import org.apache.jena.rdf.model.*;
+import org.apache.jena.rdf.model.impl.StatementImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +23,7 @@ import org.springframework.stereotype.Component;
 import java.util.*;
 import java.util.concurrent.*;
 import java.util.concurrent.atomic.AtomicReference;
+import java.util.stream.Collectors;
 
 
 //for each candidate in EKB(Extracted Knowledge Base) calculate its Possible Target Resources (name it possibleTargetResources)
@@ -34,18 +37,20 @@ public class KATANA {
 
     private static final Logger logger = LoggerFactory.getLogger(KATANA.class);
     private static final double EPS = 1e-8;
-    private static final ImmutableMap<String, String> PREFIXES = ImmutableMap.<String, String>builder()
-            .put("rdf", "http://www.w3.org/1999/02/22-rdf-syntax-ns#")
-            .put("rdfs", "http://www.w3.org/2000/01/rdf-schema#")
-            .put("owl", "http://www.w3.org/2002/07/owl#")
-            .build();
+//    private static final ImmutableMap<String, String> PREFIXES = ImmutableMap.<String, String>builder()
+//            .put("rdf", "http://www.w3.org/1999/02/22-rdf-syntax-ns#")
+//            .put("rdfs", "http://www.w3.org/2000/01/rdf-schema#")
+//            .put("owl", "http://www.w3.org/2002/07/owl#")
+//            .build();
 
     private final SparQL sparQL;
+    private final InMemoryTripleStore inMemoryTripleStore;
 
     @Autowired
-    public KATANA(SparQL sparQL) {
+    public KATANA(SparQL sparQL, InMemoryTripleStore inMemoryTripleStore) {
 
         this.sparQL = sparQL;
+        this.inMemoryTripleStore = inMemoryTripleStore;
     }
 
     public Map<String, Resource> runBenchmark(Map<String, HashSet<Pair<Property, RDFNode>>> EKB) {
@@ -62,17 +67,8 @@ public class KATANA {
         return result;
     }
 
-//    @Bean(name = "threadPoolTaskExecutor")
-//    public Executor threadPoolTaskExecutor() {
-//        ThreadPoolTaskExecutor threadPoolTaskExecutor = new ThreadPoolTaskExecutor();
-//        threadPoolTaskExecutor.setMaxPoolSize(1000);
-//        threadPoolTaskExecutor.setCorePoolSize(100);
-//        return threadPoolTaskExecutor;
-//    }
-
-    //    @Async
     public Future<Map<Triple<String, Integer, Double>, Resource>> runEnhancedBenchMark
-    (Map<Pair<String, Integer>, HashSet<Pair<Property, RDFNode>>> EKB) {
+            (Map<Pair<String, Integer>, HashSet<Pair<Property, RDFNode>>> EKB) {
 
         final Map<Triple<String, Integer, Double>, Resource> result = new ConcurrentHashMap<>();
         ExecutorService executorService = Executors.newFixedThreadPool(32);
@@ -136,36 +132,47 @@ public class KATANA {
         return 1 - tempProduct.get();
     }
 
+    private ConcurrentHashMap<Pair<Property, RDFNode>, Long> dp = new ConcurrentHashMap<>();
+
     private double calculatePsi(Pair<Property, RDFNode> po) {
 
         Property property = po.getLeft();
         RDFNode object = po.getRight();
 
-        ParameterizedSparqlString pss = new ParameterizedSparqlString("" +
-                "SELECT (COUNT(*) AS ?cnt) {\n" +
-                "?subject ?property ?object\n" +
-                "} ");
+//        ParameterizedSparqlString pss = new ParameterizedSparqlString("" +
+//                "SELECT (COUNT(*) AS ?cnt) {\n" +
+//                "?subject ?property ?object\n" +
+//                "} ");
+//
+//        pss.setNsPrefixes(PREFIXES);
+//
+//        pss.setParam("property", property);
+//        pss.setParam("object", object);
 
-        pss.setNsPrefixes(PREFIXES);
+//        try (QueryExecution exec = sparQL.createQueryExecution(pss.asQuery())) {
+//            ResultSet results = exec.execSelect();
+//            int cnt = 1;
+//            if (results.hasNext()) {
+//                QuerySolution solution = results.nextSolution();
+//                cnt = solution.get("cnt").asLiteral().getInt();
+//            }
 
-        pss.setParam("property", property);
-        pss.setParam("object", object);
-
-        try (QueryExecution exec = sparQL.createQueryExecution(pss.asQuery())) {
-            ResultSet results = exec.execSelect();
-            int cnt = 1;
-            if (results.hasNext()) {
-                QuerySolution solution = results.nextSolution();
-                cnt = solution.get("cnt").asLiteral().getInt();
-            }
-
-            logger.debug("calculatePsi, property: {}, object:{}, count:{}", property, object, cnt);
-
-            return 1 - 1.0 / cnt;
-        } catch (Exception e) {
-            logger.error(Arrays.toString(e.getStackTrace()));
+        long cnt;
+        if (dp.containsKey(po))
+            cnt = dp.get(po);
+        else {
+            ResIterator resIterator = inMemoryTripleStore.getModel().listResourcesWithProperty(property, object);
+            cnt = Iter.count(resIterator);
+            dp.put(po, cnt);
         }
-        return 1;
+
+        logger.debug("calculatePsi, property: {}, object:{}, count:{}", property, object, cnt);
+
+        return 1 - 1.0 / cnt;
+//        } catch (Exception e) {
+//            logger.error(Arrays.toString(e.getStackTrace()));
+//        }
+//        return 1;
     }
 
     private Set<Pair<Property, RDFNode>> calculateM_c_s(
@@ -173,27 +180,41 @@ public class KATANA {
 
         Set<Pair<Property, RDFNode>> M = new HashSet<>();
 
+        StmtIterator iter = inMemoryTripleStore.getModel().listStatements(s, null, (RDFNode) null);
+        Statement stmt;
+        Pair pair;
+        while (iter.hasNext()) {
+            stmt = iter.next();
+            pair = Pair.of(stmt.getPredicate(), stmt.getObject());
+            if (allPOs.contains(pair)) {
+                M.add(pair);
+            }
+        }
+/*
         for (Pair<Property, RDFNode> po : allPOs) {
             Property property = po.getLeft();
             RDFNode object = po.getRight();
 
-            ParameterizedSparqlString pss = new ParameterizedSparqlString("ASK {\n?subject ?property ?object\n} ");
+//            ParameterizedSparqlString pss = new ParameterizedSparqlString("ASK {\n?subject ?property ?object\n} ");
+//
+//            pss.setNsPrefixes(PREFIXES);
+//
+//            pss.setParam("subject", s);
+//            pss.setParam("property", property);
+//            pss.setParam("object", object);
+            boolean contains = statements.contains(new StatementImpl(s, property, object));
+            //boolean contains = inMemoryTripleStore.getModel().contains(s, property, object);
+            if(contains)
+                M.add(po);
 
-            pss.setNsPrefixes(PREFIXES);
-
-            pss.setParam("subject", s);
-            pss.setParam("property", property);
-            pss.setParam("object", object);
-
-
-            try (QueryExecution exec = sparQL.createQueryExecution(pss.asQuery())) {
-                if (exec.execAsk())
-                    M.add(po);
-            } catch (Exception e) {
-                logger.debug("Query: {}", pss.toString());
-                logger.error(Arrays.toString(e.getStackTrace()));
-            }
-        }
+//            try (QueryExecution exec = sparQL.createQueryExecution(pss.asQuery())) {
+//                if (exec.execAsk())
+//                    M.add(po);
+//            } catch (Exception e) {
+//                logger.debug("Query: {}", pss.toString());
+//                logger.error(Arrays.toString(e.getStackTrace()));
+//            }
+        }*/
 
         return M;
     }
@@ -205,26 +226,32 @@ public class KATANA {
             Property property = po.getLeft();
             RDFNode object = po.getRight();
 
-            ParameterizedSparqlString pss = new ParameterizedSparqlString("" +
-                    "SELECT DISTINCT ?subject WHERE {\n" +
-                    "  ?subject ?property ?object .\n" +
-                    "}");
+//            ParameterizedSparqlString pss = new ParameterizedSparqlString("" +
+//                    "SELECT DISTINCT ?subject WHERE {\n" +
+//                    "  ?subject ?property ?object .\n" +
+//                    "}");
+//
+//            pss.setNsPrefixes(PREFIXES);
+//
+//            pss.setParam("property", property);
+//            pss.setParam("object", object);
 
-            pss.setNsPrefixes(PREFIXES);
 
-            pss.setParam("property", property);
-            pss.setParam("object", object);
-
-
-            try (QueryExecution exec = sparQL.createQueryExecution(pss.asQuery())) {
-                ResultSet results = exec.execSelect();
-                while (results.hasNext()) {
-                    QuerySolution solution = results.next();
-                    possibleTargetResources.add(solution.getResource("subject"));
-                }
-            } catch (Exception e) {
-                logger.error(Arrays.toString(e.getStackTrace()));
+            ResIterator stmtIterator = inMemoryTripleStore.getModel().listResourcesWithProperty(property, object);
+            while (stmtIterator.hasNext()) {
+                Resource next = stmtIterator.next();
+                possibleTargetResources.add(next);
             }
+
+//            try (QueryExecution exec = sparQL.createQueryExecution(pss.asQuery())) {
+//                ResultSet results = exec.execSelect();
+//                while (results.hasNext()) {
+//                    QuerySolution solution = results.next();
+//                    possibleTargetResources.add(solution.getResource("subject"));
+//                }
+//            } catch (Exception e) {
+//                logger.error(Arrays.toString(e.getStackTrace()));
+//            }
         });
         return possibleTargetResources;
     }

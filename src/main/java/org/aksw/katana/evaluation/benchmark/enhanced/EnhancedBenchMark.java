@@ -75,9 +75,9 @@ public class EnhancedBenchMark {
 
                     InMemorySparQL sparQL = context.getBean(InMemorySparQL.class, inMemoryTripleStore);
 
-                    SparqlUtility sparqlUtility = context.getBean(SparqlUtility.class, sparQL);
+                    SparqlUtility sparqlUtility = context.getBean(SparqlUtility.class, sparQL, inMemoryTripleStore);
 
-                    KATANA katana = context.getBean(KATANA.class, sparQL);
+                    KATANA katana = context.getBean(KATANA.class, sparQL, inMemoryTripleStore);
 
                     EnhancedBenchMarkEvaluation enhancedBenchMarkEvaluation = context.getBean(EnhancedBenchMarkEvaluation.class, katana, sparqlUtility);
 
