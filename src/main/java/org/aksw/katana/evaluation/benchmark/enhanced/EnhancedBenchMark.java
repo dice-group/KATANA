@@ -51,7 +51,7 @@ public class EnhancedBenchMark {
         try {
             Future[][] allResult = new Future[maxPercentage + 1][maxPercentage + 1];
 
-            ExecutorService executorService = Executors.newFixedThreadPool(32);
+            ExecutorService executorService = Executors.newSingleThreadExecutor();
 
             for (int exactlyTheSamePO_percentage = 0; exactlyTheSamePO_percentage <= maxPercentage; exactlyTheSamePO_percentage++) {
                 for (int shareSomePO_percentage = 0; shareSomePO_percentage <= maxPercentage; shareSomePO_percentage++) {

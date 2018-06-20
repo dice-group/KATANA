@@ -19,8 +19,7 @@ import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.stereotype.Component;
 
 import java.util.*;
-import java.util.concurrent.Executor;
-import java.util.concurrent.Future;
+import java.util.concurrent.*;
 import java.util.concurrent.atomic.AtomicReference;
 
 
@@ -44,7 +43,7 @@ public class KATANA {
     private final SparQL sparQL;
 
     @Autowired
-    public KATANA(SparQL sparQL){
+    public KATANA(SparQL sparQL) {
 
         this.sparQL = sparQL;
     }
@@ -71,18 +70,29 @@ public class KATANA {
 //        return threadPoolTaskExecutor;
 //    }
 
-//    @Async
+    //    @Async
     public Future<Map<Triple<String, Integer, Double>, Resource>> runEnhancedBenchMark
-            (Map<Pair<String, Integer>, HashSet<Pair<Property, RDFNode>>> EKB) {
+    (Map<Pair<String, Integer>, HashSet<Pair<Property, RDFNode>>> EKB) {
 
-        Map<Triple<String, Integer, Double>, Resource> result = new HashMap<>();
+        final Map<Triple<String, Integer, Double>, Resource> result = new ConcurrentHashMap<>();
+        ExecutorService executorService = Executors.newFixedThreadPool(32);
 
         EKB.forEach((key, value) -> {
-            Set<Resource> possibleTargetResources = calculatePossibleTargetResources(value);
-            Resource resource = extractMostPossibleTarget(key.getLeft(), possibleTargetResources, value);
-            double score = calculateScore(value);
-            result.put(Triple.of(key.getLeft(), key.getRight(), 1 - score), resource);
+            Runnable runnable = () -> {
+                Set<Resource> possibleTargetResources = calculatePossibleTargetResources(value);
+                Resource resource = extractMostPossibleTarget(key.getLeft(), possibleTargetResources, value);
+                double score = calculateScore(value);
+                result.put(Triple.of(key.getLeft(), key.getRight(), 1 - score), resource);
+            };
+            executorService.execute(runnable);
         });
+
+        executorService.shutdown();
+        try {
+            executorService.awaitTermination(1, TimeUnit.DAYS);
+        } catch (InterruptedException e) {
+            logger.error(Arrays.toString(e.getStackTrace()));
+        }
 
         return new AsyncResult<>(result);
     }
@@ -109,8 +119,8 @@ public class KATANA {
             }
         }
         logger.debug("extractMostPossibleTarget, result: Score: {} Resource: {}", maxPossibleScore, targetResource);
-        if(targetResource.size() != 1){
-            logger.debug(" label {}, POs {} , non unique targetResources are {}",label, allPOs, Arrays.toString(targetResource.toArray()));
+        if (targetResource.size() != 1) {
+            logger.debug(" label {}, POs {} , non unique targetResources are {}", label, allPOs, Arrays.toString(targetResource.toArray()));
         }
         if (targetResource.size() == 0)
             return null;
@@ -167,10 +177,7 @@ public class KATANA {
             Property property = po.getLeft();
             RDFNode object = po.getRight();
 
-            ParameterizedSparqlString pss = new ParameterizedSparqlString("" +
-                    "ASK {\n" +
-                    "?subject ?property ?object\n" +
-                    "} ");
+            ParameterizedSparqlString pss = new ParameterizedSparqlString("ASK {\n?subject ?property ?object\n} ");
 
             pss.setNsPrefixes(PREFIXES);
 
